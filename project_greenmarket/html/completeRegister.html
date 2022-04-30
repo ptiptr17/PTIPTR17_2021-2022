@@ -1,0 +1,166 @@
+<?php
+    include "openconn.php";
+    session_start();
+?>
+
+<html>
+    <head>
+        <meta charset = 'utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registo</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/geral.css">
+        <script type="text/javascript" src="./geral.js" defer></script>
+
+    </head>
+    <body>
+         <!--Menu de Navegação-->
+        <div class="w3-top">
+            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+                <a href="welcome.html" class="w3-bar-item w3-button">GreenMarketHome</a>
+                <div class ="w3-right w3-hide-small">
+                    <a href="transportadores.html" class="w3-bar-item w3-button">Transportadores</a>
+                    <a href="fornecedores.html" class="w3-bar-item w3-button">Fornecedores</a>
+                    <a href="registo.html" class="w3-bar-item w3-button">Registo</a>
+                    <a href="login.html" class="w3-bar-item w3-button">Login</a>
+                    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class = "w3-container w3-display-container w3-light-grey w3-display-middle form">
+            <h1>Registo</h1>
+            <div class = "formulario">
+                <div class="formularioinicial">
+                    <label for="género">Sou</label>
+                    <select onchange="yesConsumidor(this); yesTransportador(this); yesFornecedor(this)" required>
+                        <option value="consumidor">Consumidor</option>
+                        <option value="transportador">Transportador</option>
+                        <option value="fornecedor">Fornecedor</option>
+                        <option value="guest">Guest</option>
+                    </select><br>
+                </div>
+
+                <div id="consumidor" style="display: none;">
+                    <form action="registo.php?field=cons" method="post" enctype='multipart/form-data'>
+                        <label for="costumername">Username:</label>
+                        <input type="text" placeholder= "username" name="username" required><br>
+                        <label for="pass">Password:</label>
+                        <input type="password" placeholder= "password" name="pass" required><br>
+                        <label for="name">Nome:</label>
+                        <input type="text" placeholder= "Nome" name="cname" required><br>
+                        <label for="email">email:</label>
+                        <input type="text" placeholder= "email" name="email" required><br>
+                        <label for="data">Data de Nascimento:</label>
+                        <input type="date" placeholder= "Data de Nascimento" name="cdata" required><br>
+                        <label for="genero">Género:</label>
+                        <select id="genero" name="utigenero" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="none">Prefiro não dizer</option>
+                        </select><br>
+                        <label for="phoneN">nº telefone:</label>
+                        <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
+                        
+                        <!--costumer addresstable handle -->
+
+                        <label for="zip">zone improvement plan:</label>
+                        <input type="text" placeholder="zip" name="czip" required><br>
+                        <label for="province">province:</label>
+                        <input type="text" placeholder="provincia" name="provincia" required><br>
+                        <label for="city">city:</label>
+                        <input type="text" placeholder="city" name="cidade" required><br>
+                        <label for="district">distrito:</label>
+                        <input type="text" placeholder="district" name="distrito" required><br>
+                        <label for="address">morada:</label>
+                        <input type="text" placeholder="address" name="morada" required><br>
+                        <label for="coordinates">coordenadas:</label>
+                        <input type="text" placeholder="coordinates" name="coordenadas" required><br>
+
+                        <button type="submit" name="submit">Registar</button>
+                    </form>   
+                </div>
+
+                <div id="transportador" style="display: none;">
+                    <form action="registo.php?field=tra" method="post" enctype='multipart/form-data'>
+                       <label for="transportername">transportername:</label>
+                        <input type="text" placeholder= "username" name="username" required><br>
+                        <label for="pass">password:</label>
+                        <input type="password" placeholder= "password" name="pass" required><br>
+                        <label for="name">Nome:</label>
+                        <input type="text" placeholder= "Nome" name="tname" required><br>
+                        <label for="email">email:</label>
+                        <input type="text" placeholder= "email" name="email" required><br>
+                        <label for="data">Data de Nascimento:</label>
+                        <input type="date" placeholder= "Data de Nascimento" name="tdata" required><br>
+                        <label for="genero">Género:</label>
+                        <select id="genero" name="tgenero" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="none">Prefiro não dizer</option>
+                        </select><br>
+                        <label for="phoneN">nº telefone:</label>
+                        <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
+                        
+                        <!--costumer addresstable handle -->
+
+                        <label for="zip">zone improvement plan:</label>
+                        <input type="text" placeholder="zip" name="czip" required><br>
+                        <label for="province">province:</label>
+                        <input type="text" placeholder="provincia" name="provincia" required><br>
+                        <label for="city">city:</label>
+                        <input type="text" placeholder="city" name="cidade" required><br>
+                        <label for="district">distrito:</label>
+                        <input type="text" placeholder="district" name="distrito" required><br>
+                        <label for="address">morada:</label>
+                        <input type="text" placeholder="address" name="morada" required><br>
+                        <label for="coordinates">coordenadas:</label>
+                        <input type="text" placeholder="coordinates" name="coordenadas" required><br>
+                        <button type="submit" name="submit">Registar</button>
+                    </form>
+                </div>
+
+                <div id="fornecedor" style="display: none;">
+                    <form action="registo.php?field=for" method="post" enctype='multipart/form-data'>
+                       <label for="suppliername">fornecedorname:</label>
+                        <input type="text" placeholder= "username" name="username" required><br>
+                        <label for="pass">password:</label>
+                        <input type="password" placeholder= "password" name="pass" required><br>
+                        <label for="name">Nome:</label>
+                        <input type="text" placeholder= "Nome" name="fname" required><br>
+                        <label for="email">email:</label>
+                        <input type="text" placeholder= "email" name="email" required><br>
+                        <label for="data">Data de Nascimento:</label>
+                        <input type="date" placeholder= "Data de Nascimento" name="fdata" required><br>
+                        <label for="genero">Género:</label>
+                        <select id="genero" name="tgenero" required>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="none">Prefiro não dizer</option>
+                        </select><br>
+                        <label for="phoneN">nº telefone:</label>
+                        <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
+                        
+                        <!--costumer addresstable handle -->
+
+                        <label for="zip">zone improvement plan:</label>
+                        <input type="text" placeholder="zip" name="czip" required><br>
+                        <label for="province">province:</label>
+                        <input type="text" placeholder="provincia" name="provincia" required><br>
+                        <label for="city">city:</label>
+                        <input type="text" placeholder="city" name="cidade" required><br>
+                        <label for="district">distrito:</label>
+                        <input type="text" placeholder="district" name="distrito" required><br>
+                        <label for="address">morada:</label>
+                        <input type="text" placeholder="address" name="morada" required><br>
+                        <label for="coordinates">coordenadas:</label>
+                        <input type="text" placeholder="coordinates" name="coordenadas" required><br>
+                        <button type="submit" name="submit">Registar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

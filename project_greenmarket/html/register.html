@@ -1,0 +1,57 @@
+<?php
+    include "openconn.php";
+    session_start();
+?>
+
+<html>
+    <head>
+        <meta charset = 'utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Registo</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/register.css">
+        <script type="text/javascript" src="./register.js" defer></script>
+
+    </head>
+    <body>
+         <!--Menu de Navegação-->
+        <div class="w3-top">
+            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+                <a href="welcome.html" class="w3-bar-item w3-button">GreenMarketHome</a>
+                <div class ="w3-right w3-hide-small">
+                    <a href="transportadores.html" class="w3-bar-item w3-button">Transportadores</a>
+                    <a href="fornecedores.html" class="w3-bar-item w3-button">Fornecedores</a>
+                    <a href="registo.html" class="w3-bar-item w3-button">Registo</a>
+                    <a href="login.html" class="w3-bar-item w3-button">Login</a>
+                    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+                </div>
+            </div>
+        </div>
+        <form action="/action_page.php">
+            <div class="container">
+              <h1>Registo</h1>
+              <p>Para criar uma conta nova siga os passos seguintes:</p>
+              <hr>
+          
+              <label for="email"><b>Email</b></label>
+              <input type="text" placeholder="Enter Email" name="email" id="email" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+          
+              <label for="psw-repeat"><b>Repita a Password</b></label>
+              <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+              <hr>
+              <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
+          
+              <button type="submit" class="registerbtn">Register</button>
+            </div>
+            
+            <div class="container signin">
+              <p>Já tem uma conta? <a href="login.html">Login</a>.</p>
+            </div>
+        </form>
+    </body>
+</html>
