@@ -87,7 +87,7 @@ p {
 .search input[type=text] {
     float: right;
     padding: 10px;
-    border: none;
+    border: green;
     font-size: 17px;
     margin-left: 20px;
 }
@@ -136,4 +136,8 @@ hr {
 
 .col-4 img{
     width: 100%;
+}
+
+.fa-leaf {
+    color: green;
 }
