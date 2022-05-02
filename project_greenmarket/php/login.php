@@ -12,22 +12,14 @@ $username = $_POST["uname"];
 $pwd = $_POST["psw"];
 $accountT = $_POST["accountType"];
 
-$queryuser = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "' and accountType='" . $accountT . "'");
-print_r($querytrans);
-if (mysqli_num_rows($queryuser) == 1) {
+$queryu = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "'");
+
+if (mysqli_num_rows($queryu) == 1) {
     $_SESSION["loggedIn"] = true;
     $_SESSION["username"] = $username;
-    if $accountT = "Transportadora"{
-        header("location: transportadora.html");
-        exit();
-    } elseif $accountT = "Vendedor"{
-        header("location: vendedor.html");
-        exit();
-    }else{
-        header("location: user.html");
-        exit();
-    }
-
+    header("location: welcome.html");
+    exit();
+}
 } else {
     header("location: login.php");
 }
