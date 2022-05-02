@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-
 	<?php
 	echo "<p>All work and no play makes jack a dull boy!</p>";*/
 	$dbhost = "sql113.epizy.com";
