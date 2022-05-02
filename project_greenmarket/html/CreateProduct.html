@@ -40,12 +40,12 @@
                     </div>
                     </a>
                 </div>
-                    <h2>Register your product</h2>
+                    <h2>Registe o seu produto</h2>
         <form name = "productform" action="CreateProduct.php" method = "post" enctype = "multipart/form-data" >
             <div class = "container">
                 <div class = "form_group">
                     <label>Nome do produto:</label>
-                    <input type = "text" name = "fname" value = "" required/>
+                    <input type = "text" name = "pname" value = "" required/>
                 </div>
                 <div class = "form_group">
                     <label>Escolha a categoria:</label>
@@ -55,16 +55,21 @@
                     </select>
                 </div>
                 <div class = "form_group">
+                    <label>Preço:</label>
+                    <input type = "number" name = "price" value = "" required/>
+                </div>
+                <div class = "form_group">
                     <label>Data de produção:</label>
                     <input type = "date" name = "prodate" value = "" required/>
                 </div>
                 <div class = "form_group">
-                    <label>Recursos usados:</label>
-                    <input type = "text" name = "resource" value = "" required/>
+                    <label>Recursos usados (Agua/Eletricidade):</label>
+                    <input type = "number" name = "resourcewater" value = "" required/>
+                    <input type = "number" name = "resourceelec" value = "" required/>
                 </div>
                 <div class = "form_group">
                     <label>Poluição causada:</label>
-                    <input type = "text" name = "polut" value = "" required/>
+                    <input type = "number" name = "polut" value = "" required/>
                 </div>
                 <div class = "form_group">
                     <label>Data de expiração:</label>
@@ -75,7 +80,7 @@
                     <input type = "text" name = "desc" value = "" required/>
                 </div>
                 <div class = "form_group">
-                    <label>Recursos usados:</label>
+                    <label>Foto do produto:</label>
                     <input type = "image" name = "pciture" value = "" required/>
                 </div>
                 <div class = "form_group">
