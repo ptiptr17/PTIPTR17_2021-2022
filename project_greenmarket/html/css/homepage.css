@@ -80,9 +80,9 @@ p {
 
 }
 
-body {
+/*body {
     background: radial-gradient(#fff,#a6fab0);
-}
+}*/
 
 .search input[type=text] {
     float: right;
