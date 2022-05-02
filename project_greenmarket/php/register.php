@@ -15,15 +15,15 @@ if($pass_user == $repass_user){
 $password = password_hash($pass_repr, PASSWORD_BCRYPT);
 
 // Inserir para a tabela
-$insert_user = "insert into costumer_login(username, password, email) values('$nome_user','$pass_user','$email_user' )";
+$insert_user = "insert into customer_login(username, password, email) values('$nome_user','$pass_user','$email_user')";
 
 $res2= mysqli_query ($conn, $insert_user);
 if($res2){
     echo "Novo utilizador criado com sucesso";
-    header( "refresh:5; url=welcome.html");
+    header( "refresh:10; url=../html/welcome.html");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
-    header( "refresh:5; url=welcome.php" );
+    header( "refresh:10; url=../html/welcome.html" );
 }
 // Termina a ligação com a base de dados
 mysqli_close($conn);
