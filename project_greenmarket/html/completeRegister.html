@@ -2,165 +2,345 @@
     include "openconn.php";
     session_start();
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="pt">
     <head>
-        <meta charset = 'utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Registo</title>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="./css/completeRegister.css">
-        <script type="text/javascript" src="./completeRegister.js" defer></script>
-
+        <meta charset="UTF-8">
+        <title>GreenMarket</title>
+        <link rel="icon" href="imagens/icon.png"/>
+        <link rel="stylesheet" type="text/css" href="css/completeRegister.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type= "text/javascript" src = "completeRegister.js"></script>
     </head>
     <body>
-         <!--Menu de Navegação-->
-        <div class="w3-top">
-            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-                <a href="welcome.html" class="w3-bar-item w3-button">GreenMarketHome</a>
-                <div class ="w3-right w3-hide-small">
-                    <a href="transportadores.html" class="w3-bar-item w3-button">Transportadores</a>
-                    <a href="fornecedores.html" class="w3-bar-item w3-button">Fornecedores</a>
-                    <a href="registo.html" class="w3-bar-item w3-button">Registo</a>
-                    <a href="login.html" class="w3-bar-item w3-button">Login</a>
-                    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+        <header class="header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="welcome.html"><img src="imagens/logo.png" width="400px"></a>
+                    </div>
+                    <div class="search">
+                        <input type="text" placeholder="Procurar..">
+                    </div>
+                    <nav>
+                        <ul>
+                          <li><a href="categorias.html"> Produtos</a></li>
+                          <li><a href="login.html"> Iniciar Sessão</a></li>
+                          <li><a href="register.html"> Criar Conta</a></li>
+                        </ul>
+                    </nav>
+                    <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+                    <div id="nav-cart-count-container">
+                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
+                        <i class="fa fa-shopping-cart" style="font-size:24px"></i>
+                    </div>
+                    <div id="nav-cart-text-container" class=" nav-progressive-attribute">
+                        <span aria-hidden="true" class="nav-line-1">
+                        </span>
+                        <span aria-hidden="true" class="nav-line-2">
+                        Carrinho
+                        <span class="nav-icon nav-arrow"></span>
+                        </span>
+                    </div>
+                    </a>
+                </div>
+                <hr>
+            </div>
+        </header>
+        <div class="conteudo container row">
+            <div class = "w3-container w3-display-container w3-light-grey w3-display-middle form">
+                <h1>Registo</h1>
+                <div class = "formulario">
+                    <div class="formularioinicial">
+                        <label for="género">Sou</label>
+                        <select onchange="yesConsumidor(this); yesTransportador(this); yesFornecedor(this)" required>
+                            <option value="consumidor">Consumidor</option>
+                            <option value="transportador">Transportador</option>
+                            <option value="fornecedor">Fornecedor</option>
+                            <option value="guest">Guest</option>
+                        </select><br>
+                    </div>
+
+                    <div id="consumidor" style="display: none;">
+                        <form action="registo.php?field=cons" method="post" enctype='multipart/form-data'>
+                            <label for="costumername">Username:</label>
+                            <input type="text" placeholder= "username" name="username" required><br>
+                            <label for="pass">Password:</label>
+                            <input type="password" placeholder= "password" name="pass" required><br>
+                            <label for="name">Nome:</label>
+                            <input type="text" placeholder= "Nome" name="cname" required><br>
+                            <label for="email">email:</label>
+                            <input type="text" placeholder= "email" name="email" required><br>
+                            <label for="data">Data de Nascimento:</label>
+                            <input type="date" placeholder= "Data de Nascimento" name="cdata" required><br>
+                            <label for="genero">Género:</label>
+                            <select id="genero" name="utigenero" required>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="none">Prefiro não dizer</option>
+                            </select><br>
+                            <label for="phoneN">nº telefone:</label>
+                            <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
+                            
+                            <!--costumer addresstable handle -->
+
+                            <label for="zip">zone improvement plan:</label>
+                            <input type="text" placeholder="zip" name="czip" required><br>
+                            <label for="province">province:</label>
+                            <input type="text" placeholder="provincia" name="provincia" required><br>
+                            <label for="city">city:</label>
+                            <input type="text" placeholder="city" name="cidade" required><br>
+                            <label for="district">distrito:</label>
+                            <input type="text" placeholder="district" name="distrito" required><br>
+                            <label for="address">morada:</label>
+                            <input type="text" placeholder="address" name="morada" required><br>
+                            <label for="coordinates">coordenadas:</label>
+                            <input type="text" placeholder="coordinates" name="coordenadas" required><br>
+
+                            <button type="submit" name="submit">Registar</button>
+                        </form>   
+                    </div>
+
+                    <div id="transportador" style="display: none;">
+                        <form action="registo.php?field=tra" method="post" enctype='multipart/form-data'>
+                        <label for="transportername">transportername:</label>
+                            <input type="text" placeholder= "username" name="username" required><br>
+                            <label for="pass">password:</label>
+                            <input type="password" placeholder= "password" name="pass" required><br>
+                            <label for="name">Nome:</label>
+                            <input type="text" placeholder= "Nome" name="tname" required><br>
+                            <label for="email">email:</label>
+                            <input type="text" placeholder= "email" name="email" required><br>
+                            <label for="data">Data de Nascimento:</label>
+                            <input type="date" placeholder= "Data de Nascimento" name="tdata" required><br>
+                            <label for="genero">Género:</label>
+                            <select id="genero" name="tgenero" required>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="none">Prefiro não dizer</option>
+                            </select><br>
+                            <label for="phoneN">nº telefone:</label>
+                            <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
+                            
+                            <!--costumer addresstable handle -->
+
+                            <label for="zip">zone improvement plan:</label>
+                            <input type="text" placeholder="zip" name="czip" required><br>
+                            <label for="province">province:</label>
+                            <input type="text" placeholder="provincia" name="provincia" required><br>
+                            <label for="city">city:</label>
+                            <input type="text" placeholder="city" name="cidade" required><br>
+                            <label for="district">distrito:</label>
+                            <input type="text" placeholder="district" name="distrito" required><br>
+                            <label for="address">morada:</label>
+                            <input type="text" placeholder="address" name="morada" required><br>
+                            <label for="coordinates">coordenadas:</label>
+                            <input type="text" placeholder="coordinates" name="coordenadas" required><br>
+                            <button type="submit" name="submit">Registar</button>
+                        </form>
+                    </div>
+
+                    <div id="fornecedor" style="display: none;">
+                        <form action="registo.php?field=for" method="post" enctype='multipart/form-data'>
+                        <label for="suppliername">fornecedorname:</label>
+                            <input type="text" placeholder= "username" name="username" required><br>
+                            <label for="pass">password:</label>
+                            <input type="password" placeholder= "password" name="pass" required><br>
+                            <label for="name">Nome:</label>
+                            <input type="text" placeholder= "Nome" name="fname" required><br>
+                            <label for="email">email:</label>
+                            <input type="text" placeholder= "email" name="email" required><br>
+                            <label for="data">Data de Nascimento:</label>
+                            <input type="date" placeholder= "Data de Nascimento" name="fdata" required><br>
+                            <label for="genero">Género:</label>
+                            <select id="genero" name="tgenero" required>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="none">Prefiro não dizer</option>
+                            </select><br>
+                            <label for="phoneN">nº telefone:</label>
+                            <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
+                            
+                            <!--costumer addresstable handle -->
+
+                            <label for="zip">zone improvement plan:</label>
+                            <input type="text" placeholder="zip" name="czip" required><br>
+                            <label for="province">province:</label>
+                            <input type="text" placeholder="provincia" name="provincia" required><br>
+                            <label for="city">city:</label>
+                            <input type="text" placeholder="city" name="cidade" required><br>
+                            <label for="district">distrito:</label>
+                            <input type="text" placeholder="district" name="distrito" required><br>
+                            <label for="address">morada:</label>
+                            <input type="text" placeholder="address" name="morada" required><br>
+                            <label for="coordinates">coordenadas:</label>
+                            <input type="text" placeholder="coordinates" name="coordenadas" required><br>
+                            <button type="submit" name="submit">Registar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class = "w3-container w3-display-container w3-light-grey w3-display-middle form">
-            <h1>Registo</h1>
-            <div class = "formulario">
-                <div class="formularioinicial">
-                    <label for="género">Sou</label>
-                    <select onchange="yesConsumidor(this); yesTransportador(this); yesFornecedor(this)" required>
-                        <option value="consumidor">Consumidor</option>
-                        <option value="transportador">Transportador</option>
-                        <option value="fornecedor">Fornecedor</option>
-                        <option value="guest">Guest</option>
-                    </select><br>
+        <footer className="footer">
+            <div id="listaProfsUCs">
+                <div className="inline-block mr-8">
+                <ul>
+                    <li>
+                    <span className="my-2">
+                        <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505944">PTI</a>
+                    </span>
+                    </li>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        PTR
+                        </a>
+                    </span>
+                    </li>
+                </ul>
                 </div>
-
-                <div id="consumidor" style="display: none;">
-                    <form action="registo.php?field=cons" method="post" enctype='multipart/form-data'>
-                        <label for="costumername">Username:</label>
-                        <input type="text" placeholder= "username" name="username" required><br>
-                        <label for="pass">Password:</label>
-                        <input type="password" placeholder= "password" name="pass" required><br>
-                        <label for="name">Nome:</label>
-                        <input type="text" placeholder= "Nome" name="cname" required><br>
-                        <label for="email">email:</label>
-                        <input type="text" placeholder= "email" name="email" required><br>
-                        <label for="data">Data de Nascimento:</label>
-                        <input type="date" placeholder= "Data de Nascimento" name="cdata" required><br>
-                        <label for="genero">Género:</label>
-                        <select id="genero" name="utigenero" required>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                            <option value="none">Prefiro não dizer</option>
-                        </select><br>
-                        <label for="phoneN">nº telefone:</label>
-                        <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
-                        
-                        <!--costumer addresstable handle -->
-
-                        <label for="zip">zone improvement plan:</label>
-                        <input type="text" placeholder="zip" name="czip" required><br>
-                        <label for="province">province:</label>
-                        <input type="text" placeholder="provincia" name="provincia" required><br>
-                        <label for="city">city:</label>
-                        <input type="text" placeholder="city" name="cidade" required><br>
-                        <label for="district">distrito:</label>
-                        <input type="text" placeholder="district" name="distrito" required><br>
-                        <label for="address">morada:</label>
-                        <input type="text" placeholder="address" name="morada" required><br>
-                        <label for="coordinates">coordenadas:</label>
-                        <input type="text" placeholder="coordinates" name="coordenadas" required><br>
-
-                        <button type="submit" name="submit">Registar</button>
-                    </form>   
+                <div className="inline-block mr-8">
+                <ul>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://ciencias.ulisboa.pt/pt/perfil/amferreira"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        António Ferreira
+                        </a>
+                    </span>
+                    </li>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://ciencias.ulisboa.pt/perfil/aodsa"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        Alan Oliveira
+                        </a>
+                    </span>
+                    </li>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://ciencias.ulisboa.pt/pt/perfil/mcalha"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        Mário Calha
+                        </a>
+                    </span>
+                    </li>
+                </ul>
                 </div>
-
-                <div id="transportador" style="display: none;">
-                    <form action="registo.php?field=tra" method="post" enctype='multipart/form-data'>
-                       <label for="transportername">transportername:</label>
-                        <input type="text" placeholder= "username" name="username" required><br>
-                        <label for="pass">password:</label>
-                        <input type="password" placeholder= "password" name="pass" required><br>
-                        <label for="name">Nome:</label>
-                        <input type="text" placeholder= "Nome" name="tname" required><br>
-                        <label for="email">email:</label>
-                        <input type="text" placeholder= "email" name="email" required><br>
-                        <label for="data">Data de Nascimento:</label>
-                        <input type="date" placeholder= "Data de Nascimento" name="tdata" required><br>
-                        <label for="genero">Género:</label>
-                        <select id="genero" name="tgenero" required>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                            <option value="none">Prefiro não dizer</option>
-                        </select><br>
-                        <label for="phoneN">nº telefone:</label>
-                        <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
-                        
-                        <!--costumer addresstable handle -->
-
-                        <label for="zip">zone improvement plan:</label>
-                        <input type="text" placeholder="zip" name="czip" required><br>
-                        <label for="province">province:</label>
-                        <input type="text" placeholder="provincia" name="provincia" required><br>
-                        <label for="city">city:</label>
-                        <input type="text" placeholder="city" name="cidade" required><br>
-                        <label for="district">distrito:</label>
-                        <input type="text" placeholder="district" name="distrito" required><br>
-                        <label for="address">morada:</label>
-                        <input type="text" placeholder="address" name="morada" required><br>
-                        <label for="coordinates">coordenadas:</label>
-                        <input type="text" placeholder="coordinates" name="coordenadas" required><br>
-                        <button type="submit" name="submit">Registar</button>
-                    </form>
-                </div>
-
-                <div id="fornecedor" style="display: none;">
-                    <form action="registo.php?field=for" method="post" enctype='multipart/form-data'>
-                       <label for="suppliername">fornecedorname:</label>
-                        <input type="text" placeholder= "username" name="username" required><br>
-                        <label for="pass">password:</label>
-                        <input type="password" placeholder= "password" name="pass" required><br>
-                        <label for="name">Nome:</label>
-                        <input type="text" placeholder= "Nome" name="fname" required><br>
-                        <label for="email">email:</label>
-                        <input type="text" placeholder= "email" name="email" required><br>
-                        <label for="data">Data de Nascimento:</label>
-                        <input type="date" placeholder= "Data de Nascimento" name="fdata" required><br>
-                        <label for="genero">Género:</label>
-                        <select id="genero" name="tgenero" required>
-                            <option value="Masculino">Masculino</option>
-                            <option value="Feminino">Feminino</option>
-                            <option value="none">Prefiro não dizer</option>
-                        </select><br>
-                        <label for="phoneN">nº telefone:</label>
-                        <input type="text" placeholder= "numero de telefone" name="phoneN" required><br>
-                        
-                        <!--costumer addresstable handle -->
-
-                        <label for="zip">zone improvement plan:</label>
-                        <input type="text" placeholder="zip" name="czip" required><br>
-                        <label for="province">province:</label>
-                        <input type="text" placeholder="provincia" name="provincia" required><br>
-                        <label for="city">city:</label>
-                        <input type="text" placeholder="city" name="cidade" required><br>
-                        <label for="district">distrito:</label>
-                        <input type="text" placeholder="district" name="distrito" required><br>
-                        <label for="address">morada:</label>
-                        <input type="text" placeholder="address" name="morada" required><br>
-                        <label for="coordinates">coordenadas:</label>
-                        <input type="text" placeholder="coordinates" name="coordenadas" required><br>
-                        <button type="submit" name="submit">Registar</button>
-                    </form>
-                </div>
-
+                
             </div>
-        </div>
+                    </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-gray-200 uppercase mt-4 md:mt-0 mb-2">
+                      Membros do Grupo
+                    </span>
+                    <div id="listaAlunos">
+                      <div className="inline-block mr-8">
+                        <ul>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href="https://www.instagram.com/goncalorocha99/"
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                Gonçalo Rocha
+                              </a>
+                            </span>
+                          </li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="inline-block">
+                        <ul>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                          <li></li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                               
+                              </a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    </span>
+                    <span className="text-blue-500  text-md hover:text-salmon">
+                    <a href="">FAQs</a>
+                    </span>
+                    <span className="text-blue-500  text-md hover:text-salmon">
+                    <a href="">Contactos</a>
+                    </span>
+                    <span className="text-blue-500  text-md hover:text-salmon">
+                        <a href="">Sobre Nós</a>
+                    </span>        
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="container mx-auto px-6">
+              <div className="mt-16 border-t-2 border-gray-300 flex flex-col items-center">
+                <div className="sm:w-2/3 text-center py-6">
+                  <p className="text-sm text-white font-bold mb-2">
+                    © GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022
+                  </p>
+                </div>
+              </div>
+            </div>
+          </footer>
     </body>
 </html>

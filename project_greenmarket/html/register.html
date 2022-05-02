@@ -2,55 +2,234 @@
     include "openconn.php";
     session_start();
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="pt">
     <head>
-        <meta charset = 'utf-8'>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Registo</title>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <meta charset="UTF-8">
+        <title>GreenMarket</title>
+        <link rel="icon" href="imagens/icon.png"/>
+        <link rel="stylesheet" type="text/css" href="css/register.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="./css/register.css">
-        <script type="text/javascript" src="./register.js" defer></script>
+        <script type= "text/javascript" src = "register.js"></script>
     </head>
     <body>
-         <!--Menu de Navegação-->
-        <div class="w3-top">
-            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-                <a href="welcome.html" class="w3-bar-item w3-button">GreenMarketHome</a>
-                <div class ="w3-right w3-hide-small">
-                    <a href="transportadores.html" class="w3-bar-item w3-button">Transportadores</a>
-                    <a href="fornecedores.html" class="w3-bar-item w3-button">Fornecedores</a>
-                    <a href="registo.html" class="w3-bar-item w3-button">Registo</a>
-                    <a href="login.html" class="w3-bar-item w3-button">Login</a>
-                    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-                </div>
-            </div>
-        </div>
-        <form action="/action_page.php">
+        <header class="header">
             <div class="container">
-              <h1>Registo</h1>
-              <p>Para criar uma conta nova siga os passos seguintes:</p>
-              <hr>
-          
-              <label for="email"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="email" id="email" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-          
-              <label for="psw-repeat"><b>Repita a Password</b></label>
-              <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-              <hr>
-              <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
-          
-              <button type="submit" class="registerbtn">Register</button>
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="welcome.html"><img src="imagens/logo.png" width="400px"></a>
+                    </div>
+                    <div class="search">
+                        <input type="text" placeholder="Procurar..">
+                    </div>
+                    <nav>
+                        <ul>
+                            <li><a href="categorias.html"> Produtos</a></li>
+                            <li><a href="login.html"> Iniciar Sessão</a></li>
+                            <li><a href="register.html"> Criar Conta</a></li>
+                        </ul>
+                    </nav>
+                    <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+                    <div id="nav-cart-count-container">
+                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
+                        <i class="fa fa-shopping-cart" style="font-size:24px"></i>
+                    </div>
+                    <div id="nav-cart-text-container" class=" nav-progressive-attribute">
+                        <span aria-hidden="true" class="nav-line-1">
+                        </span>
+                        <span aria-hidden="true" class="nav-line-2">
+                        Carrinho
+                        <span class="nav-icon nav-arrow"></span>
+                        </span>
+                    </div>
+                    </a>
+                </div>
+                <hr>
             </div>
+        </header>
+        <div class="conteudo container row">
+            <form action="/action_page.php">
+                <h1>Registo</h1>
+                <p>Para criar uma conta nova siga os passos seguintes:</p>
+                <hr>
             
-            <div class="container signin">
-              <p>Já tem uma conta? <a href="login.html">Login</a>.</p>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+            
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+            
+                <label for="psw-repeat"><b>Repita a Password</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+                <hr>
+                <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
+            
+                <button type="submit" class="registerbtn">Register</button>
+                
+                <div class="container signin">
+                <p>Já tem uma conta? <a href="login.html">Login</a>.</p>
+                </div>
+            </form>
+        </div>
+        <footer className="footer">
+            <div id="listaProfsUCs">
+                <div className="inline-block mr-8">
+                <ul>
+                    <li>
+                    <span className="my-2">
+                        <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505944">PTI</a>
+                    </span>
+                    </li>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        PTR
+                        </a>
+                    </span>
+                    </li>
+                </ul>
+                </div>
+                <div className="inline-block mr-8">
+                <ul>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://ciencias.ulisboa.pt/pt/perfil/amferreira"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        António Ferreira
+                        </a>
+                    </span>
+                    </li>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://ciencias.ulisboa.pt/perfil/aodsa"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        Alan Oliveira
+                        </a>
+                    </span>
+                    </li>
+                    <li>
+                    <span className="my-2">
+                        <a
+                        href="https://ciencias.ulisboa.pt/pt/perfil/mcalha"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                        >
+                        Mário Calha
+                        </a>
+                    </span>
+                    </li>
+                </ul>
+                </div>
+                
             </div>
-        </form>
+                    </div>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-gray-200 uppercase mt-4 md:mt-0 mb-2">
+                      Membros do Grupo
+                    </span>
+                    <div id="listaAlunos">
+                      <div className="inline-block mr-8">
+                        <ul>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href="https://www.instagram.com/goncalorocha99/"
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                Gonçalo Rocha
+                              </a>
+                            </span>
+                          </li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="inline-block">
+                        <ul>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                                
+                              </a>
+                            </span>
+                          </li>
+                          <li></li>
+                          <li>
+                            <span className="my-2">
+                              <a
+                                href=""
+                                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                              >
+                               
+                              </a>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    </span>
+                    <span className="text-blue-500  text-md hover:text-salmon">
+                    <a href="">FAQs</a>
+                    </span>
+                    <span className="text-blue-500  text-md hover:text-salmon">
+                    <a href="">Contactos</a>
+                    </span>
+                    <span className="text-blue-500  text-md hover:text-salmon">
+                        <a href="">Sobre Nós</a>
+                    </span>        
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="container mx-auto px-6">
+              <div className="mt-16 border-t-2 border-gray-300 flex flex-col items-center">
+                <div className="sm:w-2/3 text-center py-6">
+                  <p className="text-sm text-white font-bold mb-2">
+                    © GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022
+                  </p>
+                </div>
+              </div>
+            </div>
+          </footer>
     </body>
 </html>

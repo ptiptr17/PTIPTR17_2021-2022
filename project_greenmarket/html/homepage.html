@@ -4,10 +4,11 @@
         <meta charset="UTF-8">
         <title>GreenMarket</title>
         <link rel="icon" href="imagens/icon.png"/>
-        <link rel="stylesheet" type="text/css" href="css/welcome.css">
+        <link rel="stylesheet" type="text/css" href="css/homepage.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type= "text/javascript" src = "welcome.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type= "text/javascript" src = "homepage.js"></script>
     </head>
     <body>
         <header class="header">
@@ -20,11 +21,11 @@
                         <input type="text" placeholder="Procurar..">
                     </div>
                     <nav>
-                      <ul>
-                        <li><a href="categorias.html"> Produtos</a></li>
-                        <li><a href="login.html"> Iniciar Sessão</a></li>
-                        <li><a href="register.html"> Criar Conta</a></li>
-                    </ul>
+                        <ul>
+                          <li><a href="categorias.html"> Produtos</a></li>
+                          <li><a href="login.html"> Iniciar Sessão</a></li>
+                          <li><a href="register.html"> Criar Conta</a></li>
+                        </ul>
                     </nav>
                     <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
                     <div id="nav-cart-count-container">
@@ -45,15 +46,76 @@
             </div>
         </header>
         <div class="conteudo container row">
-            <div class="col-2">
-                <h1>PENSE DUAS VEZES<br> ANTES DE COMPRAR!</h1>
-                <p>Um site onde existe espaço para ajudar o planeta, num mundo melhor<br> com os produtos certos!</p>
-                <a href="homepage.html" class="btn">Comece Agora &#8594;</a>
+            <div class="categories">
+                <div class="small-container">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="">
+                        </div>
+                        <div class="col-3">
+                            <img src="">
+                        </div>
+                        <div class="col-3">
+                            <img src="">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-2">
-                <img src="imagens/welcome.png">
+            <div class="small-container">
+                <h2>Produtos Mais Vendidos</h2>
+                <div class="row">
+                    <div class="col-4">
+                        <img src="https://images.samsung.com/is/image/samsung/p6pim/pt/ue50au7105kxxc/gallery/pt-uhd-4k-tv-ue50au7105kxxc-front-gray-457552597?$720_576_PNG$">
+                        <h4>Samsung TV AU7105 Smart 4K</h4>
+                        <div class="rating">
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-o"></i>
+                        </div>
+                        <p>749,99€</p>
+                    </div>
+                    <div class="col-4">
+                      <img src="https://www.worten.pt/i/1a54e4f821e05c27cfd3b55ff36ac39419a584e3.jpg">
+                      <h4>Frigorifico Combinado LG</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                      </div>
+                      <p>10,50€</p>
+                    </div>
+                    <div class="col-4">
+                      <img src="">
+                      <h4>Something 3</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <p>20,25€</p>
+                    </div>
+                    <div class="col-4">
+                      <img src="">
+                      <h4>Something 4</h4>
+                      <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                      </div>
+                      <p>7,90€</p>
+                  </div>
+                </div>
             </div>
         </div>
+
         <footer className="footer">
             <div id="listaProfsUCs">
                 <div className="inline-block mr-8">
