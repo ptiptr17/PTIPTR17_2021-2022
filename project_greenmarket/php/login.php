@@ -12,18 +12,9 @@ $username = $_POST["uname"];
 $pwd = $_POST["psw"];
 $accountT = $_POST["accountType"];
 
-$queryu = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "'");
-
-if (mysqli_num_rows($queryu) == 1) {
-    $_SESSION["loggedIn"] = true;
-    $_SESSION["username"] = $username;
-    header("location: welcome.html");
-    exit();
-}
-
-$querytrans = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "' and accountType='" . $accountT . "'");
+$queryuser = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "' and accountType='" . $accountT . "'");
 print_r($querytrans);
-if (mysqli_num_rows($querytrans) == 1) {
+if (mysqli_num_rows($queryuser) == 1) {
     $_SESSION["loggedIn"] = true;
     $_SESSION["username"] = $username;
     if $accountT = "Transportadora"{
