@@ -1,56 +1,233 @@
-<!DOCTYPE HTML>
+<?php
+    include "openconn.php";
+    session_start();
+?>
+<!DOCTYPE html>
 <html lang="pt">
-<head>
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../css/login.css">
-
-  <title>GreenMarket</title>
-</head>
-
-
-<body>
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
-
-  <div id="id01" class="modal">
-
-    <form class="modal-content animate" action="/action_page.php" method="post">
-      <div class="imgcontainer">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-        <img src="images\img_avatar.png" alt="Avatar" class="avatar">
-      </div>
-
+  <head>
+      <meta charset="UTF-8">
+      <title>GreenMarket</title>
+      <link rel="icon" href="imagens/icon.png"/>
+      <link rel="stylesheet" type="text/css" href="css/login.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script type= "text/javascript" src = "login.js"></script>
+  </head>
+  <body>
+    <header class="header">
       <div class="container">
-        <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-        <button type="submit">Login</button>
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
+          <div class="navbar">
+              <div class="logo">
+                  <a href="welcome.html"><img src="imagens/logo.png" width="400px"></a>
+              </div>
+              <div class="search">
+                  <input type="text" placeholder="Procurar..">
+              </div>
+              <nav>
+                  <ul>
+                      <li><a href="categorias.html"> Produtos</a></li>
+                      <li><a href="login.html"> Iniciar Sessão</a></li>
+                      <li><a href="register.html"> Criar Conta</a></li>
+                  </ul>
+              </nav>
+              <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+              <div id="nav-cart-count-container">
+                  <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
+                  <i class="fa fa-shopping-cart" style="font-size:24px"></i>
+              </div>
+              <div id="nav-cart-text-container" class=" nav-progressive-attribute">
+                  <span aria-hidden="true" class="nav-line-1">
+                  </span>
+                  <span aria-hidden="true" class="nav-line-2">
+                  Carrinho
+                  <span class="nav-icon nav-arrow"></span>
+                  </span>
+              </div>
+              </a>
+          </div>
+          <hr>
       </div>
+    </header>
+    <div class="conteudo container row">
+      <div class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+          <div class="container">
+            <label for="uname"><b>Email ou Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
 
-      <div class="container" style="background-color:#f1f1f1">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <span class="psw"><a href="#">Forgot password?</a></span>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </div>
+          <div class="container" style="background-color:#f1f1f1">
+            <span class="psw"><a href="#">Forgot password?</a></span>
+          </div>
+        </form>
       </div>
-    </form>
-  </div>
-
-  <script>
-  // Get the modal
-  var modal = document.getElementById('id01');
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-  </script>
-</body>
-
-
+    </div>
+  </body>
+  <footer className="footer">
+    <div id="listaProfsUCs">
+        <div className="inline-block mr-8">
+        <ul>
+            <li>
+            <span className="my-2">
+                <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505944">PTI</a>
+            </span>
+            </li>
+            <li>
+            <span className="my-2">
+                <a
+                href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943"
+                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                >
+                PTR
+                </a>
+            </span>
+            </li>
+        </ul>
+        </div>
+        <div className="inline-block mr-8">
+        <ul>
+            <li>
+            <span className="my-2">
+                <a
+                href="https://ciencias.ulisboa.pt/pt/perfil/amferreira"
+                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                >
+                António Ferreira
+                </a>
+            </span>
+            </li>
+            <li>
+            <span className="my-2">
+                <a
+                href="https://ciencias.ulisboa.pt/perfil/aodsa"
+                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                >
+                Alan Oliveira
+                </a>
+            </span>
+            </li>
+            <li>
+            <span className="my-2">
+                <a
+                href="https://ciencias.ulisboa.pt/pt/perfil/mcalha"
+                className="  inline-block text-blue-500  text-md hover:text-salmon"
+                >
+                Mário Calha
+                </a>
+            </span>
+            </li>
+        </ul>
+        </div>
+        
+    </div>
+            </div>
+          <div className="flex flex-col">
+            <span className="font-bold text-gray-200 uppercase mt-4 md:mt-0 mb-2">
+              Membros do Grupo
+            </span>
+            <div id="listaAlunos">
+              <div className="inline-block mr-8">
+                <ul>
+                  <li>
+                    <span className="my-2">
+                      <a
+                        href=""
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                      >
+                        
+                      </a>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="my-2">
+                      <a
+                        href=""
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                      >
+                        
+                      </a>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="my-2">
+                      <a
+                        href="https://www.instagram.com/goncalorocha99/"
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                      >
+                        Gonçalo Rocha
+                      </a>
+                    </span>
+                  </li>
+                  <li>
+                    <span className="my-2">
+                      <a
+                        href=""
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                      >
+                        
+                      </a>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className="inline-block">
+                <ul>
+                  <li>
+                    <span className="my-2">
+                      <a
+                        href=""
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                      >
+                        
+                      </a>
+                    </span>
+                  </li>
+                  <li></li>
+                  <li>
+                    <span className="my-2">
+                      <a
+                        href=""
+                        className="  inline-block text-blue-500  text-md hover:text-salmon"
+                      >
+                       
+                      </a>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            </span>
+            <span className="text-blue-500  text-md hover:text-salmon">
+            <a href="">FAQs</a>
+            </span>
+            <span className="text-blue-500  text-md hover:text-salmon">
+            <a href="">Contactos</a>
+            </span>
+            <span className="text-blue-500  text-md hover:text-salmon">
+                <a href="">Sobre Nós</a>
+            </span>        
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="container mx-auto px-6">
+      <div className="mt-16 border-t-2 border-gray-300 flex flex-col items-center">
+        <div className="sm:w-2/3 text-center py-6">
+          <p className="text-sm text-white font-bold mb-2">
+            © GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>
