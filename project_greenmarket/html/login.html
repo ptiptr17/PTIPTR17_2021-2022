@@ -6,7 +6,9 @@
 <html lang="pt">
 <head>
   <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id" content="150537595526-k8su1jjs23i0oo14gaalmvpbbi7plpud.apps.googleusercontent.com">
   <link rel="stylesheet" type="text/css" href="css/login.css">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <title>GreenMarket</title>
 </head>
@@ -71,6 +73,23 @@
               <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
           </div>
+          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <script>
+              function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+              }
+            </script>
           <div class="container" style="background-color:#f1f1f1">
             <span class="psw"><a href="#">Forgot password?</a></span>
           </div>
