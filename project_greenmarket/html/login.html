@@ -6,6 +6,7 @@
 <html lang="pt">
   <head>
       <meta charset="UTF-8">
+      <meta name="google-signin-client_id" content="150537595526-k8su1jjs23i0oo14gaalmvpbbi7plpud.apps.googleusercontent.com">
       <title>GreenMarket</title>
       <link rel="icon" href="imagens/icon.png"/>
       <link rel="stylesheet" type="text/css" href="css/login.css">
@@ -13,6 +14,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
       <script type= "text/javascript" src = "login.js"></script>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <body>
     <header class="header">
@@ -62,6 +64,23 @@
               <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
           </div>
+	  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+            <script>
+              function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                console.log('Full Name: ' + profile.getName());
+                console.log('Given Name: ' + profile.getGivenName());
+                console.log('Family Name: ' + profile.getFamilyName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
+              }
+           </script>
           <div class="container" style="background-color:#f1f1f1">
             <span class="psw"><a href="#">Forgot password?</a></span>
           </div>
