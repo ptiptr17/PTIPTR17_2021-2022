@@ -15,20 +15,6 @@
         <script type="text/javascript" src="./register.js" defer></script>
     </head>
     <body>
-        <!--Menu de Navegação-->
-        <div class="w3-top">
-            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-                <a href="welcome.html" class="w3-bar-item w3-button">GreenMarketHome</a>
-                <div class ="w3-right w3-hide-small">
-                    <a href="transportadores.html" class="w3-bar-item w3-button">Transportadores</a>
-                    <a href="fornecedores.html" class="w3-bar-item w3-button">Fornecedores</a>
-                    <a href="registo.html" class="w3-bar-item w3-button">Registo</a>
-                    <a href="login.html" class="w3-bar-item w3-button">Login</a>
-                    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-                </div>
-            </div>
-        </div>
-
         <header class="header">
             <div class="container">
                 <div class="navbar">
@@ -65,22 +51,21 @@
         </header>
 
         <div class="conteudo container row">
-           <form action="../php/register.php">
-            
+           <form action="../php/register.php" method="post">
             <h1>Registo</h1>
             <p>Para criar uma conta nova siga os passos seguintes:</p>
             <hr>
-            <label for="e-mail_user"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="e-mail_user" id="email" required>
+            <label for="email_user"><b>Email</b></label>
+            <input type="text" name="email_user" id="email" />
               
             <label for="name_user"><b>username</b></label>
-            <input type="text" placeholder="Enter username" name="name_user" id="uname" required>
+            <input type="text" name="name_user" id="uname" />
 
             <label for="psw_user"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw_user" id="psw" required>
+            <input type="password" name="psw_user" id="psw" />
 
             <label for="psw-repeat"><b>Repita a Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+            <input type="password" name="psw-repeat" id="psw-repeat" />
             <hr>
             <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
           
