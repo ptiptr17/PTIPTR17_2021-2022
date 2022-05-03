@@ -80,6 +80,10 @@ p {
 
 }
 
+/*body {
+    background: radial-gradient(#fff,#a6fab0);
+}*/
+
 
 .search input[type=text] {
     float: right;
@@ -151,4 +155,29 @@ hr {
     margin-bottom:0;
     font-size:13px;
     opacity:0.6;
+}
+
+label,input{
+    display:flex;
+    flex-direction:column;
+  }
+
+div.a{
+    margin: 80px;
+}
+
+div.b{
+    margin: 80px;
+}
+
+div.c{
+    margin: 80px;
+}
+
+.btndiv {
+    text-align: center;
+}
+
+.registerbtn {
+    position: relative;
 }

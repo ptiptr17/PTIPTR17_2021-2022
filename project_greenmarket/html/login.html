@@ -13,7 +13,7 @@
 
 
 <body>
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+  <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button> -->
 
   <div id="id01" class="modal">
 
@@ -60,18 +60,22 @@
       <div class="modal">
         <form class="modal-content animate" action="/action_page.php" method="post">
           <div class="container">
+            <div class="a">
             <label for="uname"><b>Email ou Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
-
+            </div>
+            <div class="b">
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
-
+            </div>
+            <div class="c">
             <button type="submit">Login</button>
             <label>
-              <input type="checkbox" checked="checked" name="remember"> Remember me
+              Remember me <input type="checkbox" checked="checked" name="remember">
             </label>
+            </div>
           </div>
-          <div class="container" style="background-color:#f1f1f1">
+          <div class="containerpass" style="background-color:#f1f1f1">
             <span class="psw"><a href="#">Forgot password?</a></span>
           </div>
         </form>
