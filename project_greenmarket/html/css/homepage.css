@@ -96,15 +96,6 @@ hr {
     border-top: 1px solid green;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: green;
-    color: white;
-    text-align: center;
-}
 
 .categories {
     margin: 70px 0;
@@ -132,6 +123,7 @@ hr {
     padding: 10px;
     min-width: 250px;
     margin-bottom: 50px;
+    transition: transform 0.25s;
 }
 
 .col-4 img{
@@ -140,4 +132,95 @@ hr {
 
 .fa-leaf {
     color: green;
+}
+
+.title{
+    margin: 0 auto 20px;
+    position: relative;
+    line-height:60px;
+    color: black;
+}
+
+.title::after{
+    content: "";
+    background: #1a4918;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    transform: translateX(-50%);
+}
+
+h4 {
+    color: #555;
+    font-weight: normal;
+}
+
+.col-4 p{
+    font-size: 16px;
+}
+
+.col-4:hover{
+    transform: translateY(-5px);
+}
+
+.footer-clean {
+    padding:50px 0;
+    background-color:rgba(209, 209, 209, 0.829);
+    color:#000000;
+}
+  
+.footer-clean h3 {
+    margin-top:0;
+    margin-bottom:12px;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.footer-clean ul {
+    padding:0;
+    list-style:none;
+    line-height:1.6;
+    font-size:14px;
+    margin-bottom:0;
+}
+
+.footer-clean ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+}
+
+.footer-clean ul a:hover {
+    opacity:1;
+}
+
+.footer-clean .item.social {
+    text-align:right;
+}
+
+
+.footer-clean .item.social > a {
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #ccc;
+    margin-left:10px;
+    margin-top:22px;
+    color:inherit;
+    opacity:0.75;
+}
+
+
+.footer-clean .copyright {
+    margin-top:14px;
+    margin-bottom:0;
+    font-size:13px;
+    opacity:0.6;
 }
