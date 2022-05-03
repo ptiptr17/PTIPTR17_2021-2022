@@ -80,10 +80,6 @@ p {
 
 }
 
-body {
-    background: radial-gradient(#fff,#a6fab0);
-}
-
 .search input[type=text] {
     padding: 10px;
     border: 2px solid black;
