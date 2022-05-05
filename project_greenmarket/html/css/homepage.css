@@ -85,12 +85,15 @@ p {
 }*/
 
 .search input[type=text] {
-    float: right;
     padding: 10px;
-    border: green;
+    border: 2px solid black;
     font-size: 17px;
     margin-left: 20px;
+    background-color: transparent;
+    border-radius: 25px;
+    width: 160%;
 }
+
 
 hr {
     border-top: 1px solid green;
