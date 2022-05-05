@@ -25,4 +25,5 @@ if (mysqli_num_rows($queryu) == 1) {
 }
 
 mysqli_close($conn);
+
 ?>
