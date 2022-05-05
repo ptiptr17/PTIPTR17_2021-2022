@@ -8,9 +8,9 @@ error_reporting(E_ALL);
 
 session_start();
 
-$username = $_POST["uname"];
-$pwd = $_POST["psw"];
-$accountT = $_POST["accountType"];
+$username = $_GET["uname"];
+$pwd = $_GET["psw"];
+$accountT = $_GET["accountType"];
 
 $queryu = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "'");
 
@@ -21,7 +21,7 @@ if (mysqli_num_rows($queryu) == 1) {
     exit();
 }
 } else {
-    header("location: login.php");
+    header("location: login.html");
 }
 
 mysqli_close($conn);
