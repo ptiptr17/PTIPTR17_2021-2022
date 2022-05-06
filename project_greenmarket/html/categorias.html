@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type= "text/javascript" src = "categorias.js"></script>
+        <script type= "text/javascript" src = "js/categorias.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
@@ -20,7 +20,7 @@
                         <a href="homepage.html"><img src="imagens/logo.png" width="400px"></a>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="Procurar..">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar.." title="Procurar..">
                     </div>
                     <nav>
                         <ul>
@@ -47,22 +47,141 @@
                 <hr>
             </div>
         </header>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <div>   
+            <h2>Filtros</h2>
+            <div id="myBtnContainer">
+                <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                <button class="btn" onclick="filterSelection('cars')"> Cars</button>
+                <button class="btn" onclick="filterSelection('animals')"> Animals</button>
+                <button class="btn" onclick="filterSelection('fruits')"> Fruits</button>
+                <button class="btn" onclick="filterSelection('colors')"> Colors</button>
+                <button class="btn" onclick="filterSelection('eletrodomestico')"> Eletrodomestico</button>
+            </div>
+            <div class="products" id="myUL">
+                <div class="filterDiv cars"><li><a href="#">BMW</a></li></div>
+                <div class="filterDiv colors fruits"><li><a href="#">Orange</a></li></div>
+                <div class="filterDiv cars"><li><a href="#">Volvo</a></li></div>
+                <div class="filterDiv colors"><li><a href="#">Red</a></li></div>
+                <div class="filterDiv cars animals"><li><a href="#">Mustang</a></li></div>
+                <div class="filterDiv colors"><li><a href="#">Blue</a></li></div>
+                <div class="filterDiv animals"><li><a href="#">Cat</a></li></div>
+                <div class="filterDiv animals"><li><a href="#">Dog</a></li></div>
+                <div class="filterDiv fruits"><li><a href="#">Melon</a></li></div>
+                <div class="filterDiv fruits animals"><li><a href="#">Kiwi</a></li></div>
+                <div class="filterDiv fruits"><li><a href="#">Banana</a></li></div>
+                <div class="filterDiv fruits"><li><a href="#">Lemon</a></li></div>
+                <div class="filterDiv animals"><li><a href="#">Cow</a></li></div>
+                <div class="filterDiv eletrodomestico">
+                    <li><a href="#"><img src="https://images.samsung.com/is/image/samsung/p6pim/pt/ue50au7105kxxc/gallery/pt-uhd-4k-tv-ue50au7105kxxc-front-gray-457552597?$720_576_PNG$" style="width:2em; height:3em;">
+                    Samsung TV AU7105 4K
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>749,99€</p></a></li>
+                </div>
+                <div class="filterDiv eletrodomestico">
+                    <li><a href="#"><img src="https://www.worten.pt/i/1a54e4f821e05c27cfd3b55ff36ac39419a584e3.jpg" style="width:2em; height:3em;">
+                    Frigorifico Combinado LG
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>1249,50€</p></a></li>
+                </div>
+                <div class="filterDiv eletrodomestico">
+                    <li><a href="#"><img src="https://www.worten.pt/i/63097c70a7d0cb9cc244e40a08d873195fa82c4e.jpg" style="width:2em; height:3em;">
+                    iPhone 13
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p>720,25€</p></a></li>
+                </div>
+                <div class="filterDiv eletrodomestico">
+                    <li><a href="#"><img src="https://www.worten.pt/i/ffc0623613d76c39302fabbaafb98325a24ce6d4.jpg" style="width:2em; height:3em;">
+                    Auriculares XIAOMI
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>13,90€</p></a></li>
+                </div>
+            </div>  
+        </div>
+        <script>
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            x = document.getElementsByClassName("filterDiv");
+            if (c == "all") c = "";
+            for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+            }
+        }
+
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+            }
+        }
+
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);     
+            }
+            }
+            element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function(){
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+            });
+        }
+
+        function myFunction() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        </script>
         <br>
         <br>
         <br>
@@ -91,8 +210,6 @@
                                 <li><a href="">Gonçalo Rocha</a></li>
                                 <li><a href="">José Dias</a></li>
                                 <li><a href="">Miguel Martins</a></li>
-                                <li><a href="">Pedro Santos</a></li>
-                                <li><a href="">Qunbo Wang</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-4 col-md-3 item">
