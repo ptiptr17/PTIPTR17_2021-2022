@@ -1,59 +1,28 @@
-<?php
-include "openconn.php";
+<?php 
+
+require_once 'openconn.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
-/* voluntario */
-$nome_v = "";
-$password_v = "";
+$username = $_POST["uname"];
+$pwd = $_POST["psw"];
+$accountT = $_POST["accountType"];
 
-/* instituicao*/
-$nome_i = "";
-$password_i ="";
+$queryu = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "'");
 
+if (mysqli_num_rows($queryu) == 1) {
+    $_SESSION["loggedIn"] = true;
+    $_SESSION["username"] = $username;
+    header("location: welcome.html");
+    exit()
+} else {
+    header("location: login.html");
+}
 
-    // Receiving the values entered and storing
-    // in the variables
-    $nome_v = $_POST["uname"];
-    $password_v = $_POST["psw"];
-
-    //$password_v = password_hash($password_v, PASSWORD_BCRYPT);
-
-    // receber elementos da tabela
-    $query = "SELECT * FROM costumer_login WHERE nome='$nome_v' AND password='$password_v'";
-    $result = mysqli_query($conn, $query);
-
-
-    if (mysqli_num_rows($result) == 1){
-        $_SESSION['username'] = $nome_v;
-
-        //mensagem de sucesso
-        $_SESSION['success'] = "<br>You have logged in!";
-
-        header('refresh:5; location: home.php');
-    }
-    elseif (mysqli_num_rows($result) == 0) {
-        $query_admin = "SELECT * FROM Admin WHERE nome='$nome_v' AND password='$password_v'";
-        $result_admin = mysqli_query($conn, $query_admin);
-
-        if (mysqli_num_rows($result) == 1){
-
-            $_SESSION["nome_admin"] = $nome_v;
-            $_SESSION["admin"] = " bem vindo";
-
-            header('location: administrador.php');
-        }
-        elseif (mysqli_num_rows($result) != 1) {
-            $_SESSION['username'] = 'erro<br>';
-
-            //mensagem de sucesso
-            $_SESSION['success'] = "You have not logged in!";
-        }
-
-    }
-
-    // redirecionamento
-    header('location: home.php');
-
-
+mysqli_close($conn);
 
 ?>
