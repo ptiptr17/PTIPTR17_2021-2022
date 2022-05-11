@@ -1,5 +1,6 @@
-<?php 
+<?php
 
+echo "inicio do processo login";
 /*require_once 'openconn.php';*/
 include 'openconn.php';
 
@@ -22,10 +23,10 @@ $queryu = mysqli_query($conn, "select * from customer_login where username='" . 
 if (mysqli_num_rows($queryu) == 1) {
     $_SESSION["loggedIn"] = true;
     $_SESSION["username"] = $username;
-    header("location: welcome.html");
+    header("refresh:30; url= ../html/homepage.html");
     exit()
 } else {
-    header("location: login.html");
+    header("refresh:30; url= ../html/login.html");
 }
 
 mysqli_close($conn);
