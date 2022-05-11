@@ -53,21 +53,22 @@
     </header>
     <div class="conteudo container row">
         <div class="modal">
-          <form class="modal-content animate" action="/action_page.php" method="post">
+          <form class="modal-content animate" action="../php/login.php" method="post">
             <div class="container">
                 <h1>Iniciar Sessão</h1>
                 <p>Insira os seus dados para fazer o Login:</p>
                 <hr>
                 <div class="a">
                     <label for="uname"><b>Email ou Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required>
+                    <input type="text" placeholder="Enter Username" name="uname" required />
                 </div>
                 <div class="b">
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <input type="password" placeholder="Enter Password" name="psw" required />
                 </div>
                 <div class="c">
-                    <button type="submit">Login</button>
+                    <!--<button type="submit">Login</button> -->
+                    <input type="submit" value="Submit" name="login_begin" />
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
