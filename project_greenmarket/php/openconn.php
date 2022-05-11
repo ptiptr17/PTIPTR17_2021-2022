@@ -1,5 +1,5 @@
 <?php
-	echo "<p>All work and no play makes jack a dull boy!</p>";
+	echo "a iniciar ligação à bd";
 	$dbhost = "sql212.epizy.com";
 	$dbuser = "epiz_31612828";
 	$dbpass = "aa4ulaYtRDKpoG";
@@ -15,6 +15,7 @@
 	}
 	echo "<p> connection worked!</p>";
 
+	/*
 	public function getData(){
         $sql = "SELECT * FROM $this->tablename";
 
@@ -24,4 +25,5 @@
             return $result;
         }
     }
+	*/
 ?>

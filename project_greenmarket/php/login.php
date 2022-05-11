@@ -1,6 +1,7 @@
 <?php 
 
-require_once 'openconn.php';
+/*require_once 'openconn.php';*/
+include 'openconn.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -12,7 +13,11 @@ $username = $_POST["uname"];
 $pwd = $_POST["psw"];
 $accountT = $_POST["accountType"];
 
-$queryu = mysqli_query($conn, "select * from userinfo where username='" . $username . "' and password='" . $pwd . "'");
+echo "prints de dados do user";
+echo $username;
+echo $pwd;
+
+$queryu = mysqli_query($conn, "select * from customer_login where username='" . $username . "' and password='" . $pwd . "'");
 
 if (mysqli_num_rows($queryu) == 1) {
     $_SESSION["loggedIn"] = true;
