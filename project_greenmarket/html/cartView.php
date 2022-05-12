@@ -1,3 +1,7 @@
+<?php 
+include 'cart.php'
+?>
+
 <!DOCTYPE html>
 <html lang="pt">
     <head>
