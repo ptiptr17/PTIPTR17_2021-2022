@@ -26,7 +26,7 @@
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="produtos.html"> Produtos</a></li>
+                            <li><a href="products.html"> Produtos</a></li>
                             <li><a href="login.html"> Iniciar Sessão</a></li>
                             <li><a href="register.html"> Criar Conta</a></li>
                         </ul>
@@ -56,6 +56,15 @@
             <h1>Registo</h1>
             <p>Para criar uma conta nova siga os passos seguintes:</p>
             <hr>
+            <div class="userType">
+                <label for="género">Sou</label>
+                <select onchange="yesConsumidor(this); yesTransportador(this); yesFornecedor(this)" required>
+                    <option value="consumidor">Consumidor</option>
+                    <option value="transportador">Transportador</option>
+                    <option value="fornecedor">Fornecedor</option>
+                </select><br>
+            </div>
+
             <div class="a">
             <label for="email_user"><b>Email</b></label>
             <input type="text" name="email_user" id="email" />
@@ -79,7 +88,7 @@
             <hr>
             <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
             <!-- <button type="submit" class="register">Register</button> -->
-            <input type="submit" value="Submit" name="register_begin">
+            <a href="completeRegister.html"><input type="submit" value="Submit" name="register_begin"></a>
           </form>
         
         </div>
