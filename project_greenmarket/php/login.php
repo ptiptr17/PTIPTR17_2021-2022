@@ -1,6 +1,7 @@
 <?php
 
 echo "inicio do processo login";
+
 /*require_once 'openconn.php';*/
 include 'openconn.php';
 

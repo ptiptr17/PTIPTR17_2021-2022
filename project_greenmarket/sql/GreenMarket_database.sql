@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql212.byetcluster.com
--- Tempo de geração: 11-Maio-2022 às 09:35
+-- Tempo de geração: 12-Maio-2022 às 13:48
 -- Versão do servidor: 10.3.27-MariaDB
 -- versão do PHP: 7.2.22
 
@@ -139,7 +139,11 @@ CREATE TABLE `product_info` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(20) NOT NULL,
   `one_category_id` smallint(5) UNSIGNED NOT NULL,
+  `one_category_type` varchar(50) DEFAULT NULL,
+  `one_category_subtype` varchar(50) DEFAULT NULL,
   `two_category_id` smallint(5) UNSIGNED NOT NULL,
+  `two_category_type` varchar(50) DEFAULT NULL,
+  `two_category_subtype` varchar(50) DEFAULT NULL,
   `w_id` int(11) NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `production_date` datetime NOT NULL,
@@ -156,8 +160,8 @@ CREATE TABLE `product_info` (
 -- Extraindo dados da tabela `product_info`
 --
 
-INSERT INTO `product_info` (`product_id`, `product_name`, `one_category_id`, `two_category_id`, `w_id`, `price`, `production_date`, `resoure_cast`, `poluition_caused`, `shelf_life`, `descript`, `pic_desc`, `eletricity_cast`, `water_cast`) VALUES
-(1, 'Máquina de Lavar Rou', 1, 1, 1, '549.00', '2022-05-03 00:00:00', 25, 3, 11, '', '', 11, 22);
+INSERT INTO `product_info` (`product_id`, `product_name`, `one_category_id`, `one_category_type`, `one_category_subtype`, `two_category_id`, `two_category_type`, `two_category_subtype`, `w_id`, `price`, `production_date`, `resoure_cast`, `poluition_caused`, `shelf_life`, `descript`, `pic_desc`, `eletricity_cast`, `water_cast`) VALUES
+(1, 'Máquina de Lavar Rou', 1, NULL, NULL, 1, NULL, NULL, 1, '549.00', '2022-05-03 00:00:00', 25, 3, 11, '', '', 11, 22);
 
 -- --------------------------------------------------------
 
