@@ -2,13 +2,23 @@
 include "openconn.php";
 session_start();
 
-$email_user = htmlspecialchars($_POST['e-mail_user']);
-$nome_user = htmlspecialchars($_POST['name_user']);
-$pass_user = htmlspecialchars($_POST['psw_user']);
-$repass_user = htmlspecialchars($POST['psw-repeat']);
+echo $_POST['name_user'];
+$email_user = $_POST['email_user'];
+$nome_user = $_POST['name_user'];
+$pass_user = $_POST['psw_user'];
+$repass_user = $_POST['psw-repeat'];
+
+echo "as variáveis guardadas<br>";
+echo $email_user;
+echo "<br>";
+echo $nome_user;
+echo "<br>";
+echo $pass_user;
+echo "<br>";
+echo"end variáveis";
 
 if($pass_user == $repass_user){
-    echo "password correta.";
+    echo "password correta.<br>";
 }
 
 //encriptação da password para garantir confidencialidade
@@ -19,11 +29,11 @@ $insert_user = "insert into customer_login(username, password, email) values('$n
 
 $res2= mysqli_query ($conn, $insert_user);
 if($res2){
-    echo "Novo utilizador criado com sucesso";
-    header( "refresh:10; url=../html/welcome.html");
+    echo "Novo utilizador criado com sucesso<br>";
+    header( "refresh:30; url=../html/homepage.html");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
-    header( "refresh:10; url=../html/welcome.html" );
+    header( "refresh:30; url=../html/homepage.html" );
 }
 // Termina a ligação com a base de dados
 mysqli_close($conn);

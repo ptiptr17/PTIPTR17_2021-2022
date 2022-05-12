@@ -1,14 +1,16 @@
+<?php include 'cart.php'?>
+
 <!DOCTYPE html>
 <html lang="pt">
     <head>
         <meta charset="UTF-8">
         <title>GreenMarket</title>
         <link rel="icon" href="imagens/icon.png"/>
-        <link rel="stylesheet" type="text/css" href="css/createProduct.css">
+        <link rel="stylesheet" type="text/css" href="css/cartView.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type= "text/javascript" src = "createProduct.js"></script>
+        <script type= "text/javascript" src = "cartView.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
@@ -47,58 +49,66 @@
                 <hr>
             </div>
         </header>
-        <div class="conteudo container row">
-            <div class="categories">
-                <div class="small-container">
-                    <h2>Registe o seu produto</h2>
-                    <form name = "productform" action="CreateProduct.php" method = "post" enctype = "multipart/form-data" >
-                        <div class = "container">
-                            <div class = "form_group">
-                                <label>Nome do produto:</label>
-                                <input type = "text" name = "pname" value = "" required/>
+        <div class="container-fluid">
+            <div class="row px-5">
+                <div class="col-md-7">
+                    <div class="shopping-cart">
+                        <h6>My Cart</h6>
+                        <hr>
+        
+                    <?php
+        
+                        $total = 0;
+                            if (isset($_SESSION['cart'])){
+                                $product_id = array_column($_SESSION['cart'], 'product_id');
+        
+                                $result = $db->getData();
+                                while ($row = mysqli_fetch_assoc($result)){
+                                    foreach ($product_id as $id){
+                                        if ($row['product_id'] == $id){
+                                            cartElement($row['pic_desc'], $row['product_name'],$row['price'], $row['product_id']);
+                                            $total = $total + (int)$row['price'];
+                                        }
+                                    }
+                                }
+                            }else{
+                                echo "<h5>Cart is Empty</h5>";
+                            }
+        
+                        ?>
+        
+                    </div>
+                </div>
+                <div class="col-md-4 offset-md-1 border rounded mt-5 bg-white h-25">
+        
+                    <div class="pt-4">
+                        <h6>PRICE DETAILS</h6>
+                        <hr>
+                        <div class="row price-details">
+                            <div class="col-md-6">
+                                <?php
+                                    if (isset($_SESSION['cart'])){
+                                        $count  = count($_SESSION['cart']);
+                                        echo "<h6>Price ($count items)</h6>";
+                                    }else{
+                                        echo "<h6>Price (0 items)</h6>";
+                                    }
+                                ?>
+                                <h6>Delivery Charges</h6>
+                                <hr>
+                                <h6>Amount Payable</h6>
                             </div>
-                            <div class = "form_group">
-                                <label>Escolha a categoria:</label>
-                                <select id="category" name="category">
-                                    <option value="natural">Natural</option>
-                                    <option value="eletronico">Eletronico</option>
-                                </select>
-                            </div>
-                            <div class = "form_group">
-                                <label>Preço:</label>
-                                <input type = "number" name = "price" value = "" required/>
-                            </div>
-                            <div class = "form_group">
-                                <label>Data de produção:</label>
-                                <input type = "date" name = "prodate" value = "" required/>
-                            </div>
-                            <div class = "form_group">
-                                <label>Recursos usados (Agua/Eletricidade):</label>
-                                <input type = "number" name = "resourcewater" value = "" required/>
-                                <input type = "number" name = "resourceelec" value = "" required/>
-                            </div>
-                            <div class = "form_group">
-                                <label>Poluição causada:</label>
-                                <input type = "number" name = "polut" value = "" required/>
-                            </div>
-                            <div class = "form_group">
-                                <label>Data de expiração:</label>
-                                <input type = "date" name = "expire" value = "" required/>
-                            </div>
-                            <div class = "form_group">
-                                <label>Descrição:</label>
-                                <input type = "text" name = "desc" value = "" required/>
-                            </div>
-                            <!-- <div class = "form_group">
-                                <label>Foto do produto:</label>
-                                <input type = "image" name = "pciture" value = "" required/>
-                            </div> -->
-                            <div class = "form_group">
-                                <input type = "submit">
-                                <input type ="reset">
+                            <div class="col-md-6">
+                                <h6>$<?php echo $total; ?></h6>
+                                <h6 class="text-success">FREE</h6>
+                                <hr>
+                                <h6>$<?php
+                                    echo $total;
+                                    ?></h6>
                             </div>
                         </div>
-                    </form>
+                    </div>
+        
                 </div>
             </div>
         </div>
@@ -142,4 +152,4 @@
             </footer>
         </div>
     </body>
-</html> 
+</html>

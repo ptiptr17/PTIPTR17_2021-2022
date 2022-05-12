@@ -26,7 +26,7 @@
                     </div>
                     <nav>
                         <ul>
-                          <li><a href="categorias.html"> Produtos</a></li>
+                          <li><a href="products.html"> Produtos</a></li>
                           <li><a href="login.html"> Iniciar Sessão</a></li>
                           <li><a href="register.html"> Criar Conta</a></li>
                         </ul>
@@ -53,26 +53,10 @@
             <div class = "w3-container w3-display-container w3-light-grey w3-display-middle form">
                 <h1>Registo</h1>
                 <div class = "formulario">
-                    <div class="formularioinicial">
-                        <label for="género">Sou</label>
-                        <select onchange="yesConsumidor(this); yesTransportador(this); yesFornecedor(this)" required>
-                            <option value="consumidor">Consumidor</option>
-                            <option value="transportador">Transportador</option>
-                            <option value="fornecedor">Fornecedor</option>
-                            <option value="guest">Guest</option>
-                        </select><br>
-                    </div>
-
                     <div id="consumidor" style="display: none;">
                         <form action="registo.php?field=cons" method="post" enctype='multipart/form-data'>
-                            <label for="costumername">Username:</label>
-                            <input type="text" placeholder= "username" name="username" required><br>
-                            <label for="pass">Password:</label>
-                            <input type="password" placeholder= "password" name="pass" required><br>
                             <label for="name">Nome:</label>
                             <input type="text" placeholder= "Nome" name="cname" required><br>
-                            <label for="email">email:</label>
-                            <input type="text" placeholder= "email" name="email" required><br>
                             <label for="data">Data de Nascimento:</label>
                             <input type="date" placeholder= "Data de Nascimento" name="cdata" required><br>
                             <label for="genero">Género:</label>
@@ -205,8 +189,6 @@
                               <li><a href="">Gonçalo Rocha</a></li>
                               <li><a href="">José Dias</a></li>
                               <li><a href="">Miguel Martins</a></li>
-                              <li><a href="">Pedro Santos</a></li>
-                              <li><a href="">Qunbo Wang</a></li>
                           </ul>
                       </div>
                       <div class="col-sm-4 col-md-3 item">

@@ -26,7 +26,7 @@
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="categorias.html"> Produtos</a></li>
+                            <li><a href="products.html"> Produtos</a></li>
                             <li><a href="login.html"> Iniciar Sessão</a></li>
                             <li><a href="register.html"> Criar Conta</a></li>
                         </ul>
@@ -51,34 +51,48 @@
         </header>
 
         <div class="conteudo container row">
-            <form action="/action_page.php">
-                <h1>Registo</h1>
-                <p>Para criar uma conta nova siga os passos seguintes:</p>
-                <hr>
-                <div class="a">
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id="email" required>
-                </div>
-                <div class="b">
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-                </div>
-                <div class="c">
-                <label for="psw-repeat"><b>Repita a Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
-                </div>
-                <div class="btndiv">
-                <button type="submit" class="registerbtn">Register</button>
-                </div>
-                <hr>
-                <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
+
+           <form action="../php/register.php" method="post">
+            <h1>Registo</h1>
+            <p>Para criar uma conta nova siga os passos seguintes:</p>
+            <hr>
+            <div class="userType">
+                <label for="género">Sou</label>
+                <select onchange="yesConsumidor(this); yesTransportador(this); yesFornecedor(this)" required>
+                    <option value="consumidor">Consumidor</option>
+                    <option value="transportador">Transportador</option>
+                    <option value="fornecedor">Fornecedor</option>
+                </select><br>
+            </div>
+
+            <div class="a">
+            <label for="email_user"><b>Email</b></label>
+            <input type="text" name="email_user" id="email" />
+            </div>
+
+            <div class="b">
+            <label for="name_user"><b>username</b></label>
+            <input type="text" name="name_user" id="uname" />
+            </div>
+
+            <div class="c">
+            <label for="psw_user"><b>Password</b></label>
+            <input type="password" name="psw_user" id="psw" />
+            </div>
+
+            <div class="d">
+            <label for="psw-repeat"><b>Repita a Password</b></label>
+            <input type="password" name="psw-repeat" id="psw-repeat" />
+            </div>
             
-                
-                <div class="container signin">
-                <p>Já tem uma conta? <a href="login.html">Login</a>.</p>
-                </div>
-            </form>
+            <hr>
+            <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
+            <!-- <button type="submit" class="register">Register</button> -->
+            <a href="completeRegister.html"><input type="submit" value="Submit" name="register_begin"></a>
+          </form>
+        
         </div>
+        
         <div class="footer-clean">
           <footer>
               <div class="container">
@@ -101,8 +115,6 @@
                               <li><a href="">Gonçalo Rocha</a></li>
                               <li><a href="">José Dias</a></li>
                               <li><a href="">Miguel Martins</a></li>
-                              <li><a href="">Pedro Santos</a></li>
-                              <li><a href="">Qunbo Wang</a></li>
                           </ul>
                       </div>
                       <div class="col-sm-4 col-md-3 item">
