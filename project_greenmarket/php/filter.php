@@ -42,11 +42,11 @@ include('openconn.php');
                     <div id="price_range"></div>
                 </div>    
                 <div class="list-group">
-     <h3>Brand</h3>
+     <h3>Name</h3>
                     <div style="height: 180px; overflow-y: auto; overflow-x: hidden;">
      <?php
 
-                    $query = "SELECT DISTINCT(product_brand) FROM product WHERE product_status = '1' ORDER BY product_id DESC";
+                    $query = "SELECT DISTINCT(product_name) FROM product_info WHERE one_category_id = '1' ORDER BY product_id DESC";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -54,7 +54,7 @@ include('openconn.php');
                     {
                     ?>
                     <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector brand" value="<?php echo $row['product_brand']; ?>"  > <?php echo $row['product_brand']; ?></label>
+                        <label><input type="checkbox" class="common_selector name" value="<?php echo $row['product_name']; ?>"  > <?php echo $row['product_name']; ?></label>
                     </div>
                     <?php
                     }
@@ -64,12 +64,10 @@ include('openconn.php');
                 </div>
 
     <div class="list-group">
-     <h3>RAM</h3>
+     <h3>Resources used</h3>
                     <?php
 
-                    $query = "
-                    SELECT DISTINCT(product_ram) FROM product WHERE product_status = '1' ORDER BY product_ram DESC
-                    ";
+                    $query = "SELECT DISTINCT(resource_cast) FROM product_info WHERE two_category_id = '2' ORDER BY resource_cast DESC";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -77,7 +75,7 @@ include('openconn.php');
                     {
                     ?>
                     <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector ram" value="<?php echo $row['product_ram']; ?>" > <?php echo $row['product_ram']; ?> GB</label>
+                        <label><input type="checkbox" class="common_selector resources" value="<?php echo $row['resource_cast']; ?>" > <?php echo $row['resource_cast']; ?> GB</label>
                     </div>
                     <?php    
                     }
@@ -86,11 +84,9 @@ include('openconn.php');
                 </div>
     
     <div class="list-group">
-     <h3>Internal Storage</h3>
+     <h3>Polution caused</h3>
      <?php
-                    $query = "
-                    SELECT DISTINCT(product_storage) FROM product WHERE product_status = '1' ORDER BY product_storage DESC
-                    ";
+                    $query = "SELECT DISTINCT(polution_caused) FROM product_info WHERE two_category_id = '1' ORDER BY polution_caused DESC";
                     $statement = $connect->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
@@ -98,7 +94,7 @@ include('openconn.php');
                     {
                     ?>
                     <div class="list-group-item checkbox">
-                        <label><input type="checkbox" class="common_selector storage" value="<?php echo $row['product_storage']; ?>"  > <?php echo $row['product_storage']; ?> GB</label>
+                        <label><input type="checkbox" class="common_selector polution" value="<?php echo $row['polution_caused']; ?>"  > <?php echo $row['polution_caused']; ?> GB</label>
                     </div>
                     <?php
                     }
@@ -135,13 +131,13 @@ $(document).ready(function(){
         var action = 'fetch_data';
         var minimum_price = $('#hidden_minimum_price').val();
         var maximum_price = $('#hidden_maximum_price').val();
-        var brand = get_filter('brand');
-        var ram = get_filter('ram');
-        var storage = get_filter('storage');
+        var name = get_filter('name');
+        var resources = get_filter('resources');
+        var polution = get_filter('polution');
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
-            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, brand:brand, ram:ram, storage:storage},
+            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, name:name, resources:resources, polution:polution},
             success:function(data){
                 $('.filter_data').html(data);
             }
