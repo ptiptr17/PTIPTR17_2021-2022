@@ -7,12 +7,14 @@
 	$dbname = "34.175.213.0 ";
 	*/
 	$dbhost = "34.175.213.0 ";
+	$dbname = "greenmarket_database";
 	$dbuser = "ptiptr17";
 	$dbpass = "8bF^%$0)\udI*D6";
-	$dbname = "greenmarket_database";
+
 
 	// Cria a ligação à BD
-	$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+	//$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+	$conn = new PDO($dbname, $dbuser, $dbpass);
 
 	// Verifica a ligação à BD
 	if (mysqli_connect_error()) {
