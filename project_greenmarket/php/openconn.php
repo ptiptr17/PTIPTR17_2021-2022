@@ -9,12 +9,12 @@
 	$dbhost = "34.175.213.0 ";
 	$dbname = "greenmarket_database";
 	$dbuser = "ptiptr17";
-	$dbpass = "8bF^%$0)\udI*D6";
+	$dbpass = "ptiptr202217";
 
-
+	echo "a tentar conexão";
 	// Cria a ligação à BD
 	//$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
-	$conn = new PDO($dbname, $dbuser, $dbpass);
+	$conn = new PDO("mysql:host=".$dbhost."; dbname=". $dbname, $dbuser, $dbpass);
 
 	// Verifica a ligação à BD
 	if (mysqli_connect_error()) {
