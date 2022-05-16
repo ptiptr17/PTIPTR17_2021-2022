@@ -1,0 +1,10 @@
+runtime: php74
+
+runtime_config:
+
+
+handlers:
+-url: /css
+static_dir: css
+
+env_variables:
