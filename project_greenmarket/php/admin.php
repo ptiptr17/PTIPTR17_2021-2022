@@ -5,11 +5,11 @@
         <meta name="google-signin-client_id" content="150537595526-k8su1jjs23i0oo14gaalmvpbbi7plpud.apps.googleusercontent.com">
         <title>GreenMarket</title>
         <link rel="icon" href="imagens/icon.png"/>
-        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <link rel="stylesheet" type="text/css" href="css/admin.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type= "text/javascript" src = "login.js"></script>
+        <script type= "text/javascript" src = "admin.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
