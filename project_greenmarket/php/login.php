@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 
 $username = $_POST["uname"];
 $pwd = $_POST["psw"];
-$accountT = $_POST["accountType"];
+//$accountT = $_POST["accountType"];
 
 echo "prints de dados do user<br>";
 echo "username: ";
@@ -24,7 +24,7 @@ echo $username;
 echo "<br>password: ";
 echo $pwd;
 
-$query = "SELECT * FROM customer_login WHERE username='$username' AND password='$pwd'";
+$query = "SELECT * FROM user_info WHERE username='$username' AND password='$pwd'";
 
 /*
 $queryu = $conn->query($query);
@@ -48,7 +48,7 @@ if (mysqli_num_rows($queryu) == 1) {
     $_SESSION["username"] = $username;
     echo "<br>login efetuado com sucesso";
 	echo "<br>a cookey do nome:".$_SESSION["username"];
-    header("refresh:15; url= ../html/homepage.html");
+    header("refresh:15; url= ../php/homepage.php");
 } else {
 	echo "<br>authentication failed";
     header("refresh:15; url= ../html/login.html");

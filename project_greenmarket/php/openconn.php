@@ -34,8 +34,6 @@ die("Database connection failed: " . mysqli_connect_error());
 }
 
 
-
-
 /*
 $conn = mysqli_connect(null, $dbuser, $dbpass, $dbname, null, "ptiptr17greenmarket:europe-southwest>
 //Verifica a ligação à BD
