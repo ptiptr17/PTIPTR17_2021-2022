@@ -30,10 +30,10 @@ $insert_user = "insert into customer_login(username, password, email) values('$n
 $res2= mysqli_query ($conn, $insert_user);
 if($res2){
     echo "Novo utilizador criado com sucesso<br>";
-    header( "refresh:30; url=../html/homepage.html");
+    header( "refresh:30; url=/completeregister.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
-    header( "refresh:30; url=../html/homepage.html" );
+    header( "refresh:30; url=../html/register.html" );
 }
 // Termina a ligação com a base de dados
 mysqli_close($conn);

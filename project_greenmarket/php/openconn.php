@@ -1,5 +1,6 @@
 <?php
-phpinfo();
+//phpinfo();
+
 echo "a iniciar ligação à bd<br>";
 /*
 $dbhost = "sql212.epizy.com";
@@ -20,20 +21,20 @@ echo "a tentar conexão<br>";
 
 // Cria a ligação à BD
 
-/*
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-echo "erro no $conn.";
+$conn = mysqli_connect($dbhost2, $dbuser, $dbpass, $dbname);
 
 // Verifica a ligação à BD
 if (mysqli_connect_error()) {
 echo "connection failed<br>";
 die("Database connection failed: " . mysqli_connect_error());
 
+} else{
+	echo "<p> connection worked!</p>";
 }
-echo "<p> connection worked!</p>";
 
- */
+
+
 
 /*
 $conn = mysqli_connect(null, $dbuser, $dbpass, $dbname, null, "ptiptr17greenmarket:europe-southwest>
@@ -45,8 +46,9 @@ print("Can't connect! :(");
 }
  */
 
+/*
 try{
-    $conn = new PDO("mysql:host=".$dbhost."; dbname=". $dbname, $dbuser, $dbpass);
+    $conn = new PDO("mysql:host=".$dbhost2."; dbname=". $dbname, $dbuser, $dbpass);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e){
@@ -56,7 +58,7 @@ catch (PDOException $e){
 if($conn){
     echo "<br>connection worked.";
 }
-
+*/
 
 /*
 $username = 'ptiptr17';
