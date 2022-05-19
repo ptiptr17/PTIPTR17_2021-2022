@@ -58,17 +58,24 @@
                 die ("Não foi possivel encontrar o utilizador!");
             }
             while ($row = mysql_fetch_array($userquery, MYSQL_ASSOC)) {
-                $firstname =$row["firstname"];
-                $lastname =$row["lastname"];
+                $name =$row["name"];
                 $email =$row["email"];
                 $dbusername =$row["username"];
-                $typeUser =$row["typeUser"];
+                $accountType =$row["accountType"];
             }
-        ?>
+            if($username != $dbusername) {
+                die ("Existe um erro.")
 
-        <h1><?php echo $firstname; ?> <?php echo $lastname; ?>s Profile</h1>
+            }
+
+        ?>  
+
+        <h1>Profile de <?php echo $name; ?></h1>
         <table>
-            
+            <tr><td>Nome:</td><td><?php echo $name; ?></td></tr>
+            <tr><td>Email:</td><td><?php echo $email; ?></td></tr>
+            <tr><td>Username:</td><td><?php echo $username; ?></td></tr>
+            <tr><td>AccountType:</td><td><?php echo $accountType; ?></td></tr>
         </table>
         <?php
         } else die ("É preciso especificar o username!")
