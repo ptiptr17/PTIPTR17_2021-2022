@@ -16,6 +16,9 @@ $dbuser = "ptiptr17";
 $dbpass = "ptiptr202217";
 $dbuser2= "root";
 $dbpass2= "";
+$dbuser3= "fc53304";
+$dbpass3= "fc53304";
+
 
 echo "a tentar conexão<br>";
 

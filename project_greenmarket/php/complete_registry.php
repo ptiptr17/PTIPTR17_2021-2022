@@ -14,11 +14,14 @@ $user_type = $_POST['type_user'];
 
 $postal_code = $_POST['c_pc'];
 echo "<br>".$postal_code;
-$province = $_POST['provincia'];
+//$province = $_POST['provincia'];
 $city = $_POST['cidade'];
+echo "<br>".$city;
 $district = $_POST['distrito'];
+echo "<br>".$district;
 $address = $_POST['morada'];
-$coordinates = $_POST['coordenadas'];
+echo "<br>".$address;
+//$coordinates = $_POST['coordenadas'];
 
 $select_user = "SELECT * FROM user_info WHERE username='$username'";
 $update_user = "UPDATE user_info SET name = '$name',  birthday = '$dob', gender = '$gender', phone = '$phone_number' WHERE username = '$username'";
@@ -45,7 +48,7 @@ if($updates){
     header( "refresh:20; url=../php/completeRegister.php" );
 }
 
-$insert_useraddress = "insert into user_address(user_id, postal_code, province, city, district, address, coordinates) values('$userid', '$postal_code', '$province', '$city', '$district', '$address', '$coordinates')";
+$insert_useraddress = "insert into user_address(user_id, postal_code, city, district, address) values('$userid', '$postal_code', '$city', '$district', '$address')";
 
 $res = mysqli_query($conn, $insert_useraddress);
 if($res){

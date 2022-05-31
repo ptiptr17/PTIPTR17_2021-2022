@@ -26,7 +26,7 @@
                     <nav>
                         <ul>
                           <li><a href="../html/products.html"> Produtos </a></li>
-                          <li><a href="logout.php"> Terminar a sessão </a></li>
+                          <li><a href="logout.php"> Terminar a sessao </a></li>
                           <li><a href="profile.php"> <?php echo $_SESSION["username"];?> </a></li>
                         </ul>
                     </nav>
@@ -55,120 +55,128 @@
 
                 <h2> bem vindo <?php  echo $_SESSION['username']; ?>. </h2>
                 
-                <h3>Basta completar o seguinte formulário para teres acesso a tudo o que o site tem para oferecer.</h3>
+                <h3>Basta completar o seguinte formulario para teres acesso a tudo o que o site tem para oferecer.</h3>
 
-                <h4> não pretende completar o registo?</h4>
-                <a href="homepage.php"><p> então clique aqui para ir à página principal </p> </a>
+                <h4> nao pretende completar o registo?</h4>
+                <a href="homepage.php"><p> entao clique aqui para ir a pagina principal </p> </a>
 
-                <?php echo "atributo da sessão" . $_SESSION['usertype'];  ?>
+                <?php echo "atributo da sessao" . $_SESSION['usertype'];  ?>
                 
 
                <?php if($_SESSION['usertype'] == 'consumer'): ?>
 
-               <h4> formulário para consumidor: </h4>
+               <h4> formulï¿½rio para consumidor: </h4>
 
                <form action="../php/complete_registry.php" method="post">
                     <label for="name"> Nome: </label>
                     <input type="text" name="cname" required /><br>
                     <label for="data">Data de Nascimento:</label>
                     <input type="date" name="cdata" required /><br>
-                    <label for="genero">Género:</label>
+                    <label for="genero">Genero:</label>
                     <select id="genero" name="utigenero" required>
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
-                    <option value="none">Prefiro não dizer</option>
+                    <option value="none">Prefiro nï¿½o dizer</option>
                     </select><br>
-                    <label for="phoneN">nº telefone:</label>
+                    <label for="phoneN">nï¿½ telefone:</label>
                     <input type="text" placeholder= "numero de telefone" name="phoneN" required /><br>
                             
                     <!--costumer addresstable handle -->
                    
-                    <label for="postal code">zone improvement plan:</label>
+                    <label for="postal code">postal code:</label>
                     <input type="text" placeholder="postal code" name="c_pc" required /><br>
+                    <!--
                     <label for="province">province:</label>
                     <input type="text" placeholder="provincia" name="provincia" required /><br>
+                    -->
                     <label for="city">city:</label>
                     <input type="text" placeholder="city" name="cidade" required /><br>
                     <label for="district">distrito:</label>
                     <input type="text" placeholder="district" name="distrito" required /><br>
                     <label for="address">morada:</label>
                     <input type="text" placeholder="address" name="morada" required /><br>
+                    <!--
                     <label for="coordinates">coordenadas:</label>
                     <input type="text" placeholder="coordinates" name="coordenadas" required /><br>
-
+                    -->
                     <input type="submit" value="Submit" name="register_complete" />
-
                </form>     
                 
                <?php elseif($_SESSION['usertype'] == 'transporter'): ?>
                 
-               <h5> formulário para transportador: </h5>
+               <h5> formulï¿½rio para transportador: </h5>
 
                <form action="../php/complete_registry.php" method="post">
                     <label for="name"> Nome: </label>
                     <input type="text" name="cname" required /><br>
                     <label for="data">Data de Nascimento:</label>
                     <input type="date" name="cdata" required /><br>
-                    <label for="genero">Género:</label>
+                    <label for="genero">Gï¿½nero:</label>
                     <select id="genero" name="utigenero" required />
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
-                    <option value="none">Prefiro não dizer</option>
+                    <option value="none">Prefiro nï¿½o dizer</option>
                     </select><br>
-                    <label for="phoneN">nº telefone:</label>
+                    <label for="phoneN">nï¿½ telefone:</label>
                     <input type="text" placeholder= "numero de telefone" name="phoneN" required /><br>
                             
                     <!--costumer addresstable handle -->
 
-                    <label for="zip">zone improvement plan:</label>
-                    <input type="text" placeholder="zip" name="czip" required /><br>
+                    <label for="postal code">postal code:</label>
+                    <input type="text" placeholder="postal code" name="c_pc" required /><br>
+                    <!--
                     <label for="province">province:</label>
                     <input type="text" placeholder="provincia" name="provincia" required /><br>
+                    -->
                     <label for="city">city:</label>
                     <input type="text" placeholder="city" name="cidade" required /><br>
                     <label for="district">distrito:</label>
                     <input type="text" placeholder="district" name="distrito" required /><br>
                     <label for="address">morada:</label>
                     <input type="text" placeholder="address" name="morada" required /><br>
+                    <!--
                     <label for="coordinates">coordenadas:</label>
                     <input type="text" placeholder="coordinates" name="coordenadas" required /><br>
-
+                    -->
                     <input type="submit" value="Submit" name="register_complete" />
                </form>
 
-               <?php elseif($_SESSION['usertype'] == 'transporter'): ?>
+               <?php elseif($_SESSION['usertype'] == 'supplier'): ?>
                 
-               <h5> formulário para fornecedor: </h5>
+               <h5> formulï¿½rio para fornecedor: </h5>
 
                <form action="../php/complete_registry.php" method="post">
                     <label for="name"> Nome: </label>
                     <input type="text" name="cname" required /><br>
                     <label for="data">Data de Nascimento:</label>
                     <input type="date" name="cdata" required /><br>
-                    <label for="genero">Género:</label>
+                    <label for="genero">Gï¿½nero:</label>
                     <select id="genero" name="utigenero" required>
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
-                    <option value="none">Prefiro não dizer</option>
+                    <option value="none">Prefiro nï¿½o dizer</option>
                     </select><br>
-                    <label for="phoneN">nº telefone:</label>
+                    <label for="phoneN">nï¿½ telefone:</label>
                     <input type="text" placeholder= "numero de telefone" name="phoneN" required /><br>
                             
                     <!--costumer addresstable handle -->
 
-                    <label for="zip">zone improvement plan:</label>
-                    <input type="text" placeholder="zip" name="czip" required /><br>
+                    <label for="postal code">postal code:</label>
+                    <input type="text" placeholder="postal code" name="c_pc" required /><br>
+                    <!--
                     <label for="province">province:</label>
                     <input type="text" placeholder="provincia" name="provincia" required /><br>
+                    -->
                     <label for="city">city:</label>
                     <input type="text" placeholder="city" name="cidade" required /><br>
                     <label for="district">distrito:</label>
                     <input type="text" placeholder="district" name="distrito" required /><br>
                     <label for="address">morada:</label>
                     <input type="text" placeholder="address" name="morada" required /><br>
+                    <!--
                     <label for="coordinates">coordenadas:</label>
                     <input type="text" placeholder="coordinates" name="coordenadas" required /><br>
-
+                    -->
                     <input type="submit" value="Submit" name="register_complete" />
                </form>
 

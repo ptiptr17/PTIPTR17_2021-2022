@@ -44,10 +44,13 @@ $queryu = mysqli_query($conn, $query);
 //echo $queryu;
 
 if (mysqli_num_rows($queryu) == 1) {
+	$row = mysqli_fetch_array($queryu);
     $_SESSION["loggedIn"] = true;
     $_SESSION["username"] = $username;
+	$_SESSION["usertype"] = $row["accountType"];
     echo "<br>login efetuado com sucesso";
-	echo "<br>a cookey do nome:".$_SESSION["username"];
+	echo "<br>username:".$_SESSION["username"];
+	echo "<br>usertype:".$_SESSION["usertype"];
     header("refresh:15; url= ../php/homepage.php");
 } else {
 	echo "<br>authentication failed";

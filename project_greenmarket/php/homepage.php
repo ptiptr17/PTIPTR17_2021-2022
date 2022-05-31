@@ -64,9 +64,13 @@ session_start();
             </div>
         </header>
         <div class="conteudo container row">
+            <h2 text="center"> Bem vindo <?php echo $_SESSION['username'] ?>
             <div class="categories">
+            <p> <?php $_SESSION["username"]; ?> </p>
+            <p> <?php $_SESSION["usertype"]; ?> </p>
                 <div class="slideshow-container">
                     <h2 class="title">Produtos Green <i class="fa fa-leaf" aria-hidden="true"></i></h2>
+                    
                     <div class="mySlides fade">
                         <div class="row">
                             <div class="col-4">
