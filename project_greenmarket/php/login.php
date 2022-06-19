@@ -48,13 +48,14 @@ if (mysqli_num_rows($queryu) == 1) {
     $_SESSION["loggedIn"] = true;
     $_SESSION["username"] = $username;
 	$_SESSION["usertype"] = $row["accountType"];
+	$_SESSION["userid"] = $row["user_id"];
     echo "<br>login efetuado com sucesso";
 	echo "<br>username:".$_SESSION["username"];
 	echo "<br>usertype:".$_SESSION["usertype"];
-    header("refresh:15; url= ../php/homepage.php");
+    header("refresh:5; url= ../php/homepage.php");
 } else {
 	echo "<br>authentication failed";
-    header("refresh:15; url= ../html/login.html");
+    header("refresh:5; url= ../html/login.html");
 }
 
 //mysqli_close($conn);

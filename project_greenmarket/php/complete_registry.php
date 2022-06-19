@@ -35,6 +35,7 @@ if ($user_info->num_rows == 1) {
         echo $row['username'];
         echo "user_id".$row['user_id'];
         $userid = $row['user_id'];
+        $_SESSION["userid"] = $userid;
     }
 }else{
   echo("erro na query");

@@ -69,14 +69,14 @@
 
                <form action="../php/complete_registry.php" method="post">
                     <label for="name"> Nome: </label>
-                    <input type="text" name="cname" required /><br>
+                    <input type="text" name="cname" required /><br><br>
                     <label for="data">Data de Nascimento:</label>
-                    <input type="date" name="cdata" required /><br>
+                    <input type="date" name="cdata" required /><br><br>
                     <label for="genero">Genero:</label>
                     <select id="genero" name="utigenero" required>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="none">Prefiro n�o dizer</option>
+                    <option value="Masculino">Masculino</option><br>
+                    <option value="Feminino">Feminino</option><br>
+                    <option value="none">Prefiro nao dizer</option><br>
                     </select><br>
                     <label for="phoneN">n� telefone:</label>
                     <input type="text" placeholder= "numero de telefone" name="phoneN" required /><br>

@@ -64,9 +64,24 @@ session_start();
             </div>
         </header>
         <br>
-        <h1> Perfil de <?php echo $_SESSION['username']; ?></h1>
+        <h1> Perfil de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
+
+        <?php
+        if($_SESSION["usertype"] == "consumer"){
+            echo "<br><h3><a href='products.html'>Fazer compras</a></h3><br>";
+
+        }elseif($_SESSION["usertype"] == "transporter"){
+            echo "<br><h3><a href='vehicles.php'>veiculos</a></h3><br>";
+
+        }elseif($_SESSION["usertype"] == "supplier"){
+            echo "<br><h3><a href='Sproducts.php'>produtos</a></h3><br>";
+            echo "<br><h3><a href='storage.php'>armazéns</a></h3><br>";
+        }
+        
+        ?>
+
         <?php
 
         $username = $_SESSION['username'];
