@@ -9,7 +9,7 @@ $pass_user = $_POST['psw_user'];
 $repass_user = $_POST['psw-repeat'];
 $user_type = $_POST['type_user'];
 
-echo "as vari�veis guardadas<br>";
+echo "as variaveis guardadas<br>";
 echo $email_user;
 echo "<br>";
 echo $nome_user;
@@ -19,13 +19,13 @@ echo "<br>";
 echo "user type:";
 echo $user_type;
 echo "<br>";
-echo"end vari�veis";
+echo"end variaveis";
 
 if($pass_user == $repass_user){
     echo "password correta.<br>";
 }
 
-//encripta��o da password para garantir confidencialidade
+//encriptacao da password para garantir confidencialidade
 $password = password_hash($pass_repr, PASSWORD_BCRYPT);
 
 // Inserir para a tabela
@@ -41,7 +41,7 @@ if($res2){
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
     header( "refresh:10; url=../html/register.html" );
 }
-// Termina a liga��o com a base de dados
+// Termina a ligacao com a base de dados
 mysqli_close($conn);
 
 // $_SESSION['username'] = $nome_repr;

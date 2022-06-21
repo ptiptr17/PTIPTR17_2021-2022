@@ -25,7 +25,7 @@
                 <nav>
                     <ul>
                         <li><a href="products.html"> Produtos</a></li>
-                        <li><a href="login.html"> Iniciar Sessão</a></li>
+                        <li><a href="login.html"> Iniciar Sessï¿½o</a></li>
                         <li><a href="register.html"> Criar Conta</a></li>
                     </ul>
                 </nav>
@@ -51,11 +51,11 @@
 
         if (isset($_GET["username"])) {
             $username = $_GET["username"];
-            mysql_connect("localhost","root","") or die ("Não foi possivel estabelecer conexão ao servidor");
-            mysql_select_db("users") or die ("A base de dados não foi possivel encontrar!");
-            $userquery = mysql_query("SELECT * FROM users WHERE username ="$username"") or die ("Não foi completa a query");
+            mysql_connect("localhost","root","") or die ("Nï¿½o foi possivel estabelecer conexï¿½o ao servidor");
+            mysql_select_db("users") or die ("A base de dados nï¿½o foi possivel encontrar!");
+            $userquery = mysql_query("SELECT * FROM users WHERE username ="$username"") or die ("Nao foi completa a query");
             if (mysql_num_rows($userquery) != 1) {
-                die ("Não foi possivel encontrar o utilizador!");
+                die ("Nï¿½o foi possivel encontrar o utilizador!");
             }
             while ($row = mysql_fetch_array($userquery, MYSQL_ASSOC)) {
                 $name =$row["name"];
@@ -78,7 +78,7 @@
             <tr><td>AccountType:</td><td><?php echo $accountType; ?></td></tr>
         </table>
         <?php
-        } else die ("É preciso especificar o username!")
+        } else die ("ï¿½ preciso especificar o username!")
         ?>
 
         <div class="footer-clean">
@@ -91,17 +91,17 @@
                                 <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943">PTR</a>
                             </h3>
                             <ul>
-                                <li><a href="https://ciencias.ulisboa.pt/pt/perfil/amferreira">António Ferreira</a></li>
+                                <li><a href="https://ciencias.ulisboa.pt/pt/perfil/amferreira">Antï¿½nio Ferreira</a></li>
                                 <li><a href="https://ciencias.ulisboa.pt/perfil/aodsa">Alan Oliveira</a></li>
-                                <li><a href="https://ciencias.ulisboa.pt/pt/perfil/mcalha">Mário Calha</a></li>
+                                <li><a href="https://ciencias.ulisboa.pt/pt/perfil/mcalha">Mï¿½rio Calha</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-4 col-md-3 item">
                             <h3>Membros do Grupo</h3>
                             <ul>
                                 <li><a href="">Filipe Santos</a></li>
-                                <li><a href="">Gonçalo Rocha</a></li>
-                                <li><a href="">José Dias</a></li>
+                                <li><a href="">Gonï¿½alo Rocha</a></li>
+                                <li><a href="">Josï¿½ Dias</a></li>
                                 <li><a href="">Miguel Martins</a></li>
                             </ul>
                         </div>
@@ -110,11 +110,11 @@
                             <ul>
                                 <li><a href="welcome.html">Sobre o Projeto</a></li>
                                 <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Sobre Nós</a></li>
+                                <li><a href="#">Sobre Nï¿½s</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-3 item social"><a href="https://github.com/ptiptr17/PTIPTR17_2021-2022"><i class="fa fa-github"></i></a>
-                            <p class="copyright">© GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022</p>
+                            <p class="copyright">ï¿½ GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022</p>
                         </div>
                     </div>
                 </div>

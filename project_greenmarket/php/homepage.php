@@ -33,7 +33,7 @@ session_start();
                         <ul>
                           <li><a href="../html/products.html"> Produtos </a></li>
                           <li><a href="logout.php"> Terminar a sessão </a></li>
-                          <li><a href="profile.php"> <?php echo $_SESSION["username"]."profile";?> </a></li>
+                          <li><a href="profile.php">"perfil de ".<?php echo $_SESSION["username"];?> </a></li>
                         </ul>
                     </nav>
                     <?php else:?>

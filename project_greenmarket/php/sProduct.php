@@ -72,7 +72,7 @@ session_start();
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info WHERE S_id='$userid'";
+        $query = "SELECT * FROM product_info WHERE s_id='$userid'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
@@ -105,7 +105,8 @@ session_start();
             echo "<li>".$row['descript'];
             echo"<li><h4>Image:</h4><br>";
             echo "<li>".$row['pic_desc'];
-        }?>
+        }
+        ?>
 
         <form action="delete_product.php" method="post">
             <label class="labels">product id of product to be deleted:</label>
@@ -125,55 +126,55 @@ session_start();
         <form action="register_product.php" method="post">
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label class="labels">nome do produto</label>
+                    <label class="labels">Nome do produto:</label>
                     <input type="text"  placeholder="Product" name="pname_novo" value="nome">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">categoria produto</label>
+                    <label class="labels">Categoria produto:</label>
                     <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">segunda categoria produto</label>
+                    <label class="labels">Segunda categoria produto:</label>
                     <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Preço</label>
+                    <label class="labels">Preço:</label>
                     <input type="text"  placeholder="Price" name="preco_novo" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">data producao</label>
+                    <label class="labels">Data producao:</label>
                     <input type="date"  placeholder="production date" name="dataprod_novo">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">nome armazem</label>
+                    <label class="labels">Nome armazem:</label>
                     <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">gastos</label>
+                    <label class="labels">Gastos:</label>
                     <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">custo eletrecidade</label>
+                    <label class="labels">Custo eletrecidade:</label>
                     <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">custo agua</label>
+                    <label class="labels">Custo agua:</label>
                     <input type="text"  placeholder="water cost" name="agua_nova" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">poluicao causada</label>
+                    <label class="labels">Poluicao causada:</label>
                     <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">validade</label>
+                    <label class="labels">Validade:</label>
                     <input type="date"  placeholder="shelflife" name="validade_nova">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">descricao</label>
-                    <input type="text"  placeholder="descrption" name="descricao_nova" value="a descricao">
+                    <label class="labels">Descricao:</label>
+                    <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">imagem</label>
+                    <label class="labels">Imagem:</label>
                     <input type="image"  placeholder="image" name="imagem_nova">
                 </div>
             </div>
