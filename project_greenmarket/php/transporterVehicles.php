@@ -64,123 +64,79 @@ session_start();
             </div>
         </header>
         <br>
-        <h1> Produtos de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
+        <h1> Veículos de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
-        <h2> Os teus produtos: </h2>
+        <h2> Os teus Veículos: </h2>
 
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info WHERE s_id='$userid'";
+        $query = "SELECT * FROM vehicle_info WHERE transporter_id='$userid'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
 
-            while($row = mysqli_fetch_array($resp)) {
+            while($row = mysqli_fetch_array($res)) {
 
             echo"<ul>";
-            echo "<h2> dados relativos aos teus produtos: </h3>";
+            echo "<h2> Dados relativos aos teus Veículos: </h3>";
             echo "<br>";
-            echo"<li><h3>produto ".$row['product_id'].":</h3>";
-            echo "<li>".$row['product_name'];
-            echo"<li><h4>categories:</h4><br>";
-            echo "<li>".$row['one_category'];
-            echo "<li>".$row['two_category'];
-            echo"<li><h4>price:</h4><br>";
-            echo "<li>".$row['price'];
-            echo "<li><h4>production date:</h4><br>";
-            echo "<li>".$row['production date'];
-            echo"<li><h4>expenditure:</h4><br>";
-            echo "<li>".$row['resource_cast'];
-            echo"<li><h4>eletricity:</h4><br>";
-            echo "<li>".$row['eletricity_cast'];
-            echo"<li><h4>water:</h4><br>";
-            echo "<li>".$row['water_cast'];
-            echo"<li><h4>polution caused:</h4><br>";
+            echo"<li><h3>Veículo ".$row['vehicle_id'].":</h3>";
+            echo"<li><h4>Tipo de veículo:</h4><br>";
+            echo "<li>".$row['vehicle_type'];
+            echo"<li><h4>Matricula:</h4><br>";
+            echo "<li>".$row['plate_number'];
+            echo"<li><h4>Poluição Causada:</h4><br>";
             echo "<li>".$row['pollution_caused'];
-            echo"<li><h4>shelf life:</h4><br>";
-            echo "<li>".$row['shelf_life'];
-            echo"<li><h4>description:</h4><br>";
+            echo"<li><h4>Descrição:</h4><br>";
             echo "<li>".$row['descript'];
             echo"<li><h4>Image:</h4><br>";
             echo "<li>".$row['pic_desc'];
-        }
-        ?>
+        }?>
 
-        <form action="delete_product.php" method="post">
-            <label class="labels">product id of product to be deleted:</label>
-            <input type="text"  placeholder="Pid" name="Pid">
-            <input type="submit" value="Delete Product" name="apagar_produto">
+        <form action="delete_vehicle.php" method="post">
+            <label class="labels">ID do veiculo a ser excluído:</label>
+            <input type="text"  placeholder="vehicle" name="vehicle_id">
+            <input type="submit" value="Delete Vehicle" name="apagar_vehicle">
         </form>
 
         <?php
         }else{
-            echo "<br>Nao tem produtos seus neste momento.";
+            echo "<br>Nao tem veículos seus neste momento.";
         }
 
         ?>
 
-    <h2 class="text-right">Registar novo produto:</h2>
+
+    <h2 class="text-right">Registar Novo Veiculo:</h2>
         </div>
-        <form action="register_product.php" method="post">
+        <form action="register_vehicle.php" method="post">
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label class="labels">Nome do produto:</label>
-                    <input type="text"  placeholder="Product" name="pname_novo" value="nome">
+                    <label class="labels">Tipo de veiculo</label>
+                    <input type="text"  placeholder="Tveiculo" name="vehicle_type_novo">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Categoria produto:</label>
-                    <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
+                    <label class="labels">Matricula do veiculo:</label>
+                    <input type="text"  placeholder="Nome" name="plate_number_novo">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Segunda categoria produto:</label>
-                    <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
+                    <label class="labels">Poluição Causada (CO2):</label>
+                    <input type="text"  placeholder="Poluicao" name="pollution_caused_nova">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Preço:</label>
-                    <input type="text"  placeholder="Price" name="preco_novo" value="0">
+                    <label class="labels">Descricao</label>
+                    <input type="text"  placeholder="descrption" name="descricao_nova">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Data producao:</label>
-                    <input type="date"  placeholder="production date" name="dataprod_novo">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Nome armazem:</label>
-                    <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Gastos:</label>
-                    <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo eletrecidade:</label>
-                    <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo agua:</label>
-                    <input type="text"  placeholder="water cost" name="agua_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Poluicao causada:</label>
-                    <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Validade:</label>
-                    <input type="date"  placeholder="shelflife" name="validade_nova">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Descricao:</label>
-                    <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Imagem:</label>
+                    <label class="labels">Imagem</label>
                     <input type="image"  placeholder="image" name="imagem_nova">
                 </div>
             </div>
             <div class="mt-3 text-center">
                 <div class="col-md-4">
-                    <input type="submit" value="Create Product" name="newProduct">
+                    <input type="submit" value="Create Vehicle" name="newVehicle">
                 </div>
             </div>
         </form>

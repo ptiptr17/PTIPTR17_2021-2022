@@ -73,7 +73,7 @@ session_start();
             echo "<br><h3><a href='products.html'>Fazer compras</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "transporter"){
-            echo "<br><h3><a href='vehicles.php'>veiculos</a></h3><br>";
+            echo "<br><h3><a href='transporterVehicles.php'>veiculos</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "supplier"){
             echo "<br><h3><a href='supplierProducts.php'>produtos</a></h3><br>";
