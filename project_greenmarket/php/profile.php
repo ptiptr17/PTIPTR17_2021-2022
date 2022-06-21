@@ -204,6 +204,5 @@ session_start();
                         <br>
                         <input type="submit" value="Eliminar conta" name="delete_conta" class="btnL">
                     </form>
-
     </body>
 </html>

@@ -77,24 +77,43 @@ session_start();
 
         if(mysqli_num_rows($res) > 0){
 
-            $row = mysqli_fetch_array($res);
+            while($row = mysqli_fetch_array($resp)) {
 
             echo"<ul>";
             echo "<h2> dados relativos aos teus produtos: </h3>";
             echo "<br>";
-                echo"<li><h3>:</h3>";
-                echo "<li>".$row['accountType'];
-                echo"<li><h3>user_id:</h3>";
-                echo "<li>".$row['user_id'];
-                echo"<li><h3>username:</h3>";
-                echo "<li>".$row['username'];
-                echo "<li><h3>name:</h3>";
-                echo "<li>".$row['name'];
-                echo"<li><h3>email:</h3>";
-                echo "<li>".$row['email'];
-                echo"<li><h3>phone number:</h3>";
-                echo "<li>".$row['phone'];
+            echo"<li><h3>produto ".$row['product_id'].":</h3>";
+            echo "<li>".$row['product_name'];
+            echo"<li><h4>categories:</h4><br>";
+            echo "<li>".$row['one_category'];
+            echo "<li>".$row['two_category'];
+            echo"<li><h4>price:</h4><br>";
+            echo "<li>".$row['price'];
+            echo "<li><h4>production date:</h4><br>";
+            echo "<li>".$row['production date'];
+            echo"<li><h4>expenditure:</h4><br>";
+            echo "<li>".$row['resource_cast'];
+            echo"<li><h4>eletricity:</h4><br>";
+            echo "<li>".$row['eletricity_cast'];
+            echo"<li><h4>water:</h4><br>";
+            echo "<li>".$row['water_cast'];
+            echo"<li><h4>polution caused:</h4><br>";
+            echo "<li>".$row['pollution_caused'];
+            echo"<li><h4>shelf life:</h4><br>";
+            echo "<li>".$row['shelf_life'];
+            echo"<li><h4>description:</h4><br>";
+            echo "<li>".$row['descript'];
+            echo"<li><h4>Image:</h4><br>";
+            echo "<li>".$row['pic_desc'];
+        }?>
 
+        <form action="delete_product.php" method="post">
+            <label class="labels">product id of product to be deleted:</label>
+            <input type="text"  placeholder="Pid" name="Pid">
+            <input type="submit" value="Delete Product" name="apagar_produto">
+        </form>
+
+        <?php
         }else{
             echo "<br>Nao tem produtos seus neste momento.";
         }
@@ -106,41 +125,61 @@ session_start();
         <form action="register_product.php" method="post">
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label class="labels">username</label>
-                    <input type="text"  placeholder="UNome" name="uname_novo" value="<?php echo $username?>">
+                    <label class="labels">nome do produto</label>
+                    <input type="text"  placeholder="Product" name="pname_novo" value="nome">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">name</label>
-                    <input type="text"  placeholder="Nome" name="nome_novo" value="<?php echo $nome?>">
+                    <label class="labels">categoria produto</label>
+                    <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Email</label>
-                    <input type="text"  placeholder="Email" name="email_novo" value="<?php echo $email?>">
+                    <label class="labels">segunda categoria produto</label>
+                    <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Phone number</label>
-                    <input type="text"  placeholder="Phone" name="phone_novo" value="<?php echo $phone?>">
+                    <label class="labels">Preço</label>
+                    <input type="text"  placeholder="Price" name="preco_novo" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Código Postal</label>
-                    <input type="text"  placeholder="Código Postal" name="codPostal_novo" value="<?php echo $postalcode?>">
+                    <label class="labels">data producao</label>
+                    <input type="date"  placeholder="production date" name="dataprod_novo">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Cidade</label>
-                    <input type="text"  placeholder="Cidade" name="cidade_novo" value="<?php echo $city?>">
+                    <label class="labels">nome armazem</label>
+                    <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Distrito</label>
-                    <input type="text"  placeholder="Código Postal" name="distrito_novo" value="<?php echo $district?>">
+                    <label class="labels">gastos</label>
+                    <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Morada</label>
-                    <input type="text"  placeholder="Morada" name="morada_nova" value="<?php echo $address?>">
+                    <label class="labels">custo eletrecidade</label>
+                    <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">custo agua</label>
+                    <input type="text"  placeholder="water cost" name="agua_nova" value="0">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">poluicao causada</label>
+                    <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">validade</label>
+                    <input type="date"  placeholder="shelflife" name="validade_nova">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">descricao</label>
+                    <input type="text"  placeholder="descrption" name="descricao_nova" value="a descricao">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">imagem</label>
+                    <input type="image"  placeholder="image" name="imagem_nova">
                 </div>
             </div>
             <div class="mt-3 text-center">
                 <div class="col-md-4">
-                    <input type="submit" value="Save Profile" name="edit_utilizador">
+                    <input type="submit" value="Create Product" name="newProduct">
                 </div>
             </div>
         </form>
