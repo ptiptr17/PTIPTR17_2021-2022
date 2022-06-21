@@ -33,7 +33,7 @@ session_start();
                         <ul>
                           <li><a href="../html/products.html"> Produtos </a></li>
                           <li><a href="logout.php"> Terminar a sessão </a></li>
-                          <li><a href="profile.php"> <?php echo $_SESSION["username"]."profile";?> </a></li>
+                          <li><a href="profile.php"> <?php echo $_SESSION["username"];?> </a></li>
                         </ul>
                     </nav>
                     <?php else:?>
@@ -76,7 +76,7 @@ session_start();
             echo "<br><h3><a href='vehicles.php'>veiculos</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "supplier"){
-            echo "<br><h3><a href='Sproducts.php'>produtos</a></h3><br>";
+            echo "<br><h3><a href='supplierProducts.php'>produtos</a></h3><br>";
             echo "<br><h3><a href='storage.php'>armazéns</a></h3><br>";
         }
         

@@ -2,7 +2,7 @@
 include "openconn.php";
 session_start();
 
-$productname_novo = htmlspecialchars($_POST["productname_novo"]);
+$productname_novo = htmlspecialchars($_POST["pname_novo"]);
 $categoria_novo = htmlspecialchars($_POST["categoria_novo"]);
 $categoria2_novo = htmlspecialchars($_POST["categoria2_novo"]);
 $preco_novo = htmlspecialchars($_POST["preco_novo"]);
@@ -16,6 +16,32 @@ $validade_nova = htmlspecialchars($_POST["validade_nova"]);
 $descricao_nova = htmlspecialchars($_POST["descricao_nova"]);
 $imagem_nova = htmlspecialchars($_POST["imagem_nova"]);
 
+echo "productname_novo:     ";
+echo $productname_novo;
+echo "<br>categoria_novo:   ";
+echo $categoria_novo;
+echo "<br>categoria2_novo:  ";
+echo $categoria2_novo;
+echo "<br>preco_novo:   ";
+echo $preco_novo;
+echo "<br>data_producao:    ";
+echo $dataprod_novo;
+echo "<br>armazem novo:     ";
+echo $armazem_novo;
+echo "<br>gastos novos:     ";
+echo $gastos_novo;
+echo "<br>eletricidade nova:    ";
+echo $eletricidade_nova;
+echo "<br>agua nova:    ";
+echo $agua_nova;
+echo "<br>poluicao novos:   ";
+echo $poluicao_nova;
+echo "<br>validade:     ";
+echo $validade_nova;
+echo "<br>descricao:    ";
+echo $descricao_nova;
+echo "<br>imagem:   ";
+echo $imagem_nova;
 
 $username = $_SESSION['username'];
 $userid = $_SESSION['userid'];
@@ -31,18 +57,19 @@ if(mysqli_num_rows($resw) == 1){
     $id_armazem = $roww['warehouse_id'];
 }else{
     echo "armazém com esse nome não existe.";
+    $id_armazem = 1;
 }
 
 echo "<br>username".$username;
 $userid = $_SESSION['user_id'];
 echo "<br>userid".$userid;
 
-if( $productname_novo === ""  || $categoria_novo === "" || $preco_novo === "" || $dataprod_novo ==="" || $gastos_novo === "" || $poluicao_nova === "" || $validade_nova === "" || $descricao_nova === "" || $imagem_nova === ""){
+if( $productname_novo === ""  || $categoria_novo === "" || $preco_novo === "" || $dataprod_novo ==="" || $gastos_novo === "" || $poluicao_nova === "" || $validade_nova === "" || $descricao_nova === ""){
     echo ("Foram inseridos dados invalidos");
-    header( "refresh:5; url=sProduct.php" );
+    header( "refresh:60; url=supplierProducts.php" );
 
 }else{
-    $create_product = "INSERT INTO product_info(product_name, one_category, two_category, price, production_date, w_id, s_id, resource_cast, pollution_caused, eletricity_cast, water_cast, shelf_life, descript, picture) values('$productname_novo', '$categoria_novo', '$categoria2_novo', '$preco_novo', '$dataprod_novo', '$id_armazem', '$userid', $gastos_novo, '$poluicao_nova', '$eletricidade_nova', '$agua_nova', '$validade_nova', '$descricao_nova', '$imagem_nova')";
+    $create_product = "INSERT INTO product_info(product_name, one_category, two_category, price, production_date, w_id, s_id, resource_cast, pollution_caused, eletricity_cast, water_cast, /*shelf_life,*/ descript, picture) values('$productname_novo', '$categoria_novo', '$categoria2_novo', '$preco_novo', '$dataprod_novo', '$id_armazem', '$userid', $gastos_novo, '$poluicao_nova', '$eletricidade_nova', '$agua_nova', /*validade_nova,*/ '$descricao_nova', '$imagem_nova')";
     $res1 = mysqli_query ($conn, $create_product);
 
     if($res1){
