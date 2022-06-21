@@ -52,7 +52,12 @@ if (mysqli_num_rows($queryu) == 1) {
     echo "<br>login efetuado com sucesso";
 	echo "<br>username:".$_SESSION["username"];
 	echo "<br>usertype:".$_SESSION["usertype"];
-    header("refresh:5; url= ../php/homepage.php");
+	if($usertype === "admin"){
+		header("refresh:5; url= ../php/admin.php");
+	}
+	else{
+    	header("refresh:5; url= ../php/homepage.php");
+	}
 } else {
 	echo "<br>authentication failed";
     header("refresh:5; url= ../html/login.html");
