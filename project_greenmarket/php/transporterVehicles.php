@@ -72,12 +72,12 @@ session_start();
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM vehicle_info WHERE vehicle_id='$userid'";
+        $query = "SELECT * FROM vehicle_info WHERE transporter_id='$userid'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
 
-            while($row = mysqli_fetch_array($resp)) {
+            while($row = mysqli_fetch_array($res)) {
 
             echo"<ul>";
             echo "<h2> Dados relativos aos teus Veículos: </h3>";
@@ -97,7 +97,7 @@ session_start();
 
         <form action="delete_vehicle.php" method="post">
             <label class="labels">ID do veiculo a ser excluído:</label>
-            <input type="text"  placeholder="Pid" name="Pid">
+            <input type="text"  placeholder="vehicle" name="vehicle_id">
             <input type="submit" value="Delete Vehicle" name="apagar_vehicle">
         </form>
 
@@ -115,15 +115,15 @@ session_start();
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label class="labels">Tipo de veiculo</label>
-                    <input type="text"  placeholder="Tveiculo" name="uname_novo">
+                    <input type="text"  placeholder="Tveiculo" name="vehicle_type_novo">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Matricula do veiculo:</label>
-                    <input type="text"  placeholder="Nome" name="nome_novo">
+                    <input type="text"  placeholder="Nome" name="plate_number_novo">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Poluição Causada (CO2):</label>
-                    <input type="text"  placeholder="Poluicao" name="poluicao_causada">
+                    <input type="text"  placeholder="Poluicao" name="pollution_caused_nova">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Descricao</label>
