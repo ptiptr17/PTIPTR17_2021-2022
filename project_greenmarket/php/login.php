@@ -49,10 +49,11 @@ if (mysqli_num_rows($queryu) == 1) {
     $_SESSION["username"] = $username;
 	$_SESSION["usertype"] = $row["accountType"];
 	$_SESSION["userid"] = $row["user_id"];
+	$usertype = $_SESSION['usertype'];
     echo "<br>login efetuado com sucesso";
 	echo "<br>username:".$_SESSION["username"];
 	echo "<br>usertype:".$_SESSION["usertype"];
-	if($usertype === "admin"){
+	if($usertype === 'admin'){
 		header("refresh:5; url= ../php/admin.php");
 	}
 	else{

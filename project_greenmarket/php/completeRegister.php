@@ -78,7 +78,7 @@
                     <option value="Feminino">Feminino</option><br>
                     <option value="none">Prefiro nao dizer</option><br>
                     </select><br>
-                    <label for="phoneN">n� telefone:</label>
+                    <label for="phoneN">num telefone:</label>
                     <input type="text" placeholder= "numero de telefone" name="phoneN" required /><br>
                             
                     <!--costumer addresstable handle -->
