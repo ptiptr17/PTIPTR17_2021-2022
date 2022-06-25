@@ -45,20 +45,32 @@ session_start();
                             </ul>
                         </nav>
                     <?php endif; ?>
-                    <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
-                    <div id="nav-cart-count-container">
-                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
-                        <i class="fa fa-shopping-cart" style="font-size:24px"></i>
-                    </div>
-                    <div id="nav-cart-text-container" class=" nav-progressive-attribute">
-                        <span aria-hidden="true" class="nav-line-1">
-                        </span>
-                        <span aria-hidden="true" class="nav-line-2">
-                        Carrinho
-                        <span class="nav-icon nav-arrow"></span>
-                        </span>
-                    </div>
-                    </a>
+                    <?php if($_SESSION['usertype'] == "consumer"):?>
+                    <?php
+                        $userid = $_SESSION['userid'];
+                        $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
+                        $cnum = mysqli_query($conn, $query);
+                        $numcitems = mysqli_num_rows($cnum);
+                    ?>
+                        <a href="../php/cart.php" aria-label="<?php echo $numcitems; ?> items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+                        <div id="nav-cart-count-container">
+                            <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content"><?php echo $numcitems; ?></span>
+                            <i class="fa fa-shopping-cart" style="font-size:24px"></i>
+                        </div>
+                        <div id="nav-cart-text-container" class=" nav-progressive-attribute">
+                            <span aria-hidden="true" class="nav-line-1">
+                            </span>
+                            <span aria-hidden="true" class="nav-line-2">
+                            Carrinho
+                            <span class="nav-icon nav-arrow"></span>
+                            </span>
+                        </div>
+                        </a>
+                    <?php elseif($_SESSION['usertype'] == "transporter"): ?>
+                        <a href="../php/t_order.php"> Encomendas </a>
+                    <?php elseif($_SESSION['usertype'] == "supplier"): ?>
+                        <a href="../php/s_order.php"> Encomendas </a>
+                    <?php endif ?>
                 </div>
                 <hr>
             </div>
@@ -71,16 +83,18 @@ session_start();
 
         <?php
         if($_SESSION["usertype"] == "consumer"){
-            echo "<br><h3><a href='products.html'>Fazer compras</a></h3><br>";
+            echo "<h3><a href='../php/products.php'>Fazer compras</a></h3>";
+            echo "<br><h3><a href='c_orders.php'>Ver encomendas</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "transporter"){
             echo "<br><h3><a href='transporterVehicles.php'>veiculos</a></h3><br>";
+            echo "<br><h3><a href='t_orders.php'>Ver encomendas</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "supplier"){
             echo "<br><h3><a href='supplierProducts.php'>produtos</a></h3><br>";
-            echo "<br><h3><a href='storage.php'>armazéns</a></h3><br>";
+            echo "<br><h3><a href='sellerWarehouses.php'>armazéns</a></h3><br>";
+            echo "<br><h3><a href='s_orders.php'>Ver encomendas</a></h3><br>";
         }
-        
         ?>
 
         <?php
@@ -106,7 +120,7 @@ session_start();
                 $row2 = mysqli_fetch_array($res2);
 
                 echo"<ul>";
-                echo "<h2> dados relativos ao utilizador gerais: </h3>";
+                echo "<h2> dados gerais do ".$username.": </h2>";
                 echo "<br>";
                     echo"<li><h3>account type:</h3>";
                     echo "<li>".$row['accountType'];

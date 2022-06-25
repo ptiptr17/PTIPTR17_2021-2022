@@ -274,15 +274,17 @@ session_start();
             </form>
         </div>
 
+        <!--
         <div>
             <h1>Procurar por um utilizador:</h1>
             <form action="adminManage.php" method="GET">
-                <table>
-                    <tr><td>Username:</td><td><input type="text" id="username" name="username"></td></tr>
-                    <tr><td><input type="submit" id="submit" name="submit" value="Ver perfil!"></td></tr>
-                </table>
-            </form>
+            <table>
+                <tr><td>Username:</td><td><input type="text" id="username" name="username"></td></tr>
+                <tr><td><input type="submit" id="submit" name="submit" value="Ver perfil!"></td></tr>
+            </table>
+        </form>
         </div>
+        -->
         
         <div class="footer-clean">
             <footer>

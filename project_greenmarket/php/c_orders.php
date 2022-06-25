@@ -75,128 +75,57 @@ session_start();
             <hr>
         </div>
     </header>
+        
         <br>
-        <h1> Produtos de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
+        <h1> Encomendas de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
-        <h2> Os teus produtos: </h2>
 
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info WHERE s_id='$userid'";
+        $query = "SELECT * FROM order_info WHERE consumer_id='$userid'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
 
+            echo "<h2> encomendas atuais: </h2>";
+            
             while($row = mysqli_fetch_array($res)) {
 
-            echo"<ul>";
-            echo "<h2> dados relativos aos teus produtos: </h3>";
-            echo "<br>";
-            echo"<li><h3>produto ".$row['product_id'].":</h3>";
-            echo $row['product_name'];
-            echo"<li><h4>categories:</h4><br>";
-            echo $row['one_category'];
-            echo $row['two_category'];
-            echo"<li><h4>price:</h4><br>";
-            echo $row['price'];
-            echo "<li><h4>production date:</h4><br>";
-            echo $row['production_date'];
-            echo"<li><h4>expenditure:</h4><br>";
-            echo $row['resource_cast'];
-            echo"<li><h4>eletricity:</h4><br>";
-            echo $row['eletricity_cast'];
-            echo"<li><h4>water:</h4><br>";
-            echo $row['water_cast'];
-            echo"<li><h4>polution caused:</h4><br>";
-            echo $row['pollution_caused'];
-            echo"<li><h4>shelf life:</h4><br>";
-            echo $row['shelf_life'];
-            echo"<li><h4>description:</h4><br>";
-            echo $row['descript'];
-            echo"<li><h4>Image:</h4><br>";
-            echo $row['picture'];
-        }
+                echo"<ul>";
+                echo "<br>";
+                echo"<li><h3>encomenda ".$row['order_id'].":</h3>";
+                echo "<li>".$row['product_name'];
+                echo "<li> localidade origem:";
+                echo $row['postalcode_origin'];
+                echo "<li> localidade_destino:";
+                echo $row['postalcode_destin'];
+                echo"<li><h3>preco:</h3><br>";
+                echo $row['price'];
+                echo "<li> data de creação de encomenda:";
+                echo $row['creation_date'];
+                echo "<li> data limite para cancelar encomenda:";
+                echo $row['cancelation_date'];
+                echo "<li> poluicao causada:";
+                echo $row['pollution'];
+                echo "<li> estado da encomenda:";
+                echo $row['status'];
+                echo "</ul>";
         ?>
-
-        <form action="delete_product.php" method="post">
-            <label class="labels">product id of product to be deleted:</label>
-            <input type="text"  placeholder="Pid" name="Pid">
-            <input type="submit" value="Delete Product" name="apagar_produto">
-        </form>
-
+                <form action="c_order_delete.php" method="post">
+                    <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
+                    <input type="submit" value="Cancelar Encomenda" name="encomendar">
+                </form>
         <?php
+            }
+
+        }elseif(mysqli_num_rows($res) == 0){
+            echo "<h3> Não existem produtos no seu carrinho. </h3>";
         }else{
-            echo "<br>Nao tem produtos seus neste momento.";
+            echo "<h3> erro a encontrar produto no seu carrinho. </h3>";
         }
-
         ?>
-
-    <h2 class="text-right">Registar novo produto:</h2>
-        </div>
-        <form action="register_product.php" method="post">
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label class="labels">Nome do produto:</label>
-                    <input type="text"  placeholder="Product" name="pname_novo" value="nome">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Categoria produto:</label>
-                    <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Segunda categoria produto:</label>
-                    <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Preço:</label>
-                    <input type="text"  placeholder="Price" name="preco_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Data producao:</label>
-                    <input type="date"  placeholder="production date" name="dataprod_novo">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Nome armazem:</label>
-                    <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Gastos:</label>
-                    <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo eletrecidade:</label>
-                    <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo agua:</label>
-                    <input type="text"  placeholder="water cost" name="agua_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Poluicao causada:</label>
-                    <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Validade:</label>
-                    <input type="date"  placeholder="shelflife" name="validade_nova">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Descricao:</label>
-                    <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels" for="image">Imagem:</label>
-                    <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
-                </div>
-            </div>
-            <div class="mt-3 text-center">
-                <div class="col-md-4">
-                    <input type="submit" value="Create Product" name="newProduct">
-                </div>
-            </div>
-        </form>
-
 
         <div class="footer-clean">
             <footer>

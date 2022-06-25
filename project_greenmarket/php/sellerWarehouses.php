@@ -76,15 +76,15 @@ session_start();
         </div>
     </header>
         <br>
-        <h1> Produtos de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
+        <h1> Armazéns de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
-        <h2> Os teus produtos: </h2>
+        <h2> Os teus Armazéns: </h2>
 
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info WHERE s_id='$userid'";
+        $query = "SELECT * FROM warehouse_info WHERE supplier_id='$userid'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
@@ -92,111 +92,72 @@ session_start();
             while($row = mysqli_fetch_array($res)) {
 
             echo"<ul>";
-            echo "<h2> dados relativos aos teus produtos: </h3>";
+            echo "<h2> Dados relativos aos teus Armazéns: </h3>";
             echo "<br>";
-            echo"<li><h3>produto ".$row['product_id'].":</h3>";
-            echo $row['product_name'];
-            echo"<li><h4>categories:</h4><br>";
-            echo $row['one_category'];
-            echo $row['two_category'];
-            echo"<li><h4>price:</h4><br>";
-            echo $row['price'];
-            echo "<li><h4>production date:</h4><br>";
-            echo $row['production_date'];
-            echo"<li><h4>expenditure:</h4><br>";
-            echo $row['resource_cast'];
-            echo"<li><h4>eletricity:</h4><br>";
-            echo $row['eletricity_cast'];
-            echo"<li><h4>water:</h4><br>";
-            echo $row['water_cast'];
-            echo"<li><h4>polution caused:</h4><br>";
-            echo $row['pollution_caused'];
-            echo"<li><h4>shelf life:</h4><br>";
-            echo $row['shelf_life'];
-            echo"<li><h4>description:</h4><br>";
-            echo $row['descript'];
-            echo"<li><h4>Image:</h4><br>";
-            echo $row['picture'];
-        }
-        ?>
+            echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+            echo"<li><h4>Nome do armazém:</h4><br>";
+            echo "<li>".$row['warehouse_name'];
+            echo"<li><h4>Telefone do armazém:</h4><br>";
+            echo "<li>".$row['warehouse_phone'];
+            echo"<li><h4>Email:</h4><br>";
+            echo "<li>".$row['email'];
+            echo"<li><h4>Cidade:</h4><br>";
+            echo "<li>".$row['city'];
+            echo"<li><h4>Distrito:</h4><br>";
+            echo "<li>".$row['district'];
+            echo"<li><h4>Endereço:</h4><br>";
+            echo "<li>".$row['address'];
+        }?>
 
-        <form action="delete_product.php" method="post">
-            <label class="labels">product id of product to be deleted:</label>
-            <input type="text"  placeholder="Pid" name="Pid">
-            <input type="submit" value="Delete Product" name="apagar_produto">
+        <form action="delete_warehouse.php" method="post">
+            <label class="labels">ID do armazém a ser excluído:</label>
+            <input type="text"  placeholder="armazem" name="armazem_id">
+            <input type="submit" value="Delete Warehouse" name="apagar_warehouse">
         </form>
 
         <?php
         }else{
-            echo "<br>Nao tem produtos seus neste momento.";
+            echo "<br>Nao tem armazéns seus neste momento.";
         }
 
         ?>
 
-    <h2 class="text-right">Registar novo produto:</h2>
+
+    <h2 class="text-right">Registar Novo Armazém:</h2>
         </div>
-        <form action="register_product.php" method="post">
+        <form action="registerWarehouse.php" method="post">
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label class="labels">Nome do produto:</label>
-                    <input type="text"  placeholder="Product" name="pname_novo" value="nome">
+                    <label for="name_warehouse"><b>Nome do armazém</b></label>
+                    <input type="text" name="name_warehouse" id="wname">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Categoria produto:</label>
-                    <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
+                    <label for="phone_warehouse"><b>Número de telemovel</b></label>
+                    <input type="text" name="phone_warehouse" id="wphone">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Segunda categoria produto:</label>
-                    <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
+                    <label for="email_warehouse"><b>Email</b></label>
+                    <input type="text" name="email_warehouse" id="wemail">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Preço:</label>
-                    <input type="text"  placeholder="Price" name="preco_novo" value="0">
+                    <label for="city_warehouse"><b>Cidade</b></label>
+                    <input type="text" name="city_warehouse" id="wcity">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Data producao:</label>
-                    <input type="date"  placeholder="production date" name="dataprod_novo">
+                    <label for="district_warehouse"><b>Distrito</b></label>
+                    <input type="text" name="district_warehouse" id="wdistrict">
                 </div>
                 <div class="col-md-12">
-                    <label class="labels">Nome armazem:</label>
-                    <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Gastos:</label>
-                    <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo eletrecidade:</label>
-                    <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo agua:</label>
-                    <input type="text"  placeholder="water cost" name="agua_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Poluicao causada:</label>
-                    <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Validade:</label>
-                    <input type="date"  placeholder="shelflife" name="validade_nova">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Descricao:</label>
-                    <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels" for="image">Imagem:</label>
-                    <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
+                    <label for="address_warehouse"><b>Endereço</b></label>
+                    <input type="text" name="address_warehouse" id="wadress">
                 </div>
             </div>
             <div class="mt-3 text-center">
                 <div class="col-md-4">
-                    <input type="submit" value="Create Product" name="newProduct">
+                    <input type="submit" value="Create Warehouse" name="newWarehouse">
                 </div>
             </div>
         </form>
-
 
         <div class="footer-clean">
             <footer>
@@ -237,5 +198,6 @@ session_start();
                 </div>
             </footer>
         </div>
+
     </body>
 </html>

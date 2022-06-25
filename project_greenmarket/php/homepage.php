@@ -18,36 +18,43 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
     <body>
-        <header class="header">
-            <div class="container">
-                <div class="navbar">
-                    <div class="logo">
-                        <a href="../php/homepage.php"><img src="../html/imagens/logo.png" width="400px"></a>
-                    </div>
-                    <div class="search">
-                        <input type="text" placeholder="Procurar..">
-                    </div>
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="../php/homepage.php"><img src="../html/imagens/logo.png" width="400px"></a>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Procurar..">
+                </div>
 
-                    <?php if(isset($_SESSION['username'])):  ?>
+                <?php if(isset($_SESSION['username'])):  ?>
+                <nav>
+                    <ul>
+                        <li><a href="../php/products.php"> Produtos </a></li>
+                        <li><a href="logout.php"> Terminar a sessão </a></li>
+                        <li><a href="profile.php"> <?php echo $_SESSION["username"];?> </a></li>
+                    </ul>
+                </nav>
+                <?php else:?>
                     <nav>
                         <ul>
-                          <li><a href="../html/products.html"> Produtos </a></li>
-                          <li><a href="logout.php"> Terminar a sessão </a></li>
-                          <li><a href="profile.php"><?php echo $_SESSION["username"];?> </a></li>
+                        <li><a href="../html/products.html"> Produtos</a></li>
+                        <li><a href="../html/login.html"> Iniciar Sessão</a></li>
+                        <li><a href="../html/register.html"> Criar Conta</a></li>
                         </ul>
                     </nav>
-                    <?php else:?>
-                        <nav>
-                            <ul>
-                            <li><a href="../html/products.html"> Produtos</a></li>
-                            <li><a href="../html/login.html"> Iniciar Sessão</a></li>
-                            <li><a href="../html/register.html"> Criar Conta</a></li>
-                            </ul>
-                        </nav>
-                    <?php endif; ?>
-                    <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+                <?php endif; ?>
+                <?php if($_SESSION['usertype'] == "consumer"):?>
+                <?php
+                    $userid = $_SESSION['userid'];
+                    $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
+                    $cnum = mysqli_query($conn, $query);
+                    $numcitems = mysqli_num_rows($cnum);
+                ?>
+                    <a href="../php/cart.php" aria-label="<?php echo $numcitems; ?> items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
                     <div id="nav-cart-count-container">
-                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
+                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content"><?php echo $numcitems; ?></span>
                         <i class="fa fa-shopping-cart" style="font-size:24px"></i>
                     </div>
                     <div id="nav-cart-text-container" class=" nav-progressive-attribute">
@@ -59,10 +66,15 @@ session_start();
                         </span>
                     </div>
                     </a>
-                </div>
-                <hr>
+                <?php elseif($_SESSION['usertype'] == "transporter"): ?>
+                    <a href="../php/t_order.php"> Encomendas </a>
+                <?php elseif($_SESSION['usertype'] == "supplier"): ?>
+                    <a href="../php/s_order.php"> Encomendas </a>
+                <?php endif ?>
             </div>
-        </header>
+            <hr>
+        </div>
+    </header>
         <div class="conteudo container row">
             <h2 text="center"> Bem vindo <?php echo $_SESSION['username'] ?>
             <div class="categories">
