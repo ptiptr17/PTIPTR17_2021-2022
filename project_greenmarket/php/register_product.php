@@ -14,7 +14,16 @@ $agua_nova = htmlspecialchars($_POST["agua_nova"]);
 $poluicao_nova = htmlspecialchars($_POST["poluicao_nova"]);
 $validade_nova = htmlspecialchars($_POST["validade_nova"]);
 $descricao_nova = htmlspecialchars($_POST["descricao_nova"]);
-$imagem_nova = htmlspecialchars($_POST["imagem_nova"]);
+$filename = basename($_FILES["imagem_nova"]['name']);
+$filetype = pathinfo($filename, PATHINFO_EXTENSION);
+
+$allow_types = array('jpg','png','jpeg', 'gif');
+if(in_array($filetype, $allow_types)){
+    $imagem_nova = $_FILES['imagem_nova']['tmp_image'];
+    $image_content = addslashes(file_get_contents($imagem_nova));
+
+}
+
 
 echo "productname_novo:     ";
 echo $productname_novo;

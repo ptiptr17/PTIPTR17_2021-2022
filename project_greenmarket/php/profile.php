@@ -31,7 +31,7 @@ session_start();
                     <?php if(isset($_SESSION['username'])):  ?>
                     <nav>
                         <ul>
-                          <li><a href="../html/products.html"> Produtos </a></li>
+                          <li><a href="../php/products.php"> Produtos </a></li>
                           <li><a href="logout.php"> Terminar a sessão </a></li>
                           <li><a href="profile.php"> <?php echo $_SESSION["username"];?> </a></li>
                         </ul>
@@ -63,6 +63,7 @@ session_start();
                 <hr>
             </div>
         </header>
+        
         <br>
         <h1> Perfil de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
@@ -204,5 +205,46 @@ session_start();
                         <br>
                         <input type="submit" value="Eliminar conta" name="delete_conta" class="btnL">
                     </form>
+                    
+        <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>
+                            <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505944">PTI</a>
+                            <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943">PTR</a>
+                        </h3>
+                        <ul>
+                            <li><a href="https://ciencias.ulisboa.pt/pt/perfil/amferreira">António Ferreira</a></li>
+                            <li><a href="https://ciencias.ulisboa.pt/perfil/aodsa">Alan Oliveira</a></li>
+                            <li><a href="https://ciencias.ulisboa.pt/pt/perfil/mcalha">Mário Calha</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Membros do Grupo</h3>
+                        <ul>
+                            <li><a href="">Filipe Santos</a></li>
+                            <li><a href="">Gonçalo Rocha</a></li>
+                            <li><a href="">José Dias</a></li>
+                            <li><a href="">Miguel Martins</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Projeto de PTI/PTR</h3>
+                        <ul>
+                            <li><a href="welcome.html">Sobre o Projeto</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Sobre Nós</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 item social"><a href="https://github.com/ptiptr17/PTIPTR17_2021-2022"><i class="fa fa-github"></i></a>
+                        <p class="copyright">© GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </div>
+        
     </body>
 </html>

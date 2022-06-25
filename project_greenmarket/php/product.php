@@ -64,84 +64,57 @@ session_start();
             </div>
         </header>
         
-        <h1> Produtos </h1>
+        <h1>Detalhes do Produto </h1>
 
         <?php
-
-        echo "<h2> todos os produtos: </h2>";
-
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info";
+        $product_id = $_POST['id_produto'];
+        $query = "SELECT * FROM product_info Where product_id='$product_id'";
         $res = mysqli_query($conn, $query);
-        if(mysqli_num_rows($res) > 0){
+        if(mysqli_num_rows($res) == 1){
+        
+            $row = mysqli_fetch_array($res);
 
-            while($row = mysqli_fetch_array($res)) {
+            echo"<ul>";
+            echo "<br>";
+            echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' />";
+            echo "<br>";
+            echo"<li><h2>".$row['product_name'].":</h2>";
+            echo"<li><h4>categories:</h4><br>";
+            echo $row['one_category']."<br>";
+            echo $row['two_category'];
+            echo"<li><h4>price:</h4><br>";
+            echo $row['price'];
+            echo "<li><h4>production date:</h4><br>";
+            echo $row['production_date'];
+            echo"<li><h4>expenditure:</h4><br>";
+            echo $row['resource_cast'];
+            echo"<li><h4>eletricity:</h4><br>";
+            echo $row['eletricity_cast'];
+            echo"<li><h4>water:</h4><br>";
+            echo $row['water_cast'];
+            echo"<li><h4>polution caused:</h4><br>";
+            echo $row['pollution_caused'];
+            echo"<li><h4>shelf life:</h4><br>";
+            echo $row['shelf_life'];
+            echo"<li><h4>description:</h4><br>";
+            echo $row['descript'];
+            echo"<li><h4>Image:</h4><br>";?>
+            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
+            <?php echo "</ul>"; ?>
 
-                echo"<ul>";
-                echo "<br>";
-                echo"<li><h3>".$row['product_name'].":</h3>";
-                echo"<li><h4>categorias:</h4><br>";
-                echo $row['one_category']."<br>";
-                echo $row['two_category'];
-                echo"<li><h4>price:</h4><br>";
-                echo $row['price'];
-                echo"<li><h4>Image:</h4><br>";?>
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
-                <?php echo"</ul>";?>
-
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />    
-                    <input type="submit" value="Detalhes do produto" name="details">
+            <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                <form action="c_order.php" method="post">
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                    <input type="submit" value="Ir para o carrinho" name="carrinho">
                 </form>
-                <?php if($_SESSION['usertype'] == 'consumer'){ ?>
-                    <form action="c_order.php" method="post">
-                        <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                        <input type="submit" value="Ir para o carrinho" name="carrinho">
-                    </form>
-                <?php } ?>
+            <?php } ?>
         <?php
-            }
+        }else{
+            echo"<h3>conflito no produto escolhido.</h3>";
         }
         ?>
-
-
-
-<?php
-
-echo "<h2> Eletrodomésticos: </h2>";
-
-$query = "SELECT * FROM product_info where one_category = 'eletrodomestico'";
-$rese = mysqli_query($conn, $query);
-if(mysqli_num_rows($rese) > 0){
-
-    while($row = mysqli_fetch_array($rese)) {
-
-        echo"<ul>";
-        echo "<br>";
-        echo"<li><h3>".$row['product_name'].":</h3>";
-        echo"<li><h4>2ª categorias:</h4><br>";
-        echo $row['two_category'];
-        echo"<li><h4>preço:</h4><br>";
-        echo $row['price'];
-        echo"<li><h4>Imagem:</h4><br>";
-        echo $row['picture'];
-        echo "</ul>";
-        ?>
-
-        <form action="product.php" method="post">
-            <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />    
-            <input type="submit" value="Detalhes do produto" name="details">
-        </form>
-
-        <form action="c_order.php" method="post">
-            <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-            <input type="submit" value="Ir para o carrinho" name="carrinho">
-        </form>
-    <?php
-    }
-}
-?>
 
     <div class="footer-clean">
         <footer>
@@ -186,8 +159,6 @@ if(mysqli_num_rows($rese) > 0){
 
     </body>
 </html>
-
-
 
 
 

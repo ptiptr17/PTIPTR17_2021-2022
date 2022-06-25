@@ -9,15 +9,18 @@ $dbpass = "aa4ulaYtRDKpoG";
 $dbname = "34.175.213.0 ";
  */
 
-$dbhost = "localhost";
-$dbhost2 = "34.175.213.0";
+
+$dbhost = "34.175.213.0";
 $dbname = "greenmarket_database";
 $dbuser = "ptiptr17";
 $dbpass = "ptiptr202217";
+$dbhost2 = "127.0.0.1";
+$dbname2 = "";
 $dbuser2= "root";
 $dbpass2= "";
-$dbuser3= "fc53304";
-$dbpass3= "fc53304";
+
+//$dbuser3= "fc53304";
+//$dbpass3= "fc53304";
 
 
 echo "a tentar conexão<br>";
@@ -25,7 +28,7 @@ echo "a tentar conexão<br>";
 // Cria a ligação à BD
 
 
-$conn = mysqli_connect($dbhost2, $dbuser, $dbpass, $dbname);
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 // Verifica a ligação à BD
 if (mysqli_connect_error()) {
