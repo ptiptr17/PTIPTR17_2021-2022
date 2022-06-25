@@ -7,7 +7,7 @@ $username = $_SESSION['username'];
 $userid = $_SESSION['userid'];
 $phone_warehouse = $_POST['phone_warehouse'];
 $nome_warehouse = $_POST['name_warehouse'];
-$province_warehouse = $_POST['province_warehouse'];
+$email_warehouse = $_POST['email_warehouse'];
 $city_warehouse = $_POST['city_warehouse'];
 $district_warehouse = $_POST['district_warehouse'];
 $address_warehouse = $_POST['address_warehouse'];
@@ -17,7 +17,7 @@ echo $phone_warehouse;
 echo "<br>";
 echo $nome_warehouse;
 echo "<br>";
-echo $province_warehouse;
+echo $email_warehouse;
 echo "<br>";
 echo $city_warehouse;
 echo "<br>";
@@ -27,8 +27,12 @@ echo $address_warehouse;
 echo "<br>";
 echo"end variaveis";
 
+$username = $_SESSION['username'];
+$userid = $_SESSION['userid'];
+$usertype = $_SESSION['usertype'];
+
 // Inserir para a tabela
-$insert_warehouse = "insert into warehouse_info(warehouse_name, contact, province, city, district, address) values('$nome_warehouse','$phone_warehouse','$province_warehouse', '$city_warehouse', '$district_warehouse', '$address_warehouse')";
+$insert_warehouse = "insert into warehouse_info(supplier_id, warehouse_name, warehouse_phone, email, city, district, address) values('$userid','$nome_warehouse','$phone_warehouse','$email_warehouse', '$city_warehouse', '$district_warehouse', '$address_warehouse')";
 
 $res2= mysqli_query ($conn, $insert_warehouse);
 if($res2){
