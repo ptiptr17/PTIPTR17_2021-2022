@@ -52,7 +52,7 @@ if($res){
     header( "refresh:10; url= ../php/c_orders.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
-    header( "refresh:10; url=../php/products.php" );
+    header( "refresh:10; url=../php/cart.php" );
 }
 // Termina a ligacao com a base de dados
 mysqli_close($conn);

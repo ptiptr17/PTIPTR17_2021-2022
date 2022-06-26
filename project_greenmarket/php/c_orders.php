@@ -84,7 +84,7 @@ session_start();
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM order_info WHERE consumer_id='$userid'";
+        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='completed'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
@@ -111,6 +111,12 @@ session_start();
                 echo $row['pollution'];
                 echo "<li> estado da encomenda:";
                 echo $row['status'];
+                echo "<li>transportador:";
+                echo $row['transporter_name'];
+                echo "<li>veiculo:";
+                echo $row['vehicle_name'];
+                echo "<br>data de entrega:";
+                echo $row['delivery_date'];
                 echo "</ul>";
         ?>
                 <form action="c_order_delete.php" method="post">
@@ -121,10 +127,16 @@ session_start();
             }
 
         }elseif(mysqli_num_rows($res) == 0){
-            echo "<h3> Não existem produtos no seu carrinho. </h3>";
+            echo "<h3> Não existem produtos encomendados. </h3>";
         }else{
-            echo "<h3> erro a encontrar produto no seu carrinho. </h3>";
+            echo "<h3> erro a encontrar encomendas. </h3>";
         }
+        ?>
+
+        <h3>Historico de encomendas já completadas:</h3>
+
+        <?php
+        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='completed'";
         ?>
 
         <div class="footer-clean">
