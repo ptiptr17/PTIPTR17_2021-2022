@@ -75,74 +75,42 @@ session_start();
             <hr>
         </div>
     </header>
-        
-    <h1> Produtos </h1>
-    <br>
-    <hr>
-    <h2>Filtro</h2>
-    <ul><li>
-        <form action="eletro_filter.php" method="post">
-            <input type="submit" name="eletro_filer" value="Todos os Eletrodomésticos" />
-        </form>
-
-        <form action="mobilia_filter.php" method="post">
-            <input type="submit" name="mobilia_filer" value="Todas as Mobilias" />
-        </form>
-
-        <form action="vestuario_filter.php" method="post">
-            <input type="submit" name="vestuario_filer" value="Todo o Vestuário" />
-        </form>
-    </ul></li>
-    <hr>
 
     <?php
 
-        echo "<br><h2> todos os produtos: </h2>";
-        echo "<br>";
-        $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info";
-        $res = mysqli_query($conn, $query);
-        if(mysqli_num_rows($res) > 0){
+    echo "<h2> Eletrodomésticos: </h2>";
 
-            while($row = mysqli_fetch_array($res)) {
+    $query = "SELECT * FROM product_info where one_category = 'eletrodomestico'";
+    $rese = mysqli_query($conn, $query);
+    if(mysqli_num_rows($rese) > 0){
 
-                echo"<ul>";
-                echo"<li><h3>".$row['product_name'].":</h3>";
+        while($row = mysqli_fetch_array($rese)) {
 
-                if($row['one_category'] == "eletrodomestico"){
-                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='150' height='90'/>";
-                }elseif($row['one_category'] == "vestuario"){
-                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='150' height='90'/>";
-                }elseif($row['one_category'] == "mobilia"){
-                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
-                }
-                
-                echo"<li><h4>categorias:</h4>";
-                echo $row['one_category']."<br>";
-                echo $row['two_category']."<br>";
-                echo"<li><h4>price:</h4>";
-                echo $row['price'];
-                echo"<li><h4>Image:</h4><br>";?>
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
-                <?php echo"</ul>";?>
+            echo"<ul>";
+            echo "<br>";
+            echo"<li><h3>".$row['product_name'].":</h3>";
+            echo"<li><h4>2ª categorias:</h4><br>";
+            echo $row['two_category'];
+            echo"<li><h4>preço:</h4><br>";
+            echo $row['price'];
+            echo"<li><h4>Imagem:</h4><br>";
+            echo $row['picture'];
+            echo "</ul>";
+            ?>
 
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />  
-                    <input type="submit" value="Detalhes do produto" name="details">
+            <form action="product.php" method="post">
+                <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />    
+                <input type="submit" value="Detalhes do produto" name="details">
+            </form>
+
+            <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                <form action="c_order.php" method="post">
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                    <input type="submit" value="Ir para o carrinho" name="carrinho">
                 </form>
-                <?php if($_SESSION['usertype'] == 'consumer'){ ?>
-                    <form action="p_cart.php" method="post">
-                        <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                        <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                        <input type="hidden" name="preco_produto" value="<?php echo $row['price']; ?>" />
-                        <input type="submit" value="Ir para o carrinho" name="carrinho">
-                    </form>
-                    <br>
-                <?php } ?>
-    	<?php
-            }
+            <?php }
         }
+    }
     ?>
 
     <div class="footer-clean">
@@ -184,6 +152,7 @@ session_start();
             </div>
         </footer>
     </div>
+
 
     </body>
 </html>
