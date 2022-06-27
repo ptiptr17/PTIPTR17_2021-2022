@@ -92,8 +92,6 @@ session_start();
             echo "<li>".$row['two_category'];
             echo"<li><h4>Preço:</h4><br>";
             echo "<li>".$row['price'].'€';
-            // echo"<li><h4>Quantidade:</h4><br>";
-            // echo "<li>".$row['amount'];
         }?>
 
         <?php
