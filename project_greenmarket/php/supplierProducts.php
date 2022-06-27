@@ -124,9 +124,9 @@ session_start();
                 echo $row['shelf_life'];
                 echo"<li><h4>description:</h4><br>";
                 echo $row['descript'];
-                echo"<li><h4>Image:</h4><br>";
-                echo $row['picture'];
-                echo "<br>";
+                echo"<li><h4>Image:</h4><br>";?>
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
+                <?php echo"</ul>";
                 echo "<br>";
             }
         ?>
@@ -149,7 +149,7 @@ session_start();
     <h2 class="text-right">Registar novo produto:</h2>
     <br>
         </div>
-        <form action="register_product.php" method="post">
+        <form action="register_product.php" method="post" enctype="multipart/form-data">
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label class="labels">Nome do produto:</label>
