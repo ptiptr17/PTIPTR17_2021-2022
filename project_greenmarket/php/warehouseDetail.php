@@ -72,7 +72,8 @@ session_start();
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info WHERE w_id='$userid'";
+        $warehouse_id = $_POST['warehouse_id'];
+        $query = "SELECT * FROM product_info WHERE w_id='$warehouse_id'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
@@ -90,7 +91,7 @@ session_start();
             echo"<li><h4>Sub-categoria:</h4><br>";
             echo "<li>".$row['two_category'];
             echo"<li><h4>Preço:</h4><br>";
-            echo "<li>".$row['price'];
+            echo "<li>".$row['price'].'€';
             // echo"<li><h4>Quantidade:</h4><br>";
             // echo "<li>".$row['amount'];
         }?>
@@ -98,6 +99,7 @@ session_start();
         <?php
         }else{
             echo "<br>Nao tem produtos neste armazéns neste momento.";
+            echo "Se pretender adicionar produtos <a href='sProduct.php'>CLIQUE AQUI</a>";
         }
 
         ?>

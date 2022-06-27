@@ -85,6 +85,13 @@ session_start();
             echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
             echo"<li><h4>Nome do armazém:</h4><br>";
             echo "<li><a href='warehouseDetail.php'>".$row['warehouse_name']."</a></li>";
+        ?>
+            <form action="warehouseDetail.php" method="post">
+                <input type="hidden" name="warehouse_id" value="<?php echo $row['warehouse_id']; ?>" />
+                <input type="submit" value="Aceder a armazem" name="aceder">
+            </form>
+
+        <?php
             echo"<li><h4>Telefone do armazém:</h4><br>";
             echo "<li>".$row['warehouse_phone'];
             echo"<li><h4>Email:</h4><br>";
