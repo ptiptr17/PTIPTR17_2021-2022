@@ -40,7 +40,7 @@ if($res2){
     header( "refresh:10; url= ../php/sellerWarehouse.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
-    header( "refresh:10; url=../php/sellerWarehouse.php" );
+    header( "refresh:10; url=../php/sellerWarehouses.php" );
 }
 // Termina a ligacao com a base de dados
 mysqli_close($conn);
