@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+<!--
     <head>
         <meta charset="UTF-8">
         <meta name="google-signin-client_id" content="150537595526-k8su1jjs23i0oo14gaalmvpbbi7plpud.apps.googleusercontent.com">
@@ -48,7 +49,7 @@
         </div>
         </header>
         <?php
-
+        /*
         if (isset($_GET["username"])) {
             $username = $_GET["username"];
             mysql_connect("localhost","root","") or die ("N�o foi possivel estabelecer conex�o ao servidor");
@@ -67,9 +68,9 @@
                 die ("Existe um erro.")
 
             }
-
+        
         ?>  
-
+        
         <h1>Profile de <?php echo $name; ?></h1>
         <table>
             <tr><td>Nome:</td><td><?php echo $name; ?></td></tr>
@@ -78,7 +79,8 @@
             <tr><td>AccountType:</td><td><?php echo $accountType; ?></td></tr>
         </table>
         <?php
-        } else die ("� preciso especificar o username!")
+        } else die ("Eh preciso especificar o username!")
+        */
         ?>
 
         <div class="footer-clean">
@@ -121,4 +123,5 @@
             </footer>
         </div>
     </body>
+-->
 </html>

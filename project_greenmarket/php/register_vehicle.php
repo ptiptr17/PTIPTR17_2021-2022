@@ -31,7 +31,6 @@ if( $vehicle_type_novo === "" || $plate_number_novo === "" || $pollution_caused_
     echo ("Foram inseridos dados invalidos");
     header( "refresh:5; url=transporterVehicle.php" );
 }else{
-    //change from here.
     $create_vehicle = "insert into vehicle_info(transporter_id, vehicle_type, plate_number, pollution_caused, descript) values('$userid', '$vehicle_type_novo','$plate_number_novo', '$pollution_caused_nova', '$descricao_nova')";
     $res1 = mysqli_query ($conn, $create_vehicle);
 

@@ -73,7 +73,7 @@ echo "<br>username".$username;
 $userid = $_SESSION['user_id'];
 echo "<br>userid".$userid;
 
-if( $productname_novo === ""  || $categoria_novo === "" || $preco_novo === "" || $dataprod_novo ==="" || $gastos_novo === "" || $poluicao_nova === "" || $validade_nova === "" || $descricao_nova === ""){
+if( $productname_novo === ""  || $categoria_novo === "" || $preco_novo === "" || $dataprod_novo ==="" || $gastos_novo === "" || $poluicao_nova === "" || $descricao_nova === ""){
     echo ("Foram inseridos dados invalidos");
     header( "refresh:60; url=supplierProducts.php" );
 

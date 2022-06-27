@@ -77,52 +77,72 @@ session_start();
     </header>
         
         <br>
-        <h1> Carrinho de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
+        <h1> Encomendas pedidas para transporte, <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
 
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
+        $query = "SELECT * FROM order_info WHERE transporter_id='$userid' AND status!='completed'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
 
-            echo "<h2> produtos no carrinho: </h2>";
+            echo "<h2> encomendas atuais: </h2>";
             
             while($row = mysqli_fetch_array($res)) {
 
                 echo"<ul>";
                 echo "<br>";
-                echo"<li><h3>Produto:</h3>";
-                echo $row['product_name'];
+                echo"<li><h3>encomenda ".$row['order_id'].":</h3>";
+                echo "<li>".$row['product_name'];
+                echo "<li> localidade origem:";
+                echo $row['postalcode_origin'];
+                echo "<li> localidade_destino:";
+                echo $row['postalcode_destin'];
                 echo"<li><h3>preco:</h3><br>";
                 echo $row['price'];
+                echo "<li> data de creação de encomenda:";
+                echo $row['creation_date'];
+                echo "<li> data limite para cancelar encomenda:";
+                echo $row['cancelation_date'];
+                echo "<li> poluicao causada:";
+                echo $row['pollution'];
+                echo "<li> estado da encomenda:";
+                echo $row['status'];
+                echo "transportador:<br>";
+                echo $row['transporter_name'];
+                echo "<br>veiculo:<br>";
+                echo $row['vehicle_name'];
+                echo "<br>data de entrega:";
+                echo $row['delivery_date'];
                 echo "</ul>";
-        ?>
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Ver produto" name="product">
-                </form>
-
-                <form action="c_order_process.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                    <input type="submit" value="Fazer Encomenda" name="encomendar">
-                </form>
-
-                <form action="delete_cart_item.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Remover produto do carrinho" name="delete">
-                </form>
-        <?php
+                if($row['status'] == "awaiting approval"){?>
+                    <form action="t_order_approval.php" method="post">
+                    <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
+                    <input type="submit" value="Aceitar Encomenda" name="encomendar">
+                    <input type="submit" value="Não aceitar Encomenda" name="encomendar">
+                    </form>
+                <?php
+                }else{
+                    if($row['vehicle_id'] == NULL){ ?>
+                        <h3>adiciona veiculo e data de entrega</h3>
+                        <form action="t_order_process.php" method="post">
+                        <input type="text" name="nome_veiculo" value="nome veiculo" />
+                        <input type="date" name="data_entrega" value="data" />
+                        <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
+                        <input type="submit" value="Confirmar encomenda" name="encomendar">
+                        </form>
+                    <?php
+                    }
+                }
             }
 
         }elseif(mysqli_num_rows($res) == 0){
-            echo "<h3> Não existem produtos no seu carrinho. </h3>";
+            echo "<h3> Não existem produtos encomendados a pedir os teus serviços. </h3>";
         }else{
-            echo "<h3> erro a encontrar produtos no seu carrinho. </h3>";
+            echo "<h3> erro a encontrar encomendas. </h3>";
         }
         ?>
 

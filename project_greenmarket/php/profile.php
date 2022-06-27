@@ -79,20 +79,21 @@ session_start();
         <br>
         <h1> Perfil de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
+        <img src ='../html/imagens/default_user_icon.png' width ='180' height='120'/>
         <br>
-
+        
         <?php
         if($_SESSION["usertype"] == "consumer"){
             echo "<h3><a href='../php/products.php'>Fazer compras</a></h3>";
             echo "<br><h3><a href='c_orders.php'>Ver encomendas</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "transporter"){
-            echo "<br><h3><a href='transporterVehicles.php'>veiculos</a></h3><br>";
+            echo "<br><h3><a href='transporterVehicles.php'>Os meus veiculos</a></h3><br>";
             echo "<br><h3><a href='t_orders.php'>Ver encomendas</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "supplier"){
-            echo "<br><h3><a href='supplierProducts.php'>produtos</a></h3><br>";
-            echo "<br><h3><a href='sellerWarehouses.php'>armazéns</a></h3><br>";
+            echo "<br><h3><a href='supplierProducts.php'>Os meus produtos</a></h3><br>";
+            echo "<br><h3><a href='sellerWarehouses.php'>Os meus armazéns</a></h3><br>";
             echo "<br><h3><a href='s_orders.php'>Ver encomendas</a></h3><br>";
         }
         ?>

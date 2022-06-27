@@ -97,49 +97,53 @@ session_start();
 
     <?php
 
-    echo "<h2> Todos os produtos: </h2>";
+        echo "<br><h2> todos os produtos: </h2>";
+        echo "<br>";
+        $username = $_SESSION['username'];
+        $userid = $_SESSION['userid'];
+        $query = "SELECT * FROM product_info";
+        $res = mysqli_query($conn, $query);
+        if(mysqli_num_rows($res) > 0){
 
-    $username = $_SESSION['username'];
-    $userid = $_SESSION['userid'];
-    $query = "SELECT * FROM product_info";
-    $res = mysqli_query($conn, $query);
-    if(mysqli_num_rows($res) > 0){
+            while($row = mysqli_fetch_array($res)) {
 
-        while($row = mysqli_fetch_array($res)) {
+                echo"<ul>";
+                echo"<li><h3>".$row['product_name'].":</h3>";
 
-            echo"<ul>";
-            echo "<br>";
-            echo"<li><h3>".$row['product_name'].":</h3>";
-            echo"<li><h4>categorias:</h4><br>";
-            echo $row['one_category']."<br>";
-            echo $row['two_category'];
-            echo"<li><h4>price:</h4><br>";
-            echo $row['price'];
-            echo"<li><h4>Image:</h4><br>";?>
-            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
-            <?php echo"</ul>";?>
+                if($row['one_category'] == "eletrodomestico"){
+                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='150' height='90'/>";
+                }elseif($row['one_category'] == "vestuario"){
+                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='150' height='90'/>";
+                }elseif($row['one_category'] == "mobilia"){
+                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
+                }
+                
+                echo"<li><h4>categorias:</h4>";
+                echo $row['one_category']."<br>";
+                echo $row['two_category']."<br>";
+                echo"<li><h4>price:</h4>";
+                echo $row['price'];
+                echo"<li><h4>Image:</h4><br>";?>
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
+                <?php echo"</ul>";?>
 
-            <form action="product.php" method="post">
-                <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />  
-                <input type="submit" value="Detalhes do produto" name="details">
-            </form>
-            <br>
-            <hr>
-            <?php if($_SESSION['usertype'] == 'consumer'){ ?>
-                <form action="p_cart.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                    <input type="hidden" name="preco_produto" value="<?php echo $row['price']; ?>" />
-                    <input type="submit" value="Ir para o carrinho" name="carrinho">
+                <form action="product.php" method="post">
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />  
+                    <input type="submit" value="Detalhes do produto" name="details">
                 </form>
-            <?php } ?>
-    <?php
+                <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                    <form action="p_cart.php" method="post">
+                        <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                        <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
+                        <input type="hidden" name="preco_produto" value="<?php echo $row['price']; ?>" />
+                        <input type="submit" value="Ir para o carrinho" name="carrinho">
+                    </form>
+                    <br>
+                <?php } ?>
+    	<?php
+            }
         }
-    }
     ?>
-
-
-
 
     <div class="footer-clean">
         <footer>
@@ -180,7 +184,6 @@ session_start();
             </div>
         </footer>
     </div>
-
 
     </body>
 </html>

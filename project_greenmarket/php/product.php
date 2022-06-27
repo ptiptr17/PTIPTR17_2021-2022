@@ -77,7 +77,7 @@ session_start();
     </header>
         
         <h1>Detalhes do Produto </h1>
-
+        <br>
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
@@ -89,16 +89,16 @@ session_start();
             $row = mysqli_fetch_array($res);
 
             echo"<ul>";
+            echo"<li><h2>".$row['product_name'].":</h2>";
             echo "<br>";
             if($row['one_category'] == "eletrodomestico"){
                 echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='200' height='120'/>";
             }elseif($row['one_category'] == "vestuario"){
                 echo "<li><img src ='../html/imagens/vestuario.jpg' width ='200' height='120'/>";
-            }elseif($row['one_category'] == "mobiliario"){
+            }elseif($row['one_category'] == "mobilia"){
                 echo "<li><img src ='../html/imagens/mobilia.jpg' width ='200' height='120'/>";
             }
             echo "<br>";
-            echo"<li><h2>".$row['product_name'].":</h2>";
             echo"<li><h4>categories:</h4><br>";
             echo $row['one_category']."<br>";
             echo $row['two_category'];

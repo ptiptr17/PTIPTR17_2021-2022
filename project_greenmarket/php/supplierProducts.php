@@ -80,6 +80,8 @@ session_start();
         <br>
         <br>
         <h2> Os teus produtos: </h2>
+        <br>
+        <!--<h2> dados relativos aos teus produtos: </h2>-->
 
         <?php
         $username = $_SESSION['username'];
@@ -88,44 +90,55 @@ session_start();
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
-
             while($row = mysqli_fetch_array($res)) {
+                
+                echo"<ul>";
+                echo "<br>";
+                echo"<li><h3>produto ".$row['product_id'].":</h3>";
 
-            echo"<ul>";
-            echo "<h2> dados relativos aos teus produtos: </h3>";
-            echo "<br>";
-            echo"<li><h3>produto ".$row['product_id'].":</h3>";
-            echo $row['product_name'];
-            echo"<li><h4>categories:</h4><br>";
-            echo $row['one_category'];
-            echo $row['two_category'];
-            echo"<li><h4>price:</h4><br>";
-            echo $row['price'];
-            echo "<li><h4>production date:</h4><br>";
-            echo $row['production_date'];
-            echo"<li><h4>expenditure:</h4><br>";
-            echo $row['resource_cast'];
-            echo"<li><h4>eletricity:</h4><br>";
-            echo $row['eletricity_cast'];
-            echo"<li><h4>water:</h4><br>";
-            echo $row['water_cast'];
-            echo"<li><h4>polution caused:</h4><br>";
-            echo $row['pollution_caused'];
-            echo"<li><h4>shelf life:</h4><br>";
-            echo $row['shelf_life'];
-            echo"<li><h4>description:</h4><br>";
-            echo $row['descript'];
-            echo"<li><h4>Image:</h4><br>";
-            echo $row['picture'];
-        }
+                if($row['one_category'] == "eletrodomestico"){
+                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='150' height='90'/>";
+                }elseif($row['one_category'] == "vestuario"){
+                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='150' height='90'/>";
+                }elseif($row['one_category'] == "mobilia"){
+                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
+                }
+            
+                echo "<li>".$row['product_name'];
+                echo"<li><h4>categories:</h4><br>";
+                echo $row['one_category']."<br>";
+                echo $row['two_category'];
+                echo"<li><h4>price:</h4><br>";
+                echo $row['price'];
+                echo "<li><h4>production date:</h4><br>";
+                echo $row['production_date'];
+                echo"<li><h4>expenditure:</h4><br>";
+                echo $row['resource_cast'];
+                echo"<li><h4>eletricity:</h4><br>";
+                echo $row['eletricity_cast'];
+                echo"<li><h4>water:</h4><br>";
+                echo $row['water_cast'];
+                echo"<li><h4>polution caused:</h4><br>";
+                echo $row['pollution_caused'];
+                echo"<li><h4>shelf life:</h4><br>";
+                echo $row['shelf_life'];
+                echo"<li><h4>description:</h4><br>";
+                echo $row['descript'];
+                echo"<li><h4>Image:</h4><br>";
+                echo $row['picture'];
+                echo "<br>";
+                echo "<br>";
+            }
         ?>
+
+        <h2 class="text-right">Apagar um produto:</h2>
 
         <form action="delete_product.php" method="post">
             <label class="labels">product id of product to be deleted:</label>
             <input type="text"  placeholder="Pid" name="Pid">
             <input type="submit" value="Delete Product" name="apagar_produto">
         </form>
-
+        <br>
         <?php
         }else{
             echo "<br>Nao tem produtos seus neste momento.";
@@ -134,6 +147,7 @@ session_start();
         ?>
 
     <h2 class="text-right">Registar novo produto:</h2>
+    <br>
         </div>
         <form action="register_product.php" method="post">
             <div class="row mt-3">
@@ -176,10 +190,6 @@ session_start();
                 <div class="col-md-12">
                     <label class="labels">Poluicao causada:</label>
                     <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Validade:</label>
-                    <input type="date"  placeholder="shelflife" name="validade_nova">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Descricao:</label>
