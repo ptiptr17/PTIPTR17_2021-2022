@@ -88,23 +88,25 @@ session_start();
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
-
+            echo "<h2> Dados relativos aos teus Veículos: </h2>";
             while($row = mysqli_fetch_array($res)) {
-
-            echo"<ul>";
-            echo "<h2> Dados relativos aos teus Veículos: </h3>";
-            echo "<br>";
-            echo"<li><h3>Veículo ".$row['vehicle_id'].":</h3>";
-            echo"<li><h4>Tipo de veículo:</h4><br>";
-            echo "<li>".$row['vehicle_type'];
-            echo"<li><h4>Matricula:</h4><br>";
-            echo "<li>".$row['plate_number'];
-            echo"<li><h4>Poluição Causada:</h4><br>";
-            echo "<li>".$row['pollution_caused'];
-            echo"<li><h4>Descrição:</h4><br>";
-            echo "<li>".$row['descript'];
-            echo"<li><h4>Image:</h4><br>";
-            echo "<li>".$row['pic_desc'];
+                echo"<ul>";
+                echo "<br>";
+                echo"<li><h3>Veículo ".$row['vehicle_id'].":</h3>";
+                echo"<li><img src ='../html/imagens/veiculo.jpg' width ='150' height='90'/>";
+                echo"<li><h4>nome do veículo:</h4><br>";
+                echo "<li>".$row['vehicle_name'];
+                echo"<li><h4>Tipo de veículo:</h4><br>";
+                echo "<li>".$row['vehicle_type'];
+                echo"<li><h4>Matricula:</h4><br>";
+                echo "<li>".$row['plate_number'];
+                echo"<li><h4>Poluição Causada:</h4><br>";
+                echo "<li>".$row['pollution_caused'];
+                echo"<li><h4>Descrição:</h4><br>";
+                echo "<li>".$row['descript'];
+                echo"<li><h4>Image:</h4><br>";
+                echo "<li>".$row['pic_desc'];
+                echo "</ul>";
         }?>
 
         <form action="delete_vehicle.php" method="post">
@@ -128,6 +130,10 @@ session_start();
                 <div class="col-md-12">
                     <label class="labels">Tipo de veiculo</label>
                     <input type="text"  placeholder="Tveiculo" name="vehicle_type_novo">
+                </div>
+                <div class="col-md-12">
+                    <label class="labels">Nome do veiculo</label>
+                    <input type="text"  placeholder="Tveiculoname" name="vehicle_name_novo">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Matricula do veiculo:</label>

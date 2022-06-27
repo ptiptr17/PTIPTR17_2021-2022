@@ -6,6 +6,7 @@ session_start();
 $product_id = $_POST['id_produto'];
 $product_name = $_POST['nome_produto'];
 $userid = $_SESSION['userid'];
+$username = $_SESSION['username'];
 
 //ir buscar o w_id do produto em questão
 $product = "SELECT * FROM product_info where product_id = '$product_id'";
@@ -44,7 +45,7 @@ $data =  date("Y-m-d H:i:s");
 $dataFinal = date('Y-m-d H:i:s', strtotime($data. ' + 7 days'));
 
 // Inserir para a tabela
-$insert_order = "insert into order_info(product_id, consumer_id, supplier_id, product_name, postalcode_origin, postalcode_destin, price,  creation_date, cancelation_date) values('$product_id', '$userid', '$supplier_id', '$product_name', '$w_postalcode', '$c_postalcode', '$price', '$data', '$dataFinal')";
+$insert_order = "insert into order_info(product_id, consumer_id, consumer_name, supplier_id, product_name, postalcode_origin, postalcode_destin, price,  creation_date, cancelation_date) values('$product_id', '$userid', '$username', '$supplier_id', '$product_name', '$w_postalcode', '$c_postalcode', '$price', '$data', '$dataFinal')";
 
 $res= mysqli_query ($conn, $insert_order);
 if($res){

@@ -97,6 +97,8 @@ session_start();
                 echo "<br>";
                 echo"<li><h3>encomenda ".$row['order_id'].":</h3>";
                 echo "<li>".$row['product_name'];
+                echo "<li> Nome de cliente: ";
+                echo $row['consumer_name'];
                 echo "<li> localidade origem:";
                 echo $row['postalcode_origin'];
                 echo "<li> localidade_destino:";
@@ -125,16 +127,26 @@ session_start();
                     <input type="submit" value="Não aceitar Encomenda" name="encomendar">
                     </form>
                 <?php
-                }else{
+                }elseif($row['status'] != "awaiting approval" && $row['status'] != 'delivery completed'){
                     if($row['vehicle_id'] == NULL){ ?>
                         <h3>adiciona veiculo e data de entrega</h3>
                         <form action="t_order_process.php" method="post">
                         <input type="text" name="nome_veiculo" value="nome veiculo" />
-                        <input type="date" name="data_entrega" value="data" />
+                        <input type="datetime-local" name="data_entrega" value="data" />
                         <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
                         <input type="submit" value="Confirmar encomenda" name="encomendar">
                         </form>
                     <?php
+                    }else{
+                        $current_date =  date("Y-m-d H:i:s");
+                        $deliverydate = $row['delivery_date'];
+                        $diff_dates = date_diff(date_create($current_date) , $deliverydate);
+                        if( $diff_dates -> format("%R%a days") > 0 ){?>
+                            <form action="t_order_complete.php" method="post">
+                            <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
+                            <input type="submit" value="confirmar entrega de encomenda" name="complete_order">
+                            </form>
+                  <?php }
                     }
                 }
             }

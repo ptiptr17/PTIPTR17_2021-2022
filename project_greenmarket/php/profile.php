@@ -89,12 +89,12 @@ session_start();
 
         }elseif($_SESSION["usertype"] == "transporter"){
             echo "<br><h3><a href='transporterVehicles.php'>Os meus veiculos</a></h3><br>";
-            echo "<br><h3><a href='t_orders.php'>Ver encomendas</a></h3><br>";
+            echo "<br><h3><a href='t_order.php'>Ver encomendas</a></h3><br>";
 
         }elseif($_SESSION["usertype"] == "supplier"){
             echo "<br><h3><a href='supplierProducts.php'>Os meus produtos</a></h3><br>";
             echo "<br><h3><a href='sellerWarehouses.php'>Os meus armazéns</a></h3><br>";
-            echo "<br><h3><a href='s_orders.php'>Ver encomendas</a></h3><br>";
+            echo "<br><h3><a href='s_order.php'>Ver encomendas</a></h3><br>";
         }
         ?>
 

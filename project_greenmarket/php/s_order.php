@@ -96,6 +96,8 @@ session_start();
                 echo"<ul>";
                 echo "<br>";
                 echo"<li><h3>encomenda ".$row['order_id'].":</h3>";
+                echo "<li> Nome de cliente: ";
+                echo $row['consumer_name'];
                 echo "<li>".$row['product_name'];
                 echo "<li> localidade origem:";
                 echo $row['postalcode_origin'];

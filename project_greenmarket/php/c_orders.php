@@ -118,12 +118,18 @@ session_start();
                 echo "<br>data de entrega:";
                 echo $row['delivery_date'];
                 echo "</ul>";
+                $current_date =  date("Y-m-d H:i:s");
+                $cancelation_date = $row['cancelation_date'];
+                $diff_dates = date_diff(date_create($current_date) , $deliverydate);
+                
+                if($row['cancelation_date'] != NULL && $diff_dates -> format("%R%a days") <= 0){
         ?>
                 <form action="c_order_delete.php" method="post">
                     <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
                     <input type="submit" value="Cancelar Encomenda" name="encomendar">
                 </form>
         <?php
+                }
             }
 
         }elseif(mysqli_num_rows($res) == 0){
@@ -136,7 +142,7 @@ session_start();
         <h3>Historico de encomendas já completadas:</h3>
 
         <?php
-        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='completed'";
+        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='delivery_completed'";
         ?>
 
         <div class="footer-clean">
