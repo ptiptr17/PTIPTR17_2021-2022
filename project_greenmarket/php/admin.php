@@ -95,7 +95,7 @@ session_start();
 
                 $query2 = "SELECT * FROM user_address WHERE user_id='$userid'";
                 $res2 = mysqli_query($conn, $query2);
-                if(mysqli_num_rows($res2) == 0){
+                if(mysqli_num_rows($res2) == 1){
                     $row2 = mysqli_fetch_array($res2);
 
                     echo "<br>";
