@@ -165,48 +165,8 @@ session_start();
         echo "<br>";
         ?>
 
-                    <h2 class="text-right">Detalhes do utilizador</h2>
-                    </div>
-                    <form action="edit_user.php" method="post">
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label class="labels">username</label>
-                                <input type="text"  placeholder="UNome" name="uname_novo" value="<?php echo $username?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">name</label>
-                                <input type="text"  placeholder="Nome" name="nome_novo" value="<?php echo $nome?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">Email</label>
-                                <input type="text"  placeholder="Email" name="email_novo" value="<?php echo $email?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">Phone number</label>
-                                <input type="text"  placeholder="Phone" name="phone_novo" value="<?php echo $phone?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">Código Postal</label>
-                                <input type="text"  placeholder="Código Postal" name="codPostal_novo" value="<?php echo $postalcode?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">Cidade</label>
-                                <input type="text"  placeholder="Cidade" name="cidade_novo" value="<?php echo $city?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">Distrito</label>
-                                <input type="text"  placeholder="Código Postal" name="distrito_novo" value="<?php echo $district?>">
-                            </div>
-                            <div class="col-md-12">
-                                <label class="labels">Morada</label>
-                                <input type="text"  placeholder="Morada" name="morada_nova" value="<?php echo $address?>">
-                            </div>
-                        </div>
-                        <div class="mt-3 text-center">
-                            <div class="col-md-4">
-                                <input type="submit" value="Save Profile" name="edit_utilizador">
-                            </div>
-                        </div>
+                    <form action="alterarConta.php">
+                        <input type="submit" value="Alterar Conta" name="alterar_conta">
                     </form>
 
                     <br>

@@ -214,10 +214,22 @@ session_start();
         $resa = mysqli_query($conn, $querya);
         if (mysqli_num_rows($resa) > 0) {
             while($row = mysqli_fetch_array($resa)) {
-                //falta o codigo para mostrar info dos armazens
                 echo"<ul>";
                 echo "<h2> Dados relativos a todos os armazéns: </h2>";
-                echo"</ul>";
+                    echo "<br>";
+                    echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+                    echo"<li><h4>Nome do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_name'];
+                    echo"<li><h4>Telefone do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_phone'];
+                    echo"<li><h4>Email:</h4><br>";
+                    echo "<li>".$row['email'];
+                    echo"<li><h4>Cidade:</h4><br>";
+                    echo "<li>".$row['city'];
+                    echo"<li><h4>Distrito:</h4><br>";
+                    echo "<li>".$row['district'];
+                    echo"<li><h4>Endereço:</h4><br>";
+                    echo "<li>".$row['address'];
             }
         }
         ?>

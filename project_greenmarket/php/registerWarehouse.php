@@ -37,7 +37,7 @@ $insert_warehouse = "insert into warehouse_info(supplier_id, warehouse_name, war
 $res2= mysqli_query ($conn, $insert_warehouse);
 if($res2){
     echo "Novo armazém criado com sucesso<br>";
-    header( "refresh:10; url= ../php/sellerWarehouse.php");
+    header( "refresh:10; url= ../php/sellerWarehouses.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
     header( "refresh:10; url=../php/sellerWarehouse.php" );
