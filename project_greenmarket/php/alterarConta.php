@@ -110,6 +110,10 @@ session_start();
                                 <label class="labels">Phone number</label>
                                 <input type="text"  placeholder="Phone" name="phone_novo" value="<?php echo $row['phone']?>">
                             </div>
+                            <div class="col-md-12">
+                                <label class="labels" for="image">Imagem:</label>
+                                <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
+                            </div>
 
                             <?php
                                 $userid = $_SESSION['userid'];

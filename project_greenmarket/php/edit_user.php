@@ -10,6 +10,15 @@ $codigo_postal = htmlspecialchars($_POST["codPostal_novo"]);
 $cidade = htmlspecialchars($_POST["cidade_novo"]);
 $distrito = htmlspecialchars($_POST["distrito_novo"]);
 $morada = htmlspecialchars($_POST["morada_nova"]);
+$filename = basename($_FILES["imagem_nova"]['name']);
+$filetype = pathinfo($filename, PATHINFO_EXTENSION);
+
+$allow_types = array('jpg','png','jpeg', 'gif');
+if(in_array($filetype, $allow_types)){
+    $imagem_nova = $_FILES['imagem_nova']['tmp_name'];
+    $image_content = addslashes(file_get_contents($imagem_nova));
+
+}
 
 
 $username = $_SESSION['username'];
@@ -21,7 +30,7 @@ if( $username_novo === ""  || $nome === "" || $email === "" || $phone ==="" || $
     echo ("Foram inseridos dados invalidos");
     header( "refresh:5; url=profile.php" );
 }else{
-    $update_user = "UPDATE user_info SET username = '$username_novo', name = '$nome', email = '$email', phone = '$phone' WHERE username = '$username'";
+    $update_user = "UPDATE user_info SET username = '$username_novo', name = '$nome', email = '$email', phone = '$phone', picture = '$image_content' WHERE username = '$username'";
     $res1 = mysqli_query ($conn, $update_user);
 
     $update_user_address = "UPDATE user_address SET postal_code = '$codigo_postal', city = '$cidade', district = '$distrito', address = '$morada' WHERE user_id = '$userid'";

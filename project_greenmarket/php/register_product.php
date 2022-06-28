@@ -7,7 +7,7 @@ $categoria_novo = htmlspecialchars($_POST["categoria_novo"]);
 $categoria2_novo = htmlspecialchars($_POST["categoria2_novo"]);
 $preco_novo = htmlspecialchars($_POST["preco_novo"]);
 $dataprod_novo = htmlspecialchars($_POST["dataprod_novo"]);
-$armazem_novo = htmlspecialchars($_POST["armazem_novo"]);
+$warehouse_id = $_POST['warehouse_id'];
 $gastos_novo = htmlspecialchars($_POST["gastos_novo"]);
 $eletricidade_nova = htmlspecialchars($_POST["eletricidade_novo"]);
 $agua_nova = htmlspecialchars($_POST["agua_nova"]);
@@ -35,8 +35,8 @@ echo "<br>preco_novo:   ";
 echo $preco_novo;
 echo "<br>data_producao:    ";
 echo $dataprod_novo;
-echo "<br>armazem novo:     ";
-echo $armazem_novo;
+echo "<br>armazem:     ";
+echo $warehouse_id;
 echo "<br>gastos novos:     ";
 echo $gastos_novo;
 echo "<br>eletricidade nova:    ";
@@ -78,7 +78,7 @@ if( $productname_novo === ""  || $categoria_novo === "" || $preco_novo === "" ||
     header( "refresh:5; url=supplierProducts.php" );
 
 }else{
-    $create_product = "INSERT INTO product_info(product_name, one_category, two_category, price, production_date, w_id, s_id, resource_cast, pollution_caused, eletricity_cast, water_cast, /*shelf_life,*/ descript, picture) values('$productname_novo', '$categoria_novo', '$categoria2_novo', '$preco_novo', '$dataprod_novo', '$id_armazem', '$userid', $gastos_novo, '$poluicao_nova', '$eletricidade_nova', '$agua_nova', /*validade_nova,*/ '$descricao_nova', '$image_content')";
+    $create_product = "INSERT INTO product_info(product_name, one_category, two_category, price, production_date, w_id, s_id, resource_cast, pollution_caused, eletricity_cast, water_cast, /*shelf_life,*/ descript, picture) values('$productname_novo', '$categoria_novo', '$categoria2_novo', '$preco_novo', '$dataprod_novo', '$warehouse_id', '$userid', $gastos_novo, '$poluicao_nova', '$eletricidade_nova', '$agua_nova', /*validade_nova,*/ '$descricao_nova', '$image_content')";
     $res1 = mysqli_query ($conn, $create_product);
 
     if($res1){

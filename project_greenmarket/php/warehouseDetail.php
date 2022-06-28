@@ -102,6 +102,63 @@ session_start();
 
         ?>
 
+        <h2 class="text-right">Registar novo produto:</h2>
+            <br>
+                </div>
+                <form action="register_product.php" method="post" enctype="multipart/form-data">
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Nome do produto:</label>
+                            <input type="text"  placeholder="Product" name="pname_novo" value="nome">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Categoria produto:</label>
+                            <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Segunda categoria produto:</label>
+                            <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Preço:</label>
+                            <input type="text"  placeholder="Price" name="preco_novo" value="0">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Data producao:</label>
+                            <input type="date"  placeholder="production date" name="dataprod_novo">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Gastos:</label>
+                            <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Custo eletrecidade:</label>
+                            <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Custo agua:</label>
+                            <input type="text"  placeholder="water cost" name="agua_nova" value="0">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Poluicao causada:</label>
+                            <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Descricao:</label>
+                            <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels" for="image">Imagem:</label>
+                            <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
+                        </div>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <div class="col-md-4">
+                            <input type="submit" value="Create Product" name="newProduct">
+                        </div>
+                    </div>
+                </form>
+
 
         <div class="footer-clean">
             <footer>
