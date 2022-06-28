@@ -17,6 +17,43 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+        div.body{
+            display: inline-block;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px;
+            background:#4CAF50;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: auto;
+        }
+
+
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+
+    </style>
     <body>
     <header class="header">
         <div class="container">
@@ -82,132 +119,132 @@ session_start();
         <h2> Os teus produtos: </h2>
         <br>
         <!--<h2> dados relativos aos teus produtos: </h2>-->
+        <div class="body">
+          <?php
+          $username = $_SESSION['username'];
+          $userid = $_SESSION['userid'];
+          $query = "SELECT * FROM product_info WHERE s_id='$userid'";
+          $res = mysqli_query($conn, $query);
 
-        <?php
-        $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info WHERE s_id='$userid'";
-        $res = mysqli_query($conn, $query);
+          if(mysqli_num_rows($res) > 0){
+              while($row = mysqli_fetch_array($res)) {
 
-        if(mysqli_num_rows($res) > 0){
-            while($row = mysqli_fetch_array($res)) {
-                
-                echo"<ul>";
-                echo "<br>";
-                echo"<li><h3>produto ".$row['product_id'].":</h3>";
+                  echo"<ul>";
+                  echo "<br>";
+                  echo"<li><h3>produto ".$row['product_id'].":</h3>";
 
-                if($row['one_category'] == "eletrodomestico"){
-                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='150' height='90'/>";
-                }elseif($row['one_category'] == "vestuario"){
-                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='150' height='90'/>";
-                }elseif($row['one_category'] == "mobilia"){
-                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
-                }
-            
-                echo "<li>".$row['product_name'];
-                echo"<li><h4>categories:</h4><br>";
-                echo $row['one_category']."<br>";
-                echo $row['two_category'];
-                echo"<li><h4>price:</h4><br>";
-                echo $row['price'];
-                echo "<li><h4>production date:</h4><br>";
-                echo $row['production_date'];
-                echo"<li><h4>expenditure:</h4><br>";
-                echo $row['resource_cast'];
-                echo"<li><h4>eletricity:</h4><br>";
-                echo $row['eletricity_cast'];
-                echo"<li><h4>water:</h4><br>";
-                echo $row['water_cast'];
-                echo"<li><h4>polution caused:</h4><br>";
-                echo $row['pollution_caused'];
-                echo"<li><h4>shelf life:</h4><br>";
-                echo $row['shelf_life'];
-                echo"<li><h4>description:</h4><br>";
-                echo $row['descript'];
-                echo"<li><h4>Image:</h4><br>";?>
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
-                <?php echo"</ul>";
-                echo "<br>";
-            }
-        ?>
+                  if($row['one_category'] == "eletrodomestico"){
+                      echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='150' height='90'/>";
+                  }elseif($row['one_category'] == "vestuario"){
+                      echo "<li><img src ='../html/imagens/vestuario.jpg' width ='150' height='90'/>";
+                  }elseif($row['one_category'] == "mobilia"){
+                      echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
+                  }
 
-        <h2 class="text-right">Apagar um produto:</h2>
+                  echo "<li>".$row['product_name'];
+                  echo"<li><h4>categories:</h4><br>";
+                  echo $row['one_category']."<br>";
+                  echo $row['two_category'];
+                  echo"<li><h4>price:</h4><br>";
+                  echo $row['price'];
+                  echo "<li><h4>production date:</h4><br>";
+                  echo $row['production_date'];
+                  echo"<li><h4>expenditure:</h4><br>";
+                  echo $row['resource_cast'];
+                  echo"<li><h4>eletricity:</h4><br>";
+                  echo $row['eletricity_cast'];
+                  echo"<li><h4>water:</h4><br>";
+                  echo $row['water_cast'];
+                  echo"<li><h4>polution caused:</h4><br>";
+                  echo $row['pollution_caused'];
+                  echo"<li><h4>shelf life:</h4><br>";
+                  echo $row['shelf_life'];
+                  echo"<li><h4>description:</h4><br>";
+                  echo $row['descript'];
+                  echo"<li><h4>Image:</h4><br>";?>
+                  <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
+                  <?php echo"</ul>";
+                  echo "<br>";
+              }
+          ?>
 
-        <form action="delete_product.php" method="post">
-            <label class="labels">product id of product to be deleted:</label>
-            <input type="text"  placeholder="Pid" name="Pid">
-            <input type="submit" value="Delete Product" name="apagar_produto">
-        </form>
-        <br>
-        <?php
-        }else{
-            echo "<br>Nao tem produtos seus neste momento.";
-        }
+          <h2 class="text-right">Apagar um produto:</h2>
 
-        ?>
+          <form action="delete_product.php" method="post">
+              <label class="labels">product id of product to be deleted:</label>
+              <input type="text"  placeholder="Pid" name="Pid">
+              <input type="submit" value="Delete Product" name="apagar_produto">
+          </form>
+          <br>
+          <?php
+          }else{
+              echo "<br>Nao tem produtos seus neste momento.";
+          }
 
-    <h2 class="text-right">Registar novo produto:</h2>
-    <br>
-        </div>
-        <form action="register_product.php" method="post" enctype="multipart/form-data">
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label class="labels">Nome do produto:</label>
-                    <input type="text"  placeholder="Product" name="pname_novo" value="nome">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Categoria produto:</label>
-                    <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Segunda categoria produto:</label>
-                    <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Preço:</label>
-                    <input type="text"  placeholder="Price" name="preco_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Data producao:</label>
-                    <input type="date"  placeholder="production date" name="dataprod_novo">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Nome armazem:</label>
-                    <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Gastos:</label>
-                    <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo eletrecidade:</label>
-                    <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Custo agua:</label>
-                    <input type="text"  placeholder="water cost" name="agua_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Poluicao causada:</label>
-                    <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels">Descricao:</label>
-                    <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
-                </div>
-                <div class="col-md-12">
-                    <label class="labels" for="image">Imagem:</label>
-                    <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
-                </div>
-            </div>
-            <div class="mt-3 text-center">
-                <div class="col-md-4">
-                    <input type="submit" value="Create Product" name="newProduct">
-                </div>
-            </div>
-        </form>
+          ?>
 
+      <h2 class="text-right">Registar novo produto:</h2>
+      <br>
+          </div>
+          <form action="register_product.php" method="post" enctype="multipart/form-data">
+              <div class="row mt-3">
+                  <div class="col-md-12">
+                      <label class="labels">Nome do produto:</label>
+                      <input type="text"  placeholder="Product" name="pname_novo" value="nome">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Categoria produto:</label>
+                      <input type="text"  placeholder="product category" name="categoria_novo" value="categoria">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Segunda categoria produto:</label>
+                      <input type="text"  placeholder="product category2" name="categoria2_novo" value="categoria2">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Preço:</label>
+                      <input type="text"  placeholder="Price" name="preco_novo" value="0">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Data producao:</label>
+                      <input type="date"  placeholder="production date" name="dataprod_novo">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Nome armazem:</label>
+                      <input type="text"  placeholder="storage" name="armazem_novo" value="nome do armazém">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Gastos:</label>
+                      <input type="text"  placeholder="expenses" name="gastos_novo" value="0">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Custo eletrecidade:</label>
+                      <input type="text"  placeholder="eletricty cost" name="eletricidade_novo" value="0">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Custo agua:</label>
+                      <input type="text"  placeholder="water cost" name="agua_nova" value="0">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Poluicao causada:</label>
+                      <input type="text"  placeholder="polution" name="poluicao_nova" value="0">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels">Descricao:</label>
+                      <input type="text"  placeholder="description" name="descricao_nova" value="a descricao">
+                  </div>
+                  <div class="col-md-12">
+                      <label class="labels" for="image">Imagem:</label>
+                      <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
+                  </div>
+              </div>
+              <div class="mt-3 text-center">
+                  <div class="col-md-4">
+                      <input type="submit" value="Create Product" name="newProduct">
+                  </div>
+              </div>
+          </form>
 
+      </div>
         <div class="footer-clean">
             <footer>
                 <div class="container">

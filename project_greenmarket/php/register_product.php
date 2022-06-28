@@ -93,5 +93,5 @@ if( $productname_novo === ""  || $categoria_novo === "" || $preco_novo === "" ||
 }
 
 mysqli_close($conn);
-   
+
 ?>
