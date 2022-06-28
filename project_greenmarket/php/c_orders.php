@@ -75,7 +75,7 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
         <br>
         <h1> Encomendas de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
@@ -84,13 +84,13 @@ session_start();
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='completed'";
+        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='delivery completed'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
 
             echo "<h2> encomendas atuais: </h2>";
-            
+
             while($row = mysqli_fetch_array($res)) {
 
                 echo"<ul>";
@@ -120,9 +120,11 @@ session_start();
                 echo "</ul>";
                 $current_date =  date("Y-m-d H:i:s");
                 $cancelation_date = $row['cancelation_date'];
-                $diff_dates = date_diff(date_create($current_date) , $deliverydate);
-                
-                if($row['cancelation_date'] != NULL && $diff_dates -> format("%R%a days") <= 0){
+                $diff_dates = date_diff(date_create($current_date) , date_create($cancelation_date));
+                if($row['status'] == 'approved'){
+                    echo "encomenda aprovada e em curso processo de entrega.";
+                }
+                if($row['cancelation_date'] != NULL && $diff_dates -> format("%R%a days") <= 0 && $row['status'] == 'awaiting approval'){
         ?>
                 <form action="c_order_delete.php" method="post">
                     <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
@@ -172,7 +174,7 @@ session_start();
                         <div class="col-sm-4 col-md-3 item">
                             <h3>Projeto de PTI/PTR</h3>
                             <ul>
-                                <li><a href="welcome.html">Sobre o Projeto</a></li>
+                                <li><a href="../html/welcome.html">Sobre o Projeto</a></li>
                                 <li><a href="#">FAQs</a></li>
                                 <li><a href="#">Sobre Nós</a></li>
                             </ul>

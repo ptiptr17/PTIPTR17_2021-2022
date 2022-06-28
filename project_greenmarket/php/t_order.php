@@ -27,14 +27,14 @@ session_start();
 
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
             margin: auto;
         }
 
-        
+
 
         form {
             margin: auto;
@@ -44,7 +44,7 @@ session_start();
         img {
             display: block;
             margin-left: auto;
-            margin-right: auto 
+            margin-right: auto
         }
 
 
@@ -107,7 +107,7 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
         <br>
         <h1> Encomendas pedidas para transporte, <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
@@ -122,7 +122,7 @@ session_start();
         if(mysqli_num_rows($res) > 0){
 
             echo "<h2> encomendas atuais: </h2>";
-            
+
             while($row = mysqli_fetch_array($res)) {
 
                 echo"<ul>";
@@ -155,8 +155,8 @@ session_start();
                 if($row['status'] == "awaiting approval"){?>
                     <form action="t_order_approval.php" method="post">
                     <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
-                    <input type="submit" value="Aceitar Encomenda" name="encomendar">
-                    <input type="submit" value="Não aceitar Encomenda" name="encomendar">
+                    <input type="submit" value="Aceitar encomenda" name="encomendar">
+                    <input type="submit" value="Nao aceitar encomenda" name="encomendar">
                     </form>
                 <?php
                 }elseif($row['status'] != "awaiting approval" && $row['status'] != 'delivery completed'){
@@ -172,7 +172,7 @@ session_start();
                     }else{
                         $current_date =  date("Y-m-d H:i:s");
                         $deliverydate = $row['delivery_date'];
-                        $diff_dates = date_diff(date_create($current_date) , $deliverydate);
+                        $diff_dates = date_diff(date_create($current_date) , date_create($deliverydate));
                         if( $diff_dates -> format("%R%a days") > 0 ){?>
                             <form action="t_order_complete.php" method="post">
                             <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />

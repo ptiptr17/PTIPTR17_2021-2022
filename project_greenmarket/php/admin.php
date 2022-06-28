@@ -100,7 +100,7 @@ session_start();
                 //echo"<li><h3>gender:</h3>";
                 //echo "<li>".$row['gender'];
                 $userid = $row['user_id'];
-                
+
 
                 $query2 = "SELECT * FROM user_address WHERE user_id='$userid'";
                 $res2 = mysqli_query($conn, $query2);
@@ -125,25 +125,25 @@ session_start();
                 }
             }?>
 
-            <form action="edit_user.php" method="post">            
+            <form action="edit_user.php" method="post">
             <label class="labels">id de utilizador para editar:</label>
             <input type="text"  placeholder="userid" name="userid" value="userid">
             <br>
             <input type="submit" value="Editar conta" name="edit_account" class="btnL">
             </form>
 
-            <form action="delete_user.php" method="post">            
+            <form action="delete_user.php" method="post">
             <label class="labels">id de utilizador para eliminar:</label>
             <input type="text"  placeholder="userid" name="userid" value="userid">
             <br>
             <input type="submit" value="Eliminar utilizador" name="delete_user" class="btnL">
             </form>
 
-        <?php 
+        <?php
         }
         ?>
 
-        <form action="create_user.php" method="post">            
+        <form action="create_user.php" method="post">
         <label class="labels">criar utilizador:</label>
         <!--
         <input type="text"  placeholder="userid" name="userid" value="userid">
@@ -189,14 +189,14 @@ session_start();
                 echo"</ul>";
             }?>
 
-            <form action="edit_product.php" method="post">            
+            <form action="edit_product.php" method="post">
             <label class="labels">id de produto para editar:</label>
             <input type="text"  placeholder="productid" name="productid" value="productid">
             <br>
             <input type="submit" value="Editar conta" name="edit_conta" class="btnL">
             </form>
 
-            <form action="delete_product.php" method="post">            
+            <form action="delete_product.php" method="post">
             <label class="labels">id de produto para eliminar:</label>
             <input type="text"  placeholder="produtoid" name="productid" value="productid">
             <br>
@@ -205,8 +205,8 @@ session_start();
         <?php
         }
         ?>
-        
-        <form action="create_product.php" method="post">            
+
+        <form action="create_product.php" method="post">
             <label class="labels">criar produto:</label>
             <!--
             <input type="text"  placeholder="userid" name="userid" value="userid">
@@ -223,10 +223,22 @@ session_start();
         $resa = mysqli_query($conn, $querya);
         if (mysqli_num_rows($resa) > 0) {
             while($row = mysqli_fetch_array($resa)) {
-                //falta o codigo para mostrar info dos armazens
                 echo"<ul>";
                 echo "<h2> Dados relativos a todos os armazéns: </h2>";
-                echo"</ul>";
+                    echo "<br>";
+                    echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+                    echo"<li><h4>Nome do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_name'];
+                    echo"<li><h4>Telefone do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_phone'];
+                    echo"<li><h4>Email:</h4><br>";
+                    echo "<li>".$row['email'];
+                    echo"<li><h4>Cidade:</h4><br>";
+                    echo "<li>".$row['city'];
+                    echo"<li><h4>Distrito:</h4><br>";
+                    echo "<li>".$row['district'];
+                    echo"<li><h4>Endereço:</h4><br>";
+                    echo "<li>".$row['address'];
             }
         }
         ?>
@@ -256,14 +268,14 @@ session_start();
                 echo "</ul>";
             }?>
 
-            <form action="edit_vehicle.php" method="post">            
+            <form action="edit_vehicle.php" method="post">
             <label class="labels">id de veiculo para editar:</label>
             <input type="text"  placeholder="vehicleid" name="vehicleid" value="vehicleid">
             <br>
             <input type="submit" value="Editar conta" name="edit_conta" class="btnL">
             </form>
 
-            <form action="delete_vehicle.php" method="post">            
+            <form action="delete_vehicle.php" method="post">
             <label class="labels">id de veiculo para eliminar:</label>
             <input type="text"  placeholder="veiculoid" name="vehicleid" value="vehicleid">
             <br>
@@ -272,8 +284,8 @@ session_start();
         <?php
         }
         ?>
-        
-        <form action="create_vehicle.php" method="post">            
+
+        <form action="create_vehicle.php" method="post">
             <label class="labels">criar veiculo:</label>
             <!--
             <input type="text"  placeholder="userid" name="userid" value="userid">
@@ -294,7 +306,7 @@ session_start();
         </form>
         </div>
         -->
-        
+
         <div class="footer-clean">
             <footer>
                 <div class="container">

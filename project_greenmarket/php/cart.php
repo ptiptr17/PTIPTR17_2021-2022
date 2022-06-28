@@ -84,7 +84,7 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
         <br>
         <h1> Carrinho de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
@@ -99,7 +99,7 @@ session_start();
         if(mysqli_num_rows($res) > 0){
 
             echo "<h2> produtos no carrinho: </h2>";
-            
+
             while($row = mysqli_fetch_array($res)) {
 
                 echo"<ul>";
@@ -107,7 +107,7 @@ session_start();
                 echo"<li><h3>Produto:</h3>";
                 echo $row['product_name'];
                 echo"<li><h3>preco:</h3><br>";
-                echo $row['price'];
+                echo $row['price']."€";
                 echo "</ul>";
         ?>
                 <form action="product.php" method="post">

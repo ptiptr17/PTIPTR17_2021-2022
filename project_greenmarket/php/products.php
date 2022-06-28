@@ -32,15 +32,15 @@ session_start();
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
-            text-align: left; 
+            text-align: left;
             margin: auto;
         }
 
-        
+
         #filtros{
             margin: auto;
             text-align: left;
@@ -111,21 +111,21 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
     <h1> Produtos </h1>
     <br>
     <hr>
     <h2>Filtro</h2>
     <ul><li>
-        <form class="filtros" action="eletro_filter.php" method="post">
+        <form action="eletro_filter.php" method="post">
             <input type="submit" name="eletro_filer" value="Todos os Eletrodomésticos" />
         </form>
 
-        <form class="filtros" action="mobilia_filter.php" method="post">
+        <form action="mobilia_filter.php" method="post">
             <input type="submit" name="mobilia_filer" value="Todas as Mobilias" />
         </form>
 
-        <form class="filtros" action="vestuario_filter.php" method="post">
+        <form action="vestuario_filter.php" method="post">
             <input type="submit" name="vestuario_filer" value="Todo o Vestuário" />
         </form>
     </ul></li>
@@ -154,7 +154,7 @@ session_start();
                 }elseif($row['one_category'] == "mobilia"){
                     echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
                 }
-                
+
                 echo"<li><h4>categorias:</h4>";
                 echo $row['one_category']."<br>";
                 echo $row['two_category']."<br>";
@@ -163,11 +163,11 @@ session_start();
                 echo"<li><h4>Image:</h4><br>";?>
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
                 <?php echo"</ul>";?>
-                <?php echo"</div>";?>  
-                
+                <?php echo"</div>";?>
+
 
                 <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />  
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
                     <input type="submit" value="Detalhes do produto" name="details">
                 </form>
                 <?php if($_SESSION['usertype'] == 'consumer'){ ?>

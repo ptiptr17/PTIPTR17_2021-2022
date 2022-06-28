@@ -32,14 +32,14 @@ session_start();
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
             margin: auto;
         }
 
-        
+
 
         form {
             margin: auto;
@@ -49,7 +49,7 @@ session_start();
         img {
             display: block;
             margin-left: auto;
-            margin-right: auto 
+            margin-right: auto
         }
 
 
@@ -136,7 +136,7 @@ session_start();
                 ?>
 
                 <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />    
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
                     <input type="submit" value="Detalhes do produto" name="details">
                 </form>
 

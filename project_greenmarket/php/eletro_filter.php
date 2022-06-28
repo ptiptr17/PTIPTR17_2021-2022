@@ -32,14 +32,14 @@ session_start();
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
             margin: auto;
         }
 
-        
+
 
         form {
             margin: auto;
@@ -49,7 +49,7 @@ session_start();
         img {
             display: block;
             margin-left: auto;
-            margin-right: auto 
+            margin-right: auto
         }
 
 
@@ -113,43 +113,43 @@ session_start();
         </div>
     </header>
     <div class="body">
-        <?php
+      <?php
 
-        echo "<h2> Eletrodomésticos: </h2>";
+      echo "<h2> Eletrodomésticos: </h2>";
 
-        $query = "SELECT * FROM product_info where one_category = 'eletrodomestico'";
-        $rese = mysqli_query($conn, $query);
-        if(mysqli_num_rows($rese) > 0){
+      $query = "SELECT * FROM product_info where one_category = 'eletrodomestico'";
+      $rese = mysqli_query($conn, $query);
+      if(mysqli_num_rows($rese) > 0){
 
-            while($row = mysqli_fetch_array($rese)) {
+          while($row = mysqli_fetch_array($rese)) {
 
-                echo"<ul>";
-                echo "<br>";
-                echo"<li><h3>".$row['product_name'].":</h3>";
-                echo"<li><h4>2ª categorias:</h4><br>";
-                echo $row['two_category'];
-                echo"<li><h4>preço:</h4><br>";
-                echo $row['price'];
-                echo"<li><h4>Imagem:</h4><br>";
-                echo $row['picture'];
-                echo "</ul>";
-                ?>
+              echo"<ul>";
+              echo "<br>";
+              echo"<li><h3>".$row['product_name'].":</h3>";
+              echo"<li><h4>2ª categorias:</h4><br>";
+              echo $row['two_category'];
+              echo"<li><h4>preço:</h4><br>";
+              echo $row['price'];
+              echo"<li><h4>Imagem:</h4><br>";
+              echo $row['picture'];
+              echo "</ul>";
+              ?>
 
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />    
-                    <input type="submit" value="Detalhes do produto" name="details">
-                </form>
+              <form action="product.php" method="post">
+                  <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                  <input type="submit" value="Detalhes do produto" name="details">
+              </form>
 
-                <?php if($_SESSION['usertype'] == 'consumer'){ ?>
-                    <form action="c_order.php" method="post">
-                        <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                        <input type="submit" value="Ir para o carrinho" name="carrinho">
-                    </form>
-                <?php }
-            }
-        }
-        ?>
-    </div>
+              <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                  <form action="c_order.php" method="post">
+                      <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                      <input type="submit" value="Ir para o carrinho" name="carrinho">
+                  </form>
+              <?php }
+          }
+      }
+      ?>
+  </div>
     <div class="footer-clean">
         <footer>
             <div class="container">

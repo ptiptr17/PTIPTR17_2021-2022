@@ -32,11 +32,11 @@ session_start();
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
-            text-align: left; 
+            text-align: left;
             margin: auto;
         }
 
@@ -101,69 +101,69 @@ session_start();
             <hr>
         </div>
     </header>
-        
         <div class="body">
-            <h1>Detalhes do Produto </h1>
-            <br>
-            <?php
-            $username = $_SESSION['username'];
-            $userid = $_SESSION['userid'];
-            $product_id = $_POST['id_produto'];
-            $query = "SELECT * FROM product_info Where product_id='$product_id'";
-            $res = mysqli_query($conn, $query);
-            if(mysqli_num_rows($res) == 1){
-            
-                $row = mysqli_fetch_array($res);
+          <h1>Detalhes do Produto </h1>
+          <br>
+          <?php
+          $username = $_SESSION['username'];
+          $userid = $_SESSION['userid'];
+          $product_id = $_POST['id_produto'];
+          $query = "SELECT * FROM product_info Where product_id='$product_id'";
+          $res = mysqli_query($conn, $query);
+          if(mysqli_num_rows($res) == 1){
 
-                echo"<ul>";
-                echo"<li><h2>".$row['product_name'].":</h2>";
-                echo "<br>";
-                if($row['one_category'] == "eletrodomestico"){
-                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='200' height='120'/>";
-                }elseif($row['one_category'] == "vestuario"){
-                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='200' height='120'/>";
-                }elseif($row['one_category'] == "mobilia"){
-                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='200' height='120'/>";
-                }
-                echo "<br>";
-                echo"<li><h4>categories:</h4><br>";
-                echo $row['one_category']."<br>";
-                echo $row['two_category'];
-                echo"<li><h4>price:</h4><br>";
-                echo $row['price'];
-                echo "<li><h4>production date:</h4><br>";
-                echo $row['production_date'];
-                echo"<li><h4>expenditure:</h4><br>";
-                echo $row['resource_cast'];
-                echo"<li><h4>eletricity:</h4><br>";
-                echo $row['eletricity_cast'];
-                echo"<li><h4>water:</h4><br>";
-                echo $row['water_cast'];
-                echo"<li><h4>polution caused:</h4><br>";
-                echo $row['pollution_caused'];
-                echo"<li><h4>shelf life:</h4><br>";
-                echo $row['shelf_life'];
-                echo"<li><h4>description:</h4><br>";
-                echo $row['descript'];
-                echo"<li><h4>Image:</h4><br>";?>
-                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
-                <?php echo "</ul>"; ?>
+              $row = mysqli_fetch_array($res);
 
-                <?php if($_SESSION['usertype'] == 'consumer'){ ?>
-                    <form action="p_cart.php" method="post">
-                        <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                        <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                        <input type="hidden" name="preco_produto" value="<?php echo $row['price']; ?>" />
+              echo"<ul>";
+              echo"<li><h2>".$row['product_name'].":</h2>";
+              echo "<br>";
+              if($row['one_category'] == "eletrodomestico"){
+                  echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='200' height='120'/>";
+              }elseif($row['one_category'] == "vestuario"){
+                  echo "<li><img src ='../html/imagens/vestuario.jpg' width ='200' height='120'/>";
+              }elseif($row['one_category'] == "mobilia"){
+                  echo "<li><img src ='../html/imagens/mobilia.jpg' width ='200' height='120'/>";
+              }
+              echo "<br>";
+              echo"<li><h4>categories:</h4><br>";
+              echo $row['one_category']."<br>";
+              echo $row['two_category'];
+              echo"<li><h4>price:</h4><br>";
+              echo $row['price'];
+              echo "<li><h4>production date:</h4><br>";
+              echo $row['production_date'];
+              echo"<li><h4>expenditure:</h4><br>";
+              echo $row['resource_cast'];
+              echo"<li><h4>eletricity:</h4><br>";
+              echo $row['eletricity_cast'];
+              echo"<li><h4>water:</h4><br>";
+              echo $row['water_cast'];
+              echo"<li><h4>polution caused:</h4><br>";
+              echo $row['pollution_caused'];
+              echo"<li><h4>shelf life:</h4><br>";
+              echo $row['shelf_life'];
+              echo"<li><h4>description:</h4><br>";
+              echo $row['descript'];
+              echo"<li><h4>Image:</h4><br>";?>
+              <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
+              <?php echo "</ul>"; ?>
 
-                        <input type="submit" value="Ir para o carrinho" name="carrinho">
-                    </form>
-                <?php } ?>
-            <?php
-            }else{
-                echo"<h3>conflito no produto escolhido.</h3>";
-            }
-            ?>
-        </div>
+              <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                  <!-- fazer query para verificar se produto já está no carrinho -->
+                  <form action="p_cart.php" method="post">
+                      <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                      <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
+                      <input type="hidden" name="preco_produto" value="<?php echo $row['price']; ?>" />
+
+                      <input type="submit" value="Ir para o carrinho" name="carrinho">
+                  </form>
+              <?php } ?>
+          <?php
+          }else{
+              echo"<h3>conflito no produto escolhido.</h3>";
+          }
+          ?>
+      </div>
     <div class="footer-clean">
         <footer>
             <div class="container">
@@ -227,7 +227,7 @@ session_start();
 /*
 function component($productname, $productprice, $productimg, $productid){
     $element = "
-    
+
     <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
                 <form action=\"index.php\" method=\"post\">
                     <div class=\"card shadow\">
@@ -263,7 +263,7 @@ function component($productname, $productprice, $productimg, $productid){
 
 function cartElement($productimg, $productname, $productprice, $productid){
     $element = "
-    
+
     <form action=\"cart.php?action=remove&id=$productid\" method=\"post\" class=\"cart-items\">
                     <div class=\"border rounded\">
                         <div class=\"row bg-white\">
@@ -287,7 +287,7 @@ function cartElement($productimg, $productname, $productprice, $productid){
                         </div>
                     </div>
                 </form>
-    
+
     ";
     echo  $element;
 }

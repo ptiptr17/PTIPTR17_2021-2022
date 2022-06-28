@@ -32,14 +32,14 @@ session_start();
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
             margin: auto;
         }
 
-        
+
 
         form {
             margin: auto;
@@ -49,7 +49,7 @@ session_start();
         img {
             display: block;
             margin-left: auto;
-            margin-right: auto 
+            margin-right: auto
         }
 
 
@@ -112,7 +112,7 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
 
     <?php
         $username = $_SESSION['username'];
@@ -146,6 +146,10 @@ session_start();
                             <div class="col-md-12">
                                 <label class="labels">Phone number</label>
                                 <input type="text"  placeholder="Phone" name="phone_novo" value="<?php echo $row['phone']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels" for="image">Imagem:</label>
+                                <input type="file" placeholder="image" accept="image/png, image/gif, image/jpeg" name="imagem_nova">
                             </div>
 
                             <?php

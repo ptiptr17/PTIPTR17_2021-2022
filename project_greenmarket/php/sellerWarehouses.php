@@ -32,14 +32,14 @@ session_start();
         }
 
         input[type=submit] {
-            padding:5px 15px; 
+            padding:5px 15px;
             background:#4CAF50;
-            border: 2px solid black; 
+            border: 2px solid black;
             border-radius: 5px;
             margin: auto;
         }
 
-        
+
 
         form {
             margin: auto;
@@ -49,42 +49,49 @@ session_start();
         img {
             display: block;
             margin-left: auto;
-            margin-right: auto 
+            margin-right: auto
         }
 
 
     </style>
     <body>
-        <header class="header">
-            <div class="container">
-                <div class="navbar">
-                    <div class="logo">
-                        <a href="../php/homepage.php"><img src="../html/imagens/logo.png" width="400px"></a>
-                    </div>
-                    <div class="search">
-                        <input type="text" placeholder="Procurar..">
-                    </div>
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="../php/homepage.php"><img src="../html/imagens/logo.png" width="400px"></a>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Procurar..">
+                </div>
 
-                    <?php if(isset($_SESSION['username'])):  ?>
+                <?php if(isset($_SESSION['username'])):  ?>
+                <nav>
+                    <ul>
+                        <li><a href="../php/products.php"> Produtos </a></li>
+                        <li><a href="logout.php"> Terminar a sessão </a></li>
+                        <li><a href="profile.php"> <?php echo $_SESSION["username"];?> </a></li>
+                    </ul>
+                </nav>
+                <?php else:?>
                     <nav>
                         <ul>
-                          <li><a href="../html/products.html"> Produtos </a></li>
-                          <li><a href="logout.php"> Terminar a sessão </a></li>
-                          <li><a href="profile.php"> <?php echo $_SESSION["username"]."profile";?> </a></li>
+                        <li><a href="../html/products.html"> Produtos</a></li>
+                        <li><a href="../html/login.html"> Iniciar Sessão</a></li>
+                        <li><a href="../html/register.html"> Criar Conta</a></li>
                         </ul>
                     </nav>
-                    <?php else:?>
-                        <nav>
-                            <ul>
-                            <li><a href="../html/products.html"> Produtos</a></li>
-                            <li><a href="../html/login.html"> Iniciar Sessão</a></li>
-                            <li><a href="../html/register.html"> Criar Conta</a></li>
-                            </ul>
-                        </nav>
-                    <?php endif; ?>
-                    <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+                <?php endif; ?>
+                <?php if($_SESSION['usertype'] == "consumer"):?>
+                <?php
+                    $userid = $_SESSION['userid'];
+                    $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
+                    $cnum = mysqli_query($conn, $query);
+                    $numcitems = mysqli_num_rows($cnum);
+                ?>
+                    <a href="../php/cart.php" aria-label="<?php echo $numcitems; ?> items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
                     <div id="nav-cart-count-container">
-                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
+                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content"><?php echo $numcitems; ?></span>
                         <i class="fa fa-shopping-cart" style="font-size:24px"></i>
                     </div>
                     <div id="nav-cart-text-container" class=" nav-progressive-attribute">
@@ -96,100 +103,98 @@ session_start();
                         </span>
                     </div>
                     </a>
-                </div>
-                <hr>
+                <?php elseif($_SESSION['usertype'] == "transporter"): ?>
+                    <a href="../php/t_order.php"> Encomendas </a>
+                <?php elseif($_SESSION['usertype'] == "supplier"): ?>
+                    <a href="../php/s_order.php"> Encomendas </a>
+                <?php endif ?>
             </div>
-        </header>
+            <hr>
+        </div>
+    </header>
         <br>
         <h1> Armazéns de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
         <h2> Os teus Armazéns: </h2>
         <div class="body">
-            <?php
-            $username = $_SESSION['username'];
-            $userid = $_SESSION['userid'];
-            $query = "SELECT * FROM warehouse_info WHERE supplier_id='$userid'";
-            $res = mysqli_query($conn, $query);
+          <?php
+          $username = $_SESSION['username'];
+          $userid = $_SESSION['userid'];
+          $query = "SELECT * FROM warehouse_info WHERE supplier_id='$userid'";
+          $res = mysqli_query($conn, $query);
 
-            if(mysqli_num_rows($res) > 0){
+          if(mysqli_num_rows($res) > 0){
 
-                while($row = mysqli_fetch_array($res)) {
+              while($row = mysqli_fetch_array($res)) {
 
-                echo"<ul>";
-                echo "<h2> Dados relativos aos teus Armazéns: </h3>";
-                echo "<br>";
-                echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
-                echo"<li><h4>Nome do armazém:</h4><br>";
-                echo "<li><a href='warehouseDetail.php'>".$row['warehouse_name']."</a></li>";
-            ?>
-                <form action="warehouseDetail.php" method="post">
-                    <input type="hidden" name="warehouse_id" value="<?php echo $row['warehouse_id']; ?>" />
-                    <input type="submit" value="Aceder a armazem" name="aceder">
-                </form>
+              echo"<ul>";
+              echo "<h2> Dados relativos aos teus Armazéns: </h3>";
+              echo "<br>";
+              echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+              echo"<li><h4>Nome do armazém:</h4><br>";
+              echo "<li>".$row['warehouse_name'];
+              echo"<li><h4>Telefone do armazém:</h4><br>";
+              echo "<li>".$row['warehouse_phone'];
+              echo"<li><h4>Email:</h4><br>";
+              echo "<li>".$row['email'];
+              echo"<li><h4>Cidade:</h4><br>";
+              echo "<li>".$row['city'];
+              echo"<li><h4>Distrito:</h4><br>";
+              echo "<li>".$row['district'];
+              echo"<li><h4>Endereço:</h4><br>";
+              echo "<li>".$row['address'];
+          }?>
 
-            <?php
-                echo"<li><h4>Telefone do armazém:</h4><br>";
-                echo "<li>".$row['warehouse_phone'];
-                echo"<li><h4>Email:</h4><br>";
-                echo "<li>".$row['email'];
-                echo"<li><h4>Cidade:</h4><br>";
-                echo "<li>".$row['city'];
-                echo"<li><h4>Distrito:</h4><br>";
-                echo "<li>".$row['district'];
-                echo"<li><h4>Endereço:</h4><br>";
-                echo "<li>".$row['address'];
-            }?>
+          <form action="delete_warehouse.php" method="post">
+              <label class="labels">ID do armazém a ser excluído:</label>
+              <input type="text"  placeholder="armazem" name="armazem_id">
+              <input type="submit" value="Delete Warehouse" name="apagar_warehouse">
+          </form>
 
-            <form action="delete_warehouse.php" method="post">
-                <label class="labels">ID do armazém a ser excluído:</label>
-                <input type="text"  placeholder="armazem" name="armazem_id">
-                <input type="submit" value="Delete Warehouse" name="apagar_warehouse">
-            </form>
+          <?php
+          }else{
+              echo "<br>Nao tem armazéns seus neste momento.";
+          }
 
-            <?php
-            }else{
-                echo "<br>Nao tem armazéns seus neste momento.";
-            }
-
-            ?>
+          ?>
 
 
-            <h2 class="text-right">Registar Novo Armazém:</h2>
-            </div>
-            <form action="registerWarehouse.php" method="post">
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label for="name_warehouse"><b>Nome do armazém</b></label>
-                        <input type="text" name="name_warehouse" id="wname">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="phone_warehouse"><b>Número de telemovel</b></label>
-                        <input type="text" name="phone_warehouse" id="wphone">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="email_warehouse"><b>Email</b></label>
-                        <input type="text" name="email_warehouse" id="wemail">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="city_warehouse"><b>Cidade</b></label>
-                        <input type="text" name="city_warehouse" id="wcity">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="district_warehouse"><b>Distrito</b></label>
-                        <input type="text" name="district_warehouse" id="wdistrict">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="address_warehouse"><b>Endereço</b></label>
-                        <input type="text" name="address_warehouse" id="wadress">
-                    </div>
-                </div>
-                <div class="mt-3 text-center">
-                    <div class="col-md-4">
-                        <input type="submit" value="Create Warehouse" name="newWarehouse">
-                    </div>
-                </div>
-            </form>
+      <h2 class="text-right">Registar Novo Armazém:</h2>
+          </div>
+          <form action="registerWarehouse.php" method="post">
+              <div class="row mt-3">
+                  <div class="col-md-12">
+                      <label for="name_warehouse"><b>Nome do armazém</b></label>
+                      <input type="text" name="name_warehouse" id="wname">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="phone_warehouse"><b>Número de telemovel</b></label>
+                      <input type="text" name="phone_warehouse" id="wphone">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="email_warehouse"><b>Email</b></label>
+                      <input type="text" name="email_warehouse" id="wemail">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="city_warehouse"><b>Cidade</b></label>
+                      <input type="text" name="city_warehouse" id="wcity">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="district_warehouse"><b>Distrito</b></label>
+                      <input type="text" name="district_warehouse" id="wdistrict">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="address_warehouse"><b>Endereço</b></label>
+                      <input type="text" name="address_warehouse" id="wadress">
+                  </div>
+              </div>
+              <div class="mt-3 text-center">
+                  <div class="col-md-4">
+                      <input type="submit" value="Create Warehouse" name="newWarehouse">
+                  </div>
+              </div>
+          </form>
         </div>
         <div class="footer-clean">
             <footer>
