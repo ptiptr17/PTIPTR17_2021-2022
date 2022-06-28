@@ -45,6 +45,17 @@ $data =  date("Y-m-d H:i:s");
 $dataFinal = date('Y-m-d H:i:s', strtotime($data. ' + 7 days'));
 
 // Inserir para a tabela
+
+$delete_product = "DELETE FROM cart_item WHERE product_id = '$product_id'";
+$res1 = mysqli_query ($conn, $delete_product);
+
+if($res1){
+    echo ("Product removed sucessfully from cart.");
+}else{
+    echo "não foi possivel remover o produto do carrino devido a um erro";
+}
+
+
 $insert_order = "insert into order_info(product_id, consumer_id, consumer_name, supplier_id, product_name, postalcode_origin, postalcode_destin, price,  creation_date, cancelation_date) values('$product_id', '$userid', '$username', '$supplier_id', '$product_name', '$w_postalcode', '$c_postalcode', '$price', '$data', '$dataFinal')";
 
 $res= mysqli_query ($conn, $insert_order);

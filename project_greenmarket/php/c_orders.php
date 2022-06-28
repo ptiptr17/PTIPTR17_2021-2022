@@ -174,7 +174,7 @@ session_start();
                         <div class="col-sm-4 col-md-3 item">
                             <h3>Projeto de PTI/PTR</h3>
                             <ul>
-                                <li><a href="welcome.html">Sobre o Projeto</a></li>
+                                <li><a href="../html/welcome.html">Sobre o Projeto</a></li>
                                 <li><a href="#">FAQs</a></li>
                                 <li><a href="#">Sobre Nós</a></li>
                             </ul>
