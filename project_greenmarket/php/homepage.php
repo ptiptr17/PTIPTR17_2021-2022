@@ -76,7 +76,7 @@ session_start();
         </div>
     </header>
         <div class="conteudo container row">
-            <h2 text="center"> Bem vindo <?php echo $_SESSION['username'] ?>
+            <h2 text="center"> Bem vindo, <?php echo $_SESSION['username'] ?>
             <div class="categories">
             <p> <?php $_SESSION["username"]; ?> </p>
             <p> <?php $_SESSION["usertype"]; ?> </p>

@@ -123,6 +123,7 @@ session_start();
             <?php echo "</ul>"; ?>
 
             <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                <!-- fazer query para verificar se produto já está no carrinho -->
                 <form action="p_cart.php" method="post">
                     <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
                     <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />

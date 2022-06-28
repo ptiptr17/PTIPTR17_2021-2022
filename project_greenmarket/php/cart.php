@@ -98,7 +98,7 @@ session_start();
                 echo"<li><h3>Produto:</h3>";
                 echo $row['product_name'];
                 echo"<li><h3>preco:</h3><br>";
-                echo $row['price'];
+                echo $row['price']."€";
                 echo "</ul>";
         ?>
                 <form action="product.php" method="post">

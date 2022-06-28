@@ -84,7 +84,7 @@ session_start();
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='completed'";
+        $query = "SELECT * FROM order_info WHERE consumer_id='$userid' AND status!='delivery completed'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
@@ -120,7 +120,7 @@ session_start();
                 echo "</ul>";
                 $current_date =  date("Y-m-d H:i:s");
                 $cancelation_date = $row['cancelation_date'];
-                $diff_dates = date_diff(date_create($current_date) , $deliverydate);
+                $diff_dates = date_diff(date_create($current_date) , date_create($cancelation_date));
                 
                 if($row['cancelation_date'] != NULL && $diff_dates -> format("%R%a days") <= 0){
         ?>

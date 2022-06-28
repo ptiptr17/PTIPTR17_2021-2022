@@ -1,7 +1,7 @@
 <?php
 //phpinfo();
 
-echo "a iniciar ligação à bd<br>";
+//echo "a iniciar ligação à bd<br>";
 /*
 $dbhost = "sql212.epizy.com";
 $dbuser = "epiz_31612828";
@@ -23,7 +23,7 @@ $dbpass2= "";
 //$dbpass3= "fc53304";
 
 
-echo "a tentar conexão<br>";
+//echo "a tentar conexão<br>";
 
 // Cria a ligação à BD
 
@@ -36,7 +36,7 @@ echo "connection failed<br>";
 die("Database connection failed: " . mysqli_connect_error());
 
 } else{
-	echo "<p> connection worked!</p>";
+//	echo "<p> connection worked!</p>";
 }
 
 

@@ -140,7 +140,7 @@ session_start();
                     }else{
                         $current_date =  date("Y-m-d H:i:s");
                         $deliverydate = $row['delivery_date'];
-                        $diff_dates = date_diff(date_create($current_date) , $deliverydate);
+                        $diff_dates = date_diff(date_create($current_date) , date_create($deliverydate));
                         if( $diff_dates -> format("%R%a days") > 0 ){?>
                             <form action="t_order_complete.php" method="post">
                             <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
