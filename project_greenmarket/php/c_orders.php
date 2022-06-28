@@ -121,8 +121,10 @@ session_start();
                 $current_date =  date("Y-m-d H:i:s");
                 $cancelation_date = $row['cancelation_date'];
                 $diff_dates = date_diff(date_create($current_date) , date_create($cancelation_date));
-                
-                if($row['cancelation_date'] != NULL && $diff_dates -> format("%R%a days") <= 0){
+                if($row['status'] == 'approved'){
+                    echo "encomenda aprovada e em curso processo de entrega.";
+                }
+                if($row['cancelation_date'] != NULL && $diff_dates -> format("%R%a days") <= 0 && $row['status'] == 'awaiting approval'){
         ?>
                 <form action="c_order_delete.php" method="post">
                     <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />

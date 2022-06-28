@@ -123,8 +123,8 @@ session_start();
                 if($row['status'] == "awaiting approval"){?>
                     <form action="t_order_approval.php" method="post">
                     <input type="hidden" name="id_encomenda" value="<?php echo $row['order_id']; ?>" />
-                    <input type="submit" value="Aceitar Encomenda" name="encomendar">
-                    <input type="submit" value="Não aceitar Encomenda" name="encomendar">
+                    <input type="submit" value="Aceitar encomenda" name="encomendar">
+                    <input type="submit" value="Nao aceitar encomenda" name="encomendar">
                     </form>
                 <?php
                 }elseif($row['status'] != "awaiting approval" && $row['status'] != 'delivery completed'){
