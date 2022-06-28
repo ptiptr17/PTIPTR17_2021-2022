@@ -25,6 +25,34 @@ session_start();
         border: 1px solid #000;
         }
 
+        div.body{
+            display: grid;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px; 
+            background:#4CAF50;
+            border: 2px solid black; 
+            border-radius: 5px;
+            margin: auto;
+        }
+
+        
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto 
+        }
+
+
     </style>
     <body>
     <header class="header">
@@ -84,95 +112,84 @@ session_start();
             <hr>
         </div>
     </header>
-        
-        <br>
-        <h1> Carrinho de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
-        <br>
-        <br>
-
+    <div class="body">
         <?php
-        $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
-        $res = mysqli_query($conn, $query);
 
-        if(mysqli_num_rows($res) > 0){
+        echo "<h2> Vestuário: </h2>";
 
-            echo "<h2> produtos no carrinho: </h2>";
-            
-            while($row = mysqli_fetch_array($res)) {
+        $query = "SELECT * FROM product_info where one_category = 'vestuario'";
+        $rese = mysqli_query($conn, $query);
+        if(mysqli_num_rows($rese) > 0){
+
+            while($row = mysqli_fetch_array($rese)) {
 
                 echo"<ul>";
                 echo "<br>";
-                echo"<li><h3>Produto:</h3>";
-                echo $row['product_name'];
-                echo"<li><h3>preco:</h3><br>";
+                echo"<li><h3>".$row['product_name'].":</h3>";
+                echo"<li><h4>2ª categorias:</h4><br>";
+                echo $row['two_category'];
+                echo"<li><h4>preço:</h4><br>";
                 echo $row['price'];
+                echo"<li><h4>Imagem:</h4><br>";
+                echo $row['picture'];
                 echo "</ul>";
-        ?>
+                ?>
+
                 <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Ver produto" name="product">
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />    
+                    <input type="submit" value="Detalhes do produto" name="details">
                 </form>
 
-                <form action="c_order_process.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                    <input type="submit" value="Fazer Encomenda" name="encomendar">
-                </form>
-
-                <form action="delete_cart_item.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Remover produto do carrinho" name="delete">
-                </form>
-        <?php
+                <?php if($_SESSION['usertype'] == 'consumer'){ ?>
+                    <form action="c_order.php" method="post">
+                        <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
+                        <input type="submit" value="Ir para o carrinho" name="carrinho">
+                    </form>
+                <?php }
             }
-
-        }elseif(mysqli_num_rows($res) == 0){
-            echo "<h3> Não existem produtos no seu carrinho. </h3>";
-        }else{
-            echo "<h3> erro a encontrar produtos no seu carrinho. </h3>";
         }
         ?>
-
-        <div class="footer-clean">
-            <footer>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-sm-4 col-md-3 item">
-                            <h3>
-                                <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505944">PTI</a>
-                                <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943">PTR</a>
-                            </h3>
-                            <ul>
-                                <li><a href="https://ciencias.ulisboa.pt/pt/perfil/amferreira">António Ferreira</a></li>
-                                <li><a href="https://ciencias.ulisboa.pt/perfil/aodsa">Alan Oliveira</a></li>
-                                <li><a href="https://ciencias.ulisboa.pt/pt/perfil/mcalha">Mário Calha</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4 col-md-3 item">
-                            <h3>Membros do Grupo</h3>
-                            <ul>
-                                <li><a href="">Filipe Santos</a></li>
-                                <li><a href="">Gonçalo Rocha</a></li>
-                                <li><a href="">José Dias</a></li>
-                                <li><a href="">Miguel Martins</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4 col-md-3 item">
-                            <h3>Projeto de PTI/PTR</h3>
-                            <ul>
-                                <li><a href="welcome.html">Sobre o Projeto</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Sobre Nós</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-3 item social"><a href="https://github.com/ptiptr17/PTIPTR17_2021-2022"><i class="fa fa-github"></i></a>
-                            <p class="copyright">© GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022</p>
-                        </div>
+    </div>
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>
+                            <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505944">PTI</a>
+                            <a href="https://fenix.ciencias.ulisboa.pt/degrees/tecnologias-de-informacao-564500436615450/disciplina-curricular/2253530685505943">PTR</a>
+                        </h3>
+                        <ul>
+                            <li><a href="https://ciencias.ulisboa.pt/pt/perfil/amferreira">António Ferreira</a></li>
+                            <li><a href="https://ciencias.ulisboa.pt/perfil/aodsa">Alan Oliveira</a></li>
+                            <li><a href="https://ciencias.ulisboa.pt/pt/perfil/mcalha">Mário Calha</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Membros do Grupo</h3>
+                        <ul>
+                            <li><a href="">Filipe Santos</a></li>
+                            <li><a href="">Gonçalo Rocha</a></li>
+                            <li><a href="">José Dias</a></li>
+                            <li><a href="">Miguel Martins</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Projeto de PTI/PTR</h3>
+                        <ul>
+                            <li><a href="welcome.html">Sobre o Projeto</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Sobre Nós</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 item social"><a href="https://github.com/ptiptr17/PTIPTR17_2021-2022"><i class="fa fa-github"></i></a>
+                        <p class="copyright">© GreenMarket by Grupo 17 PTI/PTR - Ano Letivo 2021/2022</p>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
+    </div>
+
+
     </body>
 </html>

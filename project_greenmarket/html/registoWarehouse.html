@@ -52,40 +52,41 @@
 
         <div class="conteudo container row">
 
-           <form action="../php/register.php" method="post">
+           <form action="../php/registerWarehouse.php" method="post">
             <h1>Registo</h1>
-            <p>Para criar uma conta nova siga os passos seguintes:</p>
+            <p>Para adicionar um armazém à sua conta siga os passos seguintes:</p>
             <hr>
             
 
             <div class="a">
-            <label for="email_user"><b>Email</b></label>
-            <input type="text" name="email_user" id="email" />
+            <label for="name_warehouse"><b>Nome do armazém</b></label>
+            <input type="text" name="name_warehouse" id="wname" />
             </div>
 
             <div class="b">
-            <label for="name_user"><b>username</b></label>
-            <input type="text" name="name_user" id="uname" />
+            <label for="phone_warehouse"><b>Número de telemovel</b></label>
+            <input type="text" name="phone_warehouse" id="wphone" />
             </div>
 
             <div class="c">
-            <label for="psw_user"><b>Password</b></label>
-            <input type="password" name="psw_user" id="psw" />
+            <label for="province_warehouse"><b>Provincia</b></label>
+            <input type="text" name="province_warehouse" id="wprovince" />
             </div>
 
-            <div class="c">
-            <label for="psw-repeat"><b>Repita a Password</b></label>
-            <input type="password" name="psw-repeat" id="psw-repeat" />
+            <div class="d">
+            <label for="city_warehouse"><b>Cidade</b></label>
+            <input type="text" name="city_warehouse" id="wcity" />
             </div>
 
-            <p><b>tipo de utilizador:</b></p>
+            <div class="e">
+                <label for="district_warehouse"><b>Distrito</b></label>
+                <input type="text" name="district_warehouse" id="wdistrict" />
+            </div>
 
-            <label for="consumer"> <b>consumidor</b> </label>
-            <input type="radio" name="type_user" id="consumer" value="consumer" />
-            <label for="transporter"> <b>transportador</b> </label>
-            <input type="radio" name="type_user" id="transporter" value="transporter" />
-            <label for="supplier"> <b>fornecedor</b> </label>
-            <input type="radio" name="type_user" id="supplier" value="supplier" />
+            <div class="f">
+                <label for="address_warehouse"><b>Endereço</b></label>
+                <input type="text" name="address_warehouse" id="wadress" />
+            </div>
             
             <hr>
             <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>

@@ -25,6 +25,34 @@ session_start();
         border: 1px solid #000;
         }
 
+        div.body{
+            display: grid;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px; 
+            background:#4CAF50;
+            border: 2px solid black; 
+            border-radius: 5px;
+            margin: auto;
+        }
+
+        
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto 
+        }
+
+
     </style>
     <body>
     <header class="header">
@@ -85,55 +113,75 @@ session_start();
         </div>
     </header>
         
-        <br>
-        <h1> Carrinho de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
-        <br>
-        <br>
 
-        <?php
+    <?php
         $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
+        $query = "SELECT * FROM user_info WHERE username='$username'";
         $res = mysqli_query($conn, $query);
+        if (mysqli_num_rows($res) == 1) {
 
-        if(mysqli_num_rows($res) > 0){
-
-            echo "<h2> produtos no carrinho: </h2>";
-            
-            while($row = mysqli_fetch_array($res)) {
-
-                echo"<ul>";
-                echo "<br>";
-                echo"<li><h3>Produto:</h3>";
-                echo $row['product_name'];
-                echo"<li><h3>preco:</h3><br>";
-                echo $row['price'];
-                echo "</ul>";
-        ?>
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Ver produto" name="product">
-                </form>
-
-                <form action="c_order_process.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                    <input type="submit" value="Fazer Encomenda" name="encomendar">
-                </form>
-
-                <form action="delete_cart_item.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Remover produto do carrinho" name="delete">
-                </form>
-        <?php
-            }
-
-        }elseif(mysqli_num_rows($res) == 0){
-            echo "<h3> Não existem produtos no seu carrinho. </h3>";
-        }else{
-            echo "<h3> erro a encontrar produtos no seu carrinho. </h3>";
+            $row = mysqli_fetch_array($res);
         }
-        ?>
+    ?>
+        <br>
+        <h1> Dados da conta de <?php echo $_SESSION['username']; ?></h1>
+        <br>
+        <br>
+        <h2 class="text-right">Alterar dados do utilizador</h2>
+                    </div>
+                    <form action="edit_user.php" method="post">
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">username</label>
+                                <input type="text"  placeholder="UNome" name="uname_novo" value="<?php echo $row['username']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">name</label>
+                                <input type="text"  placeholder="Nome" name="nome_novo" value="<?php echo $row['name']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Email</label>
+                                <input type="text"  placeholder="Email" name="email_novo" value="<?php echo $row['email']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Phone number</label>
+                                <input type="text"  placeholder="Phone" name="phone_novo" value="<?php echo $row['phone']?>">
+                            </div>
+
+                            <?php
+                                $userid = $_SESSION['userid'];
+                                $query = "SELECT * FROM user_address WHERE user_id='$userid'";
+                                $res = mysqli_query($conn, $query);
+                                if (mysqli_num_rows($res) == 1) {
+
+                                    $row = mysqli_fetch_array($res);
+                                }
+                            ?>
+
+                            <div class="col-md-12">
+                                <label class="labels">Código Postal</label>
+                                <input type="text"  placeholder="Código Postal" name="codPostal_novo" value="<?php echo $row['postal_code']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Cidade</label>
+                                <input type="text"  placeholder="Cidade" name="cidade_novo" value="<?php echo $row['city']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Distrito</label>
+                                <input type="text"  placeholder="Código Postal" name="distrito_novo" value="<?php echo $row['district']?>">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Morada</label>
+                                <input type="text"  placeholder="Morada" name="morada_nova" value="<?php echo $row['address']?>">
+                            </div>
+                        </div>
+                        <div class="mt-3 text-center">
+                            <div class="col-md-4">
+                                <input type="submit" value="Save Profile" name="edit_utilizador">
+                            </div>
+                        </div>
+                    </form>
+
 
         <div class="footer-clean">
             <footer>

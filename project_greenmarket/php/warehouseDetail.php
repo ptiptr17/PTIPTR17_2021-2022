@@ -25,45 +25,61 @@ session_start();
         border: 1px solid #000;
         }
 
+
+        input[type=submit] {
+            padding:5px 15px; 
+            background:#4CAF50;
+            border: 2px solid black; 
+            border-radius: 5px;
+            margin: auto;
+        }
+
+        
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto 
+        }
+
+
     </style>
     <body>
-    <header class="header">
-        <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                    <a href="../php/homepage.php"><img src="../html/imagens/logo.png" width="400px"></a>
-                </div>
-                <div class="search">
-                    <input type="text" placeholder="Procurar..">
-                </div>
+        <header class="header">
+            <div class="container">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="../php/homepage.php"><img src="../html/imagens/logo.png" width="400px"></a>
+                    </div>
+                    <div class="search">
+                        <input type="text" placeholder="Procurar..">
+                    </div>
 
-                <?php if(isset($_SESSION['username'])):  ?>
-                <nav>
-                    <ul>
-                        <li><a href="../php/products.php"> Produtos </a></li>
-                        <li><a href="logout.php"> Terminar a sessão </a></li>
-                        <li><a href="profile.php"> <?php echo $_SESSION["username"];?> </a></li>
-                    </ul>
-                </nav>
-                <?php else:?>
+                    <?php if(isset($_SESSION['username'])):  ?>
                     <nav>
                         <ul>
-                        <li><a href="../html/products.html"> Produtos</a></li>
-                        <li><a href="../html/login.html"> Iniciar Sessão</a></li>
-                        <li><a href="../html/register.html"> Criar Conta</a></li>
+                          <li><a href="../html/products.html"> Produtos </a></li>
+                          <li><a href="logout.php"> Terminar a sessão </a></li>
+                          <li><a href="profile.php"> <?php echo $_SESSION["username"]."profile";?> </a></li>
                         </ul>
                     </nav>
-                <?php endif; ?>
-                <?php if($_SESSION['usertype'] == "consumer"):?>
-                <?php
-                    $userid = $_SESSION['userid'];
-                    $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
-                    $cnum = mysqli_query($conn, $query);
-                    $numcitems = mysqli_num_rows($cnum);
-                ?>
-                    <a href="../php/cart.php" aria-label="<?php echo $numcitems; ?> items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
+                    <?php else:?>
+                        <nav>
+                            <ul>
+                            <li><a href="../html/products.html"> Produtos</a></li>
+                            <li><a href="../html/login.html"> Iniciar Sessão</a></li>
+                            <li><a href="../html/register.html"> Criar Conta</a></li>
+                            </ul>
+                        </nav>
+                    <?php endif; ?>
+                    <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
                     <div id="nav-cart-count-container">
-                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content"><?php echo $numcitems; ?></span>
+                        <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0 nav-progressive-attribute nav-progressive-content">0</span>
                         <i class="fa fa-shopping-cart" style="font-size:24px"></i>
                     </div>
                     <div id="nav-cart-text-container" class=" nav-progressive-attribute">
@@ -75,65 +91,49 @@ session_start();
                         </span>
                     </div>
                     </a>
-                <?php elseif($_SESSION['usertype'] == "transporter"): ?>
-                    <a href="../php/t_order.php"> Encomendas </a>
-                <?php elseif($_SESSION['usertype'] == "supplier"): ?>
-                    <a href="../php/s_order.php"> Encomendas </a>
-                <?php endif ?>
+                </div>
+                <hr>
             </div>
-            <hr>
-        </div>
-    </header>
-        
+        </header>
         <br>
-        <h1> Carrinho de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
+        <h1> Armazéns de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
         <br>
+        <h2> Produtos neste armazém: </h2>
 
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM cart_item WHERE consumer_id='$userid'";
+        $warehouse_id = $_POST['warehouse_id'];
+        $query = "SELECT * FROM product_info WHERE w_id='$warehouse_id'";
         $res = mysqli_query($conn, $query);
 
         if(mysqli_num_rows($res) > 0){
 
-            echo "<h2> produtos no carrinho: </h2>";
-            
             while($row = mysqli_fetch_array($res)) {
 
-                echo"<ul>";
-                echo "<br>";
-                echo"<li><h3>Produto:</h3>";
-                echo $row['product_name'];
-                echo"<li><h3>preco:</h3><br>";
-                echo $row['price'];
-                echo "</ul>";
-        ?>
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Ver produto" name="product">
-                </form>
+            echo"<ul>";
+            echo "<h2> Dados relativos a cada produto: </h3>";
+            echo "<br>";
+            echo"<li><h3>Produto ".$row['product_id'].":</h3>";
+            echo"<li><h4>Nome do produto:</h4><br>";
+            echo "<li>".$row['product_name'];
+            echo"<li><h4>Categoria:</h4><br>";
+            echo "<li>".$row['one_category'];
+            echo"<li><h4>Sub-categoria:</h4><br>";
+            echo "<li>".$row['two_category'];
+            echo"<li><h4>Preço:</h4><br>";
+            echo "<li>".$row['price'].'€';
+        }?>
 
-                <form action="c_order_process.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
-                    <input type="submit" value="Fazer Encomenda" name="encomendar">
-                </form>
-
-                <form action="delete_cart_item.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
-                    <input type="submit" value="Remover produto do carrinho" name="delete">
-                </form>
         <?php
-            }
-
-        }elseif(mysqli_num_rows($res) == 0){
-            echo "<h3> Não existem produtos no seu carrinho. </h3>";
         }else{
-            echo "<h3> erro a encontrar produtos no seu carrinho. </h3>";
+            echo "<br>Nao tem produtos neste armazéns neste momento.";
+            echo "Se pretender adicionar produtos <a href='sProduct.php'>CLIQUE AQUI</a>";
         }
+
         ?>
+
 
         <div class="footer-clean">
             <footer>
@@ -174,5 +174,6 @@ session_start();
                 </div>
             </footer>
         </div>
+
     </body>
 </html>

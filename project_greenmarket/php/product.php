@@ -25,7 +25,7 @@ session_start();
         border: 1px solid #000;
         }
 
-        div{
+        div.body{
             display: grid;
             margin: auto;
             text-align: center;
@@ -40,16 +40,6 @@ session_start();
             margin: auto;
         }
 
-        
-        #filtros{
-            margin: auto;
-            text-align: left;
-        }
-
-        form {
-            margin: auto;
-            text-align: center;
-        }
 
 
     </style>
@@ -112,78 +102,68 @@ session_start();
         </div>
     </header>
         
-    <h1> Produtos </h1>
-    <br>
-    <hr>
-    <h2>Filtro</h2>
-    <ul><li>
-        <form class="filtros" action="eletro_filter.php" method="post">
-            <input type="submit" name="eletro_filer" value="Todos os Eletrodomésticos" />
-        </form>
+        <div class="body">
+            <h1>Detalhes do Produto </h1>
+            <br>
+            <?php
+            $username = $_SESSION['username'];
+            $userid = $_SESSION['userid'];
+            $product_id = $_POST['id_produto'];
+            $query = "SELECT * FROM product_info Where product_id='$product_id'";
+            $res = mysqli_query($conn, $query);
+            if(mysqli_num_rows($res) == 1){
+            
+                $row = mysqli_fetch_array($res);
 
-        <form class="filtros" action="mobilia_filter.php" method="post">
-            <input type="submit" name="mobilia_filer" value="Todas as Mobilias" />
-        </form>
-
-        <form class="filtros" action="vestuario_filter.php" method="post">
-            <input type="submit" name="vestuario_filer" value="Todo o Vestuário" />
-        </form>
-    </ul></li>
-    <hr>
-
-    <?php
-
-        echo "<br><h2> todos os produtos: </h2>";
-        echo "<br>";
-        $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM product_info";
-        $res = mysqli_query($conn, $query);
-        if(mysqli_num_rows($res) > 0){
-
-            while($row = mysqli_fetch_array($res)) {
-
-                echo"<div>";
                 echo"<ul>";
-                echo"<li><h3>".$row['product_name'].":</h3>";
-
+                echo"<li><h2>".$row['product_name'].":</h2>";
+                echo "<br>";
                 if($row['one_category'] == "eletrodomestico"){
-                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='150' height='90'/>";
+                    echo "<li><img src ='../html/imagens/eletrodomesticos.jpg' width ='200' height='120'/>";
                 }elseif($row['one_category'] == "vestuario"){
-                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='150' height='90'/>";
+                    echo "<li><img src ='../html/imagens/vestuario.jpg' width ='200' height='120'/>";
                 }elseif($row['one_category'] == "mobilia"){
-                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
+                    echo "<li><img src ='../html/imagens/mobilia.jpg' width ='200' height='120'/>";
                 }
-                
-                echo"<li><h4>categorias:</h4>";
+                echo "<br>";
+                echo"<li><h4>categories:</h4><br>";
                 echo $row['one_category']."<br>";
-                echo $row['two_category']."<br>";
-                echo"<li><h4>price:</h4>";
+                echo $row['two_category'];
+                echo"<li><h4>price:</h4><br>";
                 echo $row['price'];
+                echo "<li><h4>production date:</h4><br>";
+                echo $row['production_date'];
+                echo"<li><h4>expenditure:</h4><br>";
+                echo $row['resource_cast'];
+                echo"<li><h4>eletricity:</h4><br>";
+                echo $row['eletricity_cast'];
+                echo"<li><h4>water:</h4><br>";
+                echo $row['water_cast'];
+                echo"<li><h4>polution caused:</h4><br>";
+                echo $row['pollution_caused'];
+                echo"<li><h4>shelf life:</h4><br>";
+                echo $row['shelf_life'];
+                echo"<li><h4>description:</h4><br>";
+                echo $row['descript'];
                 echo"<li><h4>Image:</h4><br>";?>
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
-                <?php echo"</ul>";?>
-                <?php echo"</div>";?>  
-                
+                <?php echo "</ul>"; ?>
 
-                <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />  
-                    <input type="submit" value="Detalhes do produto" name="details">
-                </form>
                 <?php if($_SESSION['usertype'] == 'consumer'){ ?>
                     <form action="p_cart.php" method="post">
                         <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
                         <input type="hidden" name="nome_produto" value="<?php echo $row['product_name']; ?>" />
                         <input type="hidden" name="preco_produto" value="<?php echo $row['price']; ?>" />
+
                         <input type="submit" value="Ir para o carrinho" name="carrinho">
                     </form>
-                    <br>
                 <?php } ?>
-    	<?php
+            <?php
+            }else{
+                echo"<h3>conflito no produto escolhido.</h3>";
             }
-        }
-    ?>
-
+            ?>
+        </div>
     <div class="footer-clean">
         <footer>
             <div class="container">
@@ -224,5 +204,92 @@ session_start();
         </footer>
     </div>
 
+
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+/*
+function component($productname, $productprice, $productimg, $productid){
+    $element = "
+    
+    <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+                <form action=\"index.php\" method=\"post\">
+                    <div class=\"card shadow\">
+                        <div>
+                            <img src=\"$productimg\" alt=\"Image1\" class=\"img-fluid card-img-top\">
+                        </div>
+                        <div class=\"card-body\">
+                            <h5 class=\"card-title\">$productname</h5>
+                            <h6>
+                                <i class=\"fas fa-star\"></i>
+                                <i class=\"fas fa-star\"></i>
+                                <i class=\"fas fa-star\"></i>
+                                <i class=\"fas fa-star\"></i>
+                                <i class=\"far fa-star\"></i>
+                            </h6>
+                            <p class=\"card-text\">
+                                Some quick example text to build on the card.
+                            </p>
+                            <h5>
+                                <small><s class=\"text-secondary\">$519</s></small>
+                                <span class=\"price\">$$productprice</span>
+                            </h5>
+
+                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Add to Cart <i class=\"fas fa-shopping-cart\"></i></button>
+                             <input type='hidden' name='product_id' value='$productid'>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    ";
+    echo $element;
+}
+
+function cartElement($productimg, $productname, $productprice, $productid){
+    $element = "
+    
+    <form action=\"cart.php?action=remove&id=$productid\" method=\"post\" class=\"cart-items\">
+                    <div class=\"border rounded\">
+                        <div class=\"row bg-white\">
+                            <div class=\"col-md-3 pl-0\">
+                                <img src=$productimg alt=\"Image1\" class=\"img-fluid\">
+                            </div>
+                            <div class=\"col-md-6\">
+                                <h5 class=\"pt-2\">$productname</h5>
+                                <small class=\"text-secondary\">Seller: dailytuition</small>
+                                <h5 class=\"pt-2\">$$productprice</h5>
+                                <button type=\"submit\" class=\"btn btn-warning\">Save for Later</button>
+                                <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Remove</button>
+                            </div>
+                            <div class=\"col-md-3 py-5\">
+                                <div>
+                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>
+                                    <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
+                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-plus\"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+    
+    ";
+    echo  $element;
+}
+*/
+?>

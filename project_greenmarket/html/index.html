@@ -1,18 +1,13 @@
-<!--<?php
-    include "openconn.php";
-    session_start();
-?>-->
 <!DOCTYPE html>
 <html lang="pt">
     <head>
         <meta charset="UTF-8">
         <title>GreenMarket</title>
         <link rel="icon" href="imagens/icon.png"/>
-        <link rel="stylesheet" type="text/css" href="css/register.css">
+        <link rel="stylesheet" type="text/css" href="css/welcome.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/register.css">
-        <script type="text/javascript" src="./register.js" defer></script>
+        <script type= "text/javascript" src = "welcome.js"></script>
     </head>
     <body>
         <header class="header">
@@ -26,10 +21,10 @@
                     </div>
                     <nav>
                         <ul>
-                            <li><a href="products.html"> Produtos</a></li>
-                            <li><a href="login.html"> Iniciar Sessão</a></li>
-                            <li><a href="register.html"> Criar Conta</a></li>
-                        </ul>
+                        <li><a href="products.html"> Produtos</a></li>
+                        <li><a href="login.html"> Iniciar Sessão</a></li>
+                        <li><a href="register.html"> Criar Conta</a></li>
+                      </ul>
                     </nav>
                     <a href="cartView.html" aria-label="0 items in cart" class="nav-a nav-a-2 nav-progressive-attribute" id="nav-cart">
                     <div id="nav-cart-count-container">
@@ -49,52 +44,18 @@
                 <hr>
             </div>
         </header>
-
         <div class="conteudo container row">
-
-           <form action="../php/register.php" method="post">
-            <h1>Registo</h1>
-            <p>Para criar uma conta nova siga os passos seguintes:</p>
-            <hr>
-            
-
-            <div class="a">
-            <label for="email_user"><b>Email</b></label>
-            <input type="text" name="email_user" id="email" />
+            <div class="col-2">
+                <h1>PENSE DUAS VEZES<br> ANTES DE COMPRAR!</h1>
+                <p>Um site onde existe espaço para ajudar o planeta, num mundo melhor<br> com os produtos certos!</p>
+                <a href="homepage.html" class="btn">Comece Agora &#8594;</a>
             </div>
-
-            <div class="b">
-            <label for="name_user"><b>username</b></label>
-            <input type="text" name="name_user" id="uname" />
+            <div class="col-2">
+                <img src="imagens/welcome.png">
             </div>
-
-            <div class="c">
-            <label for="psw_user"><b>Password</b></label>
-            <input type="password" name="psw_user" id="psw" />
-            </div>
-
-            <div class="c">
-            <label for="psw-repeat"><b>Repita a Password</b></label>
-            <input type="password" name="psw-repeat" id="psw-repeat" />
-            </div>
-
-            <p><b>tipo de utilizador:</b></p>
-
-            <label for="consumer"> <b>consumidor</b> </label>
-            <input type="radio" name="type_user" id="consumer" value="consumer" />
-            <label for="transporter"> <b>transportador</b> </label>
-            <input type="radio" name="type_user" id="transporter" value="transporter" />
-            <label for="supplier"> <b>fornecedor</b> </label>
-            <input type="radio" name="type_user" id="supplier" value="supplier" />
-            
-            <hr>
-            <p>Ao criar uma conta está a concordar com <a href="#">Termos e Privacidade</a>.</p>
-            <!-- <button type="submit" class="register">Register</button> -->
-            <input type="submit" value="Submit" name="register_begin">
-          </form>
-        
         </div>
-        
+        <br>
+        <br>
         <div class="footer-clean">
           <footer>
               <div class="container">
