@@ -107,7 +107,7 @@ session_start();
                 echo"<li><h4>Image:</h4><br>";?>
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
                 <?php echo"</ul>";
-            }?>
+            }}?>
         
         <div class="footer-clean">
             <footer>
