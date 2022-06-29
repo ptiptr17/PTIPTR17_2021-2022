@@ -73,6 +73,34 @@ session_start();
             echo "<br><h3><a href='admin_users.php'>Ver utilizadores</a></h3><br>";
         }
         ?>
+
+        <div>
+        <h2>Listagem de todos os armazéns:</h2>
+        <?php
+        $querya = "SELECT * FROM warehouse_info";
+        $resa = mysqli_query($conn, $querya);
+        if (mysqli_num_rows($resa) > 0) {
+            while($row = mysqli_fetch_array($resa)) {
+                echo"<ul>";
+                echo "<h2> Dados relativos a todos os armazéns: </h2>";
+                    echo "<br>";
+                    echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+                    echo"<li><h4>Nome do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_name'];
+                    echo"<li><h4>Telefone do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_phone'];
+                    echo"<li><h4>Email:</h4><br>";
+                    echo "<li>".$row['email'];
+                    echo"<li><h4>Cidade:</h4><br>";
+                    echo "<li>".$row['city'];
+                    echo"<li><h4>Distrito:</h4><br>";
+                    echo "<li>".$row['district'];
+                    echo"<li><h4>Endereço:</h4><br>";
+                    echo "<li>".$row['address'];
+            }
+        }
+        ?>
+        </div>
         
         <div class="footer-clean">
             <footer>

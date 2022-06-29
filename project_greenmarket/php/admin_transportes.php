@@ -73,6 +73,32 @@ session_start();
             echo "<br><h3><a href='admin_users.php'>Ver utilizadores</a></h3><br>";
         }
         ?>
+
+        <div>
+        <h2>Listagem de todos os veiculos:</h2>
+        <?php
+        $queryv = "SELECT * FROM vehicle_info";
+        $resv = mysqli_query($conn, $queryv);
+        if (mysqli_num_rows($resv) > 0) {
+            while($row = mysqli_fetch_array($resv)) {
+                echo"<ul>";
+                echo "<h2> Dados relativos a todos os Veículos: </h2>";
+                echo "<br>";
+                echo"<li><h3>Veículo ".$row['vehicle_id'].":</h3>";
+                echo"<li><h4>Tipo de veículo:</h4><br>";
+                echo "<li>".$row['vehicle_type'];
+                echo"<li><h4>Matricula:</h4><br>";
+                echo "<li>".$row['plate_number'];
+                echo"<li><h4>Poluição Causada:</h4><br>";
+                echo "<li>".$row['pollution_caused'];
+                echo"<li><h4>Descrição:</h4><br>";
+                echo "<li>".$row['descript'];
+                echo"<li><h4>Image:</h4><br>";
+                echo "<li>".$row['pic_desc'];
+                echo "</ul>";
+            }}?>
+
+        </div>
         
         <div class="footer-clean">
             <footer>

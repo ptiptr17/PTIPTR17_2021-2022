@@ -73,6 +73,41 @@ session_start();
             echo "<br><h3><a href='admin_users.php'>Ver utilizadores</a></h3><br>";
         }
         ?>
+
+        <div>
+        <h2>Listagem de todos os produtos:</h2>
+        <?php
+        $queryp = "SELECT * FROM product_info";
+        $resp = mysqli_query($conn, $queryp);
+        if (mysqli_num_rows($resp) > 0) {
+            while($row = mysqli_fetch_array($resp)) {
+                echo"<ul>";
+                echo "<br>";
+                echo"<li><h2>produto ".$row['product_id'].":</h2>";
+                echo $row['product_name'];
+                echo"<li><h4>categories:</h4><br>";
+                echo $row['one_category'];
+                echo $row['two_category'];
+                echo"<li><h4>price:</h4><br>";
+                echo $row['price'];
+                echo "<li><h4>production date:</h4><br>";
+                echo $row['production_date'];
+                echo"<li><h4>expenditure:</h4><br>";
+                echo $row['resource_cast'];
+                echo"<li><h4>eletricity:</h4><br>";
+                echo $row['eletricity_cast'];
+                echo"<li><h4>water:</h4><br>";
+                echo $row['water_cast'];
+                echo"<li><h4>polution caused:</h4><br>";
+                echo $row['pollution_caused'];
+                echo"<li><h4>shelf life:</h4><br>";
+                echo $row['shelf_life'];
+                echo"<li><h4>description:</h4><br>";
+                echo $row['descript'];
+                echo"<li><h4>Image:</h4><br>";?>
+                <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
+                <?php echo"</ul>";
+            }?>
         
         <div class="footer-clean">
             <footer>
