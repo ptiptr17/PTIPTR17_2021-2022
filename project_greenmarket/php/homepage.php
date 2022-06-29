@@ -17,6 +17,15 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+    </style>
     <body>
     <header class="header">
         <div class="container">
@@ -82,7 +91,7 @@ session_start();
             <p> <?php $_SESSION["usertype"]; ?> </p>
                 <div class="slideshow-container">
                     <h2 class="title">Produtos Green <i class="fa fa-leaf" aria-hidden="true"></i></h2>
-                    
+
                     <div class="mySlides fade">
                         <div class="row">
                             <div class="col-4">
@@ -167,7 +176,7 @@ session_start();
                                 </div>
                                 <p>749,99€</p>
                             </div>
-                            
+
                             <div class="col-4">
                                 <img src="https://www.worten.pt/i/63097c70a7d0cb9cc244e40a08d873195fa82c4e.jpg">
                                 <h4>iPhone 13 Pro Max APPLE <i class="fa fa-leaf" aria-hidden="true"></i></h4>
@@ -253,12 +262,12 @@ session_start();
                         </div>
                     </div>
                     <a class="prev" onclick="plusSlides(-1)">❮</a>
-                    <a class="next" onclick="plusSlides(1)">❯</a> 
+                    <a class="next" onclick="plusSlides(1)">❯</a>
                 </div>
                 <div style=" text-align:center ">
-                    <span class="dot" onclick="currentSlide(1)"></span> 
-                    <span class="dot" onclick="currentSlide(2)"></span> 
-                    <span class="dot" onclick="currentSlide(3)"></span> 
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
                 </div>
                 <a href="products.html"><button class="button button1" style=" text-align:right"><i class="fa fa-plus" aria-hidden="true"></i> Ver Mais</button></a>
                 <br>
@@ -433,12 +442,12 @@ session_start();
                         </div>
                     </div>
                     <a class="prev" onclick="plusSlides2(-1)">❮</a>
-                    <a class="next" onclick="plusSlides2(1)">❯</a> 
-                </div>    
+                    <a class="next" onclick="plusSlides2(1)">❯</a>
+                </div>
                 <div style="text-align:center">
-                    <span class="dot2" onclick="currentSlide2(1)"></span> 
-                    <span class="dot2" onclick="currentSlide2(2)"></span> 
-                    <span class="dot2" onclick="currentSlide2(3)"></span> 
+                    <span class="dot2" onclick="currentSlide2(1)"></span>
+                    <span class="dot2" onclick="currentSlide2(2)"></span>
+                    <span class="dot2" onclick="currentSlide2(3)"></span>
                 </div>
                 <a href="products.html"><button class="button button1" style=" text-align:right"><i class="fa fa-plus" aria-hidden="true"></i> Ver Mais</button></a>
             </div>
@@ -446,55 +455,55 @@ session_start();
         <script>
         let slideIndex = 1;
         showSlides(slideIndex);
-        
+
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
-        
+
         function currentSlide(n) {
             showSlides(slideIndex = n);
         }
-        
+
         function showSlides(n) {
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}    
+            if (n > slides.length) {slideIndex = 1}
             if (n < 1) {slideIndex = slides.length}
             for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
+            slides[i].style.display = "none";
             }
             for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "block";  
+            slides[slideIndex-1].style.display = "block";
             dots[slideIndex-1].className += " active";
         }
 
         let slideIndex2 = 1;
         showSlides2(slideIndex2);
-        
+
         function plusSlides2(n) {
             showSlides2(slideIndex2 += n);
         }
-        
+
         function currentSlide2(n) {
             showSlides2(slideIndex2 = n);
         }
-        
+
         function showSlides2(n) {
             let i;
             let slides = document.getElementsByClassName("mySlides2");
             let dots = document.getElementsByClassName("dot2");
-            if (n > slides.length) {slideIndex2 = 1}    
+            if (n > slides.length) {slideIndex2 = 1}
             if (n < 1) {slideIndex2 = slides.length}
             for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
+            slides[i].style.display = "none";
             }
             for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex2-1].style.display = "block";  
+            slides[slideIndex2-1].style.display = "block";
             dots[slideIndex2-1].className += " active";
         }
         </script>

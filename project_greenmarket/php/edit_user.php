@@ -53,5 +53,5 @@ if( $username_novo === ""  || $nome === "" || $email === "" || $phone ==="" || $
 
 
 mysqli_close($conn);
-   
+
 ?>

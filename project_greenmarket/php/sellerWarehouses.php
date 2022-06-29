@@ -17,6 +17,43 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+        div.body{
+            display: grid;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px;
+            background:#4CAF50;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: auto;
+        }
+
+
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+
+    </style>
     <body>
     <header class="header">
         <div class="container">
@@ -80,85 +117,85 @@ session_start();
         <br>
         <br>
         <h2> Os teus Armazéns: </h2>
+        <div class="body">
+          <?php
+          $username = $_SESSION['username'];
+          $userid = $_SESSION['userid'];
+          $query = "SELECT * FROM warehouse_info WHERE supplier_id='$userid'";
+          $res = mysqli_query($conn, $query);
 
-        <?php
-        $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
-        $query = "SELECT * FROM warehouse_info WHERE supplier_id='$userid'";
-        $res = mysqli_query($conn, $query);
+          if(mysqli_num_rows($res) > 0){
 
-        if(mysqli_num_rows($res) > 0){
+              while($row = mysqli_fetch_array($res)) {
 
-            while($row = mysqli_fetch_array($res)) {
+              echo"<ul>";
+              echo "<h2> Dados relativos aos teus Armazéns: </h3>";
+              echo "<br>";
+              echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+              echo"<li><h4>Nome do armazém:</h4><br>";
+              echo "<li>".$row['warehouse_name'];
+              echo"<li><h4>Telefone do armazém:</h4><br>";
+              echo "<li>".$row['warehouse_phone'];
+              echo"<li><h4>Email:</h4><br>";
+              echo "<li>".$row['email'];
+              echo"<li><h4>Cidade:</h4><br>";
+              echo "<li>".$row['city'];
+              echo"<li><h4>Distrito:</h4><br>";
+              echo "<li>".$row['district'];
+              echo"<li><h4>Endereço:</h4><br>";
+              echo "<li>".$row['address'];
+          }?>
 
-            echo"<ul>";
-            echo "<h2> Dados relativos aos teus Armazéns: </h3>";
-            echo "<br>";
-            echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
-            echo"<li><h4>Nome do armazém:</h4><br>";
-            echo "<li>".$row['warehouse_name'];
-            echo"<li><h4>Telefone do armazém:</h4><br>";
-            echo "<li>".$row['warehouse_phone'];
-            echo"<li><h4>Email:</h4><br>";
-            echo "<li>".$row['email'];
-            echo"<li><h4>Cidade:</h4><br>";
-            echo "<li>".$row['city'];
-            echo"<li><h4>Distrito:</h4><br>";
-            echo "<li>".$row['district'];
-            echo"<li><h4>Endereço:</h4><br>";
-            echo "<li>".$row['address'];
-        }?>
+          <form action="delete_warehouse.php" method="post">
+              <label class="labels">ID do armazém a ser excluído:</label>
+              <input type="text"  placeholder="armazem" name="armazem_id">
+              <input type="submit" value="Delete Warehouse" name="apagar_warehouse">
+          </form>
 
-        <form action="delete_warehouse.php" method="post">
-            <label class="labels">ID do armazém a ser excluído:</label>
-            <input type="text"  placeholder="armazem" name="armazem_id">
-            <input type="submit" value="Delete Warehouse" name="apagar_warehouse">
-        </form>
+          <?php
+          }else{
+              echo "<br>Nao tem armazéns seus neste momento.";
+          }
 
-        <?php
-        }else{
-            echo "<br>Nao tem armazéns seus neste momento.";
-        }
-
-        ?>
+          ?>
 
 
-    <h2 class="text-right">Registar Novo Armazém:</h2>
+      <h2 class="text-right">Registar Novo Armazém:</h2>
+          </div>
+          <form action="registerWarehouse.php" method="post">
+              <div class="row mt-3">
+                  <div class="col-md-12">
+                      <label for="name_warehouse"><b>Nome do armazém</b></label>
+                      <input type="text" name="name_warehouse" id="wname">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="phone_warehouse"><b>Número de telemovel</b></label>
+                      <input type="text" name="phone_warehouse" id="wphone">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="email_warehouse"><b>Email</b></label>
+                      <input type="text" name="email_warehouse" id="wemail">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="city_warehouse"><b>Cidade</b></label>
+                      <input type="text" name="city_warehouse" id="wcity">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="district_warehouse"><b>Distrito</b></label>
+                      <input type="text" name="district_warehouse" id="wdistrict">
+                  </div>
+                  <div class="col-md-12">
+                      <label for="address_warehouse"><b>Endereço</b></label>
+                      <input type="text" name="address_warehouse" id="wadress">
+                  </div>
+              </div>
+              <div class="mt-3 text-center">
+                  <div class="col-md-4">
+                      <input type="submit" value="Create Warehouse" name="newWarehouse">
+                  </div>
+              </div>
+          </form>
         </div>
-        <form action="registerWarehouse.php" method="post">
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label for="name_warehouse"><b>Nome do armazém</b></label>
-                    <input type="text" name="name_warehouse" id="wname">
-                </div>
-                <div class="col-md-12">
-                    <label for="phone_warehouse"><b>Número de telemovel</b></label>
-                    <input type="text" name="phone_warehouse" id="wphone">
-                </div>
-                <div class="col-md-12">
-                    <label for="email_warehouse"><b>Email</b></label>
-                    <input type="text" name="email_warehouse" id="wemail">
-                </div>
-                <div class="col-md-12">
-                    <label for="city_warehouse"><b>Cidade</b></label>
-                    <input type="text" name="city_warehouse" id="wcity">
-                </div>
-                <div class="col-md-12">
-                    <label for="district_warehouse"><b>Distrito</b></label>
-                    <input type="text" name="district_warehouse" id="wdistrict">
-                </div>
-                <div class="col-md-12">
-                    <label for="address_warehouse"><b>Endereço</b></label>
-                    <input type="text" name="address_warehouse" id="wadress">
-                </div>
-            </div>
-            <div class="mt-3 text-center">
-                <div class="col-md-4">
-                    <input type="submit" value="Create Warehouse" name="newWarehouse">
-                </div>
-            </div>
-        </form>
-
         <div class="footer-clean">
             <footer>
                 <div class="container">

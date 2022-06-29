@@ -17,6 +17,42 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+        div.body{
+            display: grid;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px;
+            background:#4CAF50;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: left;
+            margin: auto;
+        }
+
+
+        #filtros{
+            margin: auto;
+            text-align: left;
+        }
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+
+    </style>
     <body>
     <header class="header">
         <div class="container">
@@ -75,7 +111,7 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
     <h1> Produtos </h1>
     <br>
     <hr>
@@ -106,6 +142,7 @@ session_start();
 
             while($row = mysqli_fetch_array($res)) {
 
+                echo"<div class='body'>";
                 echo"<ul>";
                 echo"<li><h3>".$row['product_name'].":</h3>";
 
@@ -116,7 +153,7 @@ session_start();
                 }elseif($row['one_category'] == "mobilia"){
                     echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
                 }
-                
+
                 echo"<li><h4>categorias:</h4>";
                 echo $row['one_category']."<br>";
                 echo $row['two_category']."<br>";
@@ -125,9 +162,11 @@ session_start();
                 echo"<li><h4>Image:</h4><br>";?>
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
                 <?php echo"</ul>";?>
+                <?php echo"</div>";?>
+
 
                 <form action="product.php" method="post">
-                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />  
+                    <input type="hidden" name="id_produto" value="<?php echo $row['product_id']; ?>" />
                     <input type="submit" value="Detalhes do produto" name="details">
                 </form>
                 <?php if($_SESSION['usertype'] == 'consumer'){ ?>

@@ -17,6 +17,43 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+        div.body{
+            display: grid;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px;
+            background:#4CAF50;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: auto;
+        }
+
+
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+
+    </style>
     <body>
         <header class="header">
             <div class="container">
@@ -75,95 +112,95 @@ session_start();
                 <hr>
             </div>
         </header>
-        
-        <br>
-        <h1> Perfil de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
-        <br>
-        <img src ='../html/imagens/default_user_icon.png' width ='180' height='120'/>
-        <br>
-        
-        <?php
-        if($_SESSION["usertype"] == "consumer"){
-            echo "<h3><a href='../php/products.php'>Fazer compras</a></h3>";
-            echo "<br><h3><a href='c_orders.php'>Ver encomendas</a></h3><br>";
+        <div class="body">
+          <br>
+          <h1> Perfil de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
+          <br>
+          <img src ='../html/imagens/default_user_icon.png' width ='180' height='120'/>
+          <br>
 
-        }elseif($_SESSION["usertype"] == "transporter"){
-            echo "<br><h3><a href='transporterVehicles.php'>Os meus veiculos</a></h3><br>";
-            echo "<br><h3><a href='t_order.php'>Ver encomendas</a></h3><br>";
+          <?php
+          if($_SESSION["usertype"] == "consumer"){
+              echo "<h3><a href='../php/products.php'>Fazer compras</a></h3>";
+              echo "<br><h3><a href='c_orders.php'>Ver encomendas</a></h3><br>";
 
-        }elseif($_SESSION["usertype"] == "supplier"){
-            echo "<br><h3><a href='supplierProducts.php'>Os meus produtos</a></h3><br>";
-            echo "<br><h3><a href='sellerWarehouses.php'>Os meus armazéns</a></h3><br>";
-            echo "<br><h3><a href='s_order.php'>Ver encomendas</a></h3><br>";
-        }
-        ?>
+          }elseif($_SESSION["usertype"] == "transporter"){
+              echo "<br><h3><a href='transporterVehicles.php'>Os meus veiculos</a></h3><br>";
+              echo "<br><h3><a href='t_order.php'>Ver encomendas</a></h3><br>";
 
-        <?php
+          }elseif($_SESSION["usertype"] == "supplier"){
+              echo "<br><h3><a href='supplierProducts.php'>Os meus produtos</a></h3><br>";
+              echo "<br><h3><a href='sellerWarehouses.php'>Os meus armazéns</a></h3><br>";
+              echo "<br><h3><a href='s_order.php'>Ver encomendas</a></h3><br>";
+          }
+          ?>
 
-        $username = $_SESSION['username'];
-        $query = "SELECT * FROM user_info WHERE username='$username'";
-        $res = mysqli_query($conn, $query);
-        if (mysqli_num_rows($res) == 1) {
+          <?php
 
-            $row = mysqli_fetch_array($res);
-            
-            $userid = $row['user_id'];
-            $_SESSION['user_id'] = $userid;
+          $username = $_SESSION['username'];
+          $query = "SELECT * FROM user_info WHERE username='$username'";
+          $res = mysqli_query($conn, $query);
+          if (mysqli_num_rows($res) == 1) {
 
-            $nome = $row['name'];
-            $email = $row['email'];
-            $phone = $row['phone'];
+              $row = mysqli_fetch_array($res);
 
-            $query2 = "SELECT * FROM user_address WHERE user_id='$userid'";
-            $res2 = mysqli_query($conn, $query2);
-            if(mysqli_num_rows($res2) == 1){
+              $userid = $row['user_id'];
+              $_SESSION['user_id'] = $userid;
 
-                $row2 = mysqli_fetch_array($res2);
+              $nome = $row['name'];
+              $email = $row['email'];
+              $phone = $row['phone'];
 
-                echo"<ul>";
-                echo "<h2> dados gerais do ".$username.": </h2>";
-                echo "<br>";
-                    echo"<li><h3>account type:</h3>";
-                    echo "<li>".$row['accountType'];
-                    echo"<li><h3>user_id:</h3>";
-                    echo "<li>".$row['user_id'];
-                    echo"<li><h3>username:</h3>";
-                    echo "<li>".$row['username'];
-                    echo "<li><h3>name:</h3>";
-                    echo "<li>".$row['name'];
-                    echo"<li><h3>email:</h3>";
-                    echo "<li>".$row['email'];
-                    echo"<li><h3>phone number:</h3>";
-                    echo "<li>".$row['phone'];
-                    //echo"<li><h3>gender:</h3>";
-                    //echo "<li>".$row['gender'];
-                echo "<br>";
-                echo "<h2> dados relativos à localidade: </h2>";
-                echo "<br>";
-                    echo"<li><h3>codigo postal:</h3>";
-                    echo "<li>".$row2['postal_code'];
-                    echo "<li><h3>cidade:</h3>";
-                    echo "<li>".$row2['city'];
-                    echo"<li><h3>distrito:</h3>";
-                    echo "<li>".$row2['district'];
-                    echo"<li><h3>morada:</h3>";
-                    echo "<li>".$row2['address'];
-                echo"</ul>";
+              $query2 = "SELECT * FROM user_address WHERE user_id='$userid'";
+              $res2 = mysqli_query($conn, $query2);
+              if(mysqli_num_rows($res2) == 1){
 
-                $postalcode = $row2['postal_code'];
-                $city = $row2['city'];
-                $district = $row2['district'];
-                $address = $row2['address'];
-            }else{
-                echo "<br>dados indisponiveis";
-            }
-        }else {
-            echo "<br>dados indisponiveis";
-        }
+                  $row2 = mysqli_fetch_array($res2);
 
-        echo "<br>";
-        echo "<br>";
-        ?>
+                  echo"<ul>";
+                  echo "<h2> dados gerais do ".$username.": </h2>";
+                  echo "<br>";
+                      echo"<li><h3>account type:</h3>";
+                      echo "<li>".$row['accountType'];
+                      echo"<li><h3>user_id:</h3>";
+                      echo "<li>".$row['user_id'];
+                      echo"<li><h3>username:</h3>";
+                      echo "<li>".$row['username'];
+                      echo "<li><h3>name:</h3>";
+                      echo "<li>".$row['name'];
+                      echo"<li><h3>email:</h3>";
+                      echo "<li>".$row['email'];
+                      echo"<li><h3>phone number:</h3>";
+                      echo "<li>".$row['phone'];
+                      //echo"<li><h3>gender:</h3>";
+                      //echo "<li>".$row['gender'];
+                  echo "<br>";
+                  echo "<h2> dados relativos à localidade: </h2>";
+                  echo "<br>";
+                      echo"<li><h3>codigo postal:</h3>";
+                      echo "<li>".$row2['postal_code'];
+                      echo "<li><h3>cidade:</h3>";
+                      echo "<li>".$row2['city'];
+                      echo"<li><h3>distrito:</h3>";
+                      echo "<li>".$row2['district'];
+                      echo"<li><h3>morada:</h3>";
+                      echo "<li>".$row2['address'];
+                  echo"</ul>";
+
+                  $postalcode = $row2['postal_code'];
+                  $city = $row2['city'];
+                  $district = $row2['district'];
+                  $address = $row2['address'];
+              }else{
+                  echo "<br>dados indisponiveis";
+              }
+          }else {
+              echo "<br>dados indisponiveis";
+          }
+
+          echo "<br>";
+          echo "<br>";
+          ?>
 
                     <form action="alterarConta.php">
                         <input type="submit" value="Alterar Conta" name="alterar_conta">
@@ -172,15 +209,15 @@ session_start();
                     <br>
                     <h3 class="text-right">Eliminar Conta</h3>
                     <br>
-                    
+
                     <form action="delete_account.php" method="post">
-                        
+
                         <label class="labels">Password:</label>
                         <input type="password"  placeholder="Password" name="password" value="">
                         <br>
                         <input type="submit" value="Eliminar conta" name="delete_conta" class="btnL">
                     </form>
-                    
+        </div>
         <div class="footer-clean">
         <footer>
             <div class="container">
@@ -220,6 +257,6 @@ session_start();
             </div>
         </footer>
         </div>
-        
+
     </body>
 </html>

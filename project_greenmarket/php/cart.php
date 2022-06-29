@@ -17,6 +17,15 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+    </style>
     <body>
     <header class="header">
         <div class="container">
@@ -75,7 +84,7 @@ session_start();
             <hr>
         </div>
     </header>
-        
+
         <br>
         <h1> Carrinho de <?php echo $_SESSION['username']; ?>, <?php echo  $_SESSION["usertype"];?></h1>
         <br>
@@ -90,7 +99,7 @@ session_start();
         if(mysqli_num_rows($res) > 0){
 
             echo "<h2> produtos no carrinho: </h2>";
-            
+
             while($row = mysqli_fetch_array($res)) {
 
                 echo"<ul>";

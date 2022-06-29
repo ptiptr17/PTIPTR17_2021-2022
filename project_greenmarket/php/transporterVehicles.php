@@ -17,6 +17,43 @@ session_start();
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+        div.body{
+            display: grid;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=submit] {
+            padding:5px 15px;
+            background:#4CAF50;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: auto;
+        }
+
+
+
+        form {
+            margin: auto;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+
+    </style>
     <body>
     <header class="header">
         <div class="container">
@@ -80,7 +117,7 @@ session_start();
         <br>
         <br>
         <h2> Os teus Veículos: </h2>
-
+        <div class="body">
         <?php
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
@@ -198,7 +235,7 @@ session_start();
                 </div>
             </footer>
         </div>
-
+    </div>
         <div class="footer-clean">
         <footer>
             <div class="container">

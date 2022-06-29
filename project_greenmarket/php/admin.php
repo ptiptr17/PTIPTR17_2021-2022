@@ -17,6 +17,15 @@ session_start();
         <script type= "text/javascript" src = "admin.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
+    <style type="text/css">
+        body {
+        background: #ecf4e9;
+        padding: 2px 6px;
+        border-collapse: separate;
+        border: 1px solid #000;
+        }
+
+    </style>
     <body>
         <header class="header">
         <div class="container">
