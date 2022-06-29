@@ -25,7 +25,7 @@ session_start();
         border: 1px solid #000;
         }
 
-        div{
+        div.body{
             display: grid;
             margin: auto;
             text-align: center;
@@ -142,7 +142,7 @@ session_start();
 
             while($row = mysqli_fetch_array($res)) {
 
-                echo"<div>";
+                echo"<div class='body'>";
                 echo"<ul>";
                 echo"<li><h3>".$row['product_name'].":</h3>";
 
