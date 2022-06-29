@@ -36,15 +36,10 @@ session_start();
             background:#4CAF50;
             border: 2px solid black;
             border-radius: 5px;
-            margin: auto;
+            text-align: left;
         }
 
 
-
-        form {
-            margin: auto;
-            text-align: center;
-        }
 
         img {
             display: block;

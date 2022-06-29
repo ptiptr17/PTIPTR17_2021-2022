@@ -14,7 +14,7 @@ $insert_cart = "insert into cart_item(consumer_id, product_id, product_name, pri
 $res= mysqli_query ($conn, $insert_cart);
 if($res){
     echo "produto adicionado ao carrinho com sucesso<br>";
-    header( "refresh:10; url= ../php/cart.php");
+    header( "location: ../php/cart.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
     header( "refresh:10; url=../php/products.php" );
