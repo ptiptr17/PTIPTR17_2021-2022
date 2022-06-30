@@ -36,31 +36,21 @@ session_start();
             background:#4CAF50;
             border: 2px solid black;
             border-radius: 5px;
+            text-align: left;
+            margin: auto;
         }
 
 
-        h1{
-            position: relative;
-            left: 16%;
-        }
-
-        h2{
-            position: relative;
-            left: 16%;
-        }
-
-        hr.line{
-            position: relative;
-            left: 16%;
-            right: 16%;
+        #filtros{
+            margin: auto;
+            text-align: left;
         }
 
         form {
-            text-align: center;
-            display : block;
             margin: auto;
-
+            text-align: center;
         }
+
 
     </style>
     <body>
@@ -124,7 +114,7 @@ session_start();
 
     <h1> Produtos </h1>
     <br>
-    <hr class="line">
+    <hr>
     <h2>Filtro</h2>
     <ul><li>
         <form action="eletro_filter.php" method="post">
@@ -139,7 +129,7 @@ session_start();
             <input type="submit" name="vestuario_filer" value="Todo o Vestuário" />
         </form>
     </ul></li>
-    <hr class="line">
+    <hr>
 
     <?php
 

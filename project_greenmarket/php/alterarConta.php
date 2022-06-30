@@ -172,7 +172,7 @@ session_start();
                             </div>
                             <div class="col-md-12">
                                 <label class="labels">Distrito</label>
-                                <input type="text"  placeholder="Distrito" name="distrito_novo" value="<?php echo $row['district']?>">
+                                <input type="text"  placeholder="Código Postal" name="distrito_novo" value="<?php echo $row['district']?>">
                             </div>
                             <div class="col-md-12">
                                 <label class="labels">Morada</label>

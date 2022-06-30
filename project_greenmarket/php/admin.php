@@ -73,16 +73,240 @@ session_start();
         </header>
         <h1> Pagina de administrador </h1>
         <div>
+        <h2> listagem de todos os utilizadores:</h2>
+        <?php
+
+        $username = $_SESSION["username"];
+        $query = "SELECT * FROM user_info";
+        $res = mysqli_query($conn, $query);
+        if (mysqli_num_rows($res) > 0) {
+
+            while($row = mysqli_fetch_array($res)) {
+                echo"<ul>";
+                echo "<h3> dados relativos ao utilizador <b>".$row['username']."</b>: </h3>";
+                echo "<br>";
+                echo"<li><h3>account type:</h3>";
+                echo "<li>".$row['accountType'];
+                echo"<li><h3>user_id:</h3>";
+                echo "<li>".$row['user_id'];
+                echo"<li><h3>username:</h3>";
+                echo "<li>".$row['username'];
+                echo "<li><h3>name:</h3>";
+                echo "<li>".$row['name'];
+                echo"<li><h3>email:</h3>";
+                echo "<li>".$row['email'];
+                echo"<li><h3>phone number:</h3>";
+                echo "<li>".$row['phone'];
+                //echo"<li><h3>gender:</h3>";
+                //echo "<li>".$row['gender'];
+                $userid = $row['user_id'];
+
+
+                $query2 = "SELECT * FROM user_address WHERE user_id='$userid'";
+                $res2 = mysqli_query($conn, $query2);
+                if(mysqli_num_rows($res2) == 1){
+                    $row2 = mysqli_fetch_array($res2);
+
+                    echo "<br>";
+                    echo "<h3> dados relativos à sua localidade: </h3>";
+                    echo "<br>";
+                        echo"<li><h3>codigo postal:</h3>";
+                        echo "<li>".$row2['postal_code'];
+                        echo "<li><h3>cidade:</h3>";
+                        echo "<li>".$row2['city'];
+                        echo"<li><h3>distrito:</h3>";
+                        echo "<li>".$row2['district'];
+                        echo"<li><h3>morada:</h3>";
+                        echo "<li>".$row2['address'];
+                    echo"</ul>";
+                }else{
+                    echo"<li>este utilizador não tem dados de localidade.</li>";
+                    echo"</ul>";
+                }
+            }?>
+
+            <form action="edit_user.php" method="post">
+            <label class="labels">id de utilizador para editar:</label>
+            <input type="text"  placeholder="userid" name="userid" value="userid">
+            <br>
+            <input type="submit" value="Editar conta" name="edit_account" class="btnL">
+            </form>
+
+            <form action="delete_user.php" method="post">
+            <label class="labels">id de utilizador para eliminar:</label>
+            <input type="text"  placeholder="userid" name="userid" value="userid">
+            <br>
+            <input type="submit" value="Eliminar utilizador" name="delete_user" class="btnL">
+            </form>
 
         <?php
-        if($_SESSION["usertype"] == "admin"){
-            echo "<h3><a href='admin_produtos.php'>Ver produtos</a></h3>";
-            echo "<br><h3><a href='admin_transportes.php'>Ver transportes</a></h3><br>";
-            echo "<br><h3><a href='admin_armazens.php'>Ver armazens</a></h3><br>";
-            echo "<br><h3><a href='admin_users.php'>Ver utilizadores</a></h3><br>";
         }
         ?>
-        
+
+        <form action="create_user.php" method="post">
+        <label class="labels">criar utilizador:</label>
+        <!--
+        <input type="text"  placeholder="userid" name="userid" value="userid">
+        <br>
+        -->
+        <input type="submit" value="criar conta" name="create_account" class="btnL">
+        </form>
+        </div>
+
+        <div>
+        <h2>listagem de todos os produtos:</h2>
+        <?php
+        $queryp = "SELECT * FROM product_info";
+        $resp = mysqli_query($conn, $queryp);
+        if (mysqli_num_rows($resp) > 0) {
+            while($row = mysqli_fetch_array($resp)) {
+                echo"<ul>";
+                echo "<h2> dados relativos a todos os produtos: </h3>";
+                echo "<br>";
+                echo"<li><h3>produto ".$row['product_id'].":</h3>";
+                echo $row['product_name'];
+                echo"<li><h4>categories:</h4><br>";
+                echo $row['one_category'];
+                echo $row['two_category'];
+                echo"<li><h4>price:</h4><br>";
+                echo $row['price'];
+                echo "<li><h4>production date:</h4><br>";
+                echo $row['production_date'];
+                echo"<li><h4>expenditure:</h4><br>";
+                echo $row['resource_cast'];
+                echo"<li><h4>eletricity:</h4><br>";
+                echo $row['eletricity_cast'];
+                echo"<li><h4>water:</h4><br>";
+                echo $row['water_cast'];
+                echo"<li><h4>polution caused:</h4><br>";
+                echo $row['pollution_caused'];
+                echo"<li><h4>shelf life:</h4><br>";
+                echo $row['shelf_life'];
+                echo"<li><h4>description:</h4><br>";
+                echo $row['descript'];
+                echo"<li><h4>Image:</h4><br>";
+                echo $row['picture'];
+                echo"</ul>";
+            }?>
+
+            <form action="edit_product.php" method="post">
+            <label class="labels">id de produto para editar:</label>
+            <input type="text"  placeholder="productid" name="productid" value="productid">
+            <br>
+            <input type="submit" value="Editar conta" name="edit_conta" class="btnL">
+            </form>
+
+            <form action="delete_product.php" method="post">
+            <label class="labels">id de produto para eliminar:</label>
+            <input type="text"  placeholder="produtoid" name="productid" value="productid">
+            <br>
+            <input type="submit" value="Eliminar produto" name="delete_product" class="btnL">
+            </form>
+        <?php
+        }
+        ?>
+
+        <form action="create_product.php" method="post">
+            <label class="labels">criar produto:</label>
+            <!--
+            <input type="text"  placeholder="userid" name="userid" value="userid">
+            <br>
+            -->
+            <input type="submit" value="criar produto" name="create_product" class="btnL">
+            </form>
+        </div>
+
+        <div>
+        <h2>listagem de todos os armazéns:</h2>
+        <?php
+        $querya = "SELECT * FROM warehouse_info";
+        $resa = mysqli_query($conn, $querya);
+        if (mysqli_num_rows($resa) > 0) {
+            while($row = mysqli_fetch_array($resa)) {
+                echo"<ul>";
+                echo "<h2> Dados relativos a todos os armazéns: </h2>";
+                    echo "<br>";
+                    echo"<li><h3>Armazém ".$row['warehouse_id'].":</h3>";
+                    echo"<li><h4>Nome do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_name'];
+                    echo"<li><h4>Telefone do armazém:</h4><br>";
+                    echo "<li>".$row['warehouse_phone'];
+                    echo"<li><h4>Email:</h4><br>";
+                    echo "<li>".$row['email'];
+                    echo"<li><h4>Cidade:</h4><br>";
+                    echo "<li>".$row['city'];
+                    echo"<li><h4>Distrito:</h4><br>";
+                    echo "<li>".$row['district'];
+                    echo"<li><h4>Endereço:</h4><br>";
+                    echo "<li>".$row['address'];
+            }
+        }
+        ?>
+        </div>
+
+        <div>
+        <h2>listagem de todos os veiculos:</h2>
+        <?php
+        $queryv = "SELECT * FROM vehicle_info";
+        $resv = mysqli_query($conn, $queryv);
+        if (mysqli_num_rows($resv) > 0) {
+            while($row = mysqli_fetch_array($resv)) {
+                echo"<ul>";
+                echo "<h2> Dados relativos a todos os Veículos: </h2>";
+                echo "<br>";
+                echo"<li><h3>Veículo ".$row['vehicle_id'].":</h3>";
+                echo"<li><h4>Tipo de veículo:</h4><br>";
+                echo "<li>".$row['vehicle_type'];
+                echo"<li><h4>Matricula:</h4><br>";
+                echo "<li>".$row['plate_number'];
+                echo"<li><h4>Poluição Causada:</h4><br>";
+                echo "<li>".$row['pollution_caused'];
+                echo"<li><h4>Descrição:</h4><br>";
+                echo "<li>".$row['descript'];
+                echo"<li><h4>Image:</h4><br>";
+                echo "<li>".$row['pic_desc'];
+                echo "</ul>";
+            }?>
+
+            <form action="edit_vehicle.php" method="post">
+            <label class="labels">id de veiculo para editar:</label>
+            <input type="text"  placeholder="vehicleid" name="vehicleid" value="vehicleid">
+            <br>
+            <input type="submit" value="Editar conta" name="edit_conta" class="btnL">
+            </form>
+
+            <form action="delete_vehicle.php" method="post">
+            <label class="labels">id de veiculo para eliminar:</label>
+            <input type="text"  placeholder="veiculoid" name="vehicleid" value="vehicleid">
+            <br>
+            <input type="submit" value="Eliminar veiculo" name="delete_vehicle" class="btnL">
+            </form>
+        <?php
+        }
+        ?>
+
+        <form action="create_vehicle.php" method="post">
+            <label class="labels">criar veiculo:</label>
+            <!--
+            <input type="text"  placeholder="userid" name="userid" value="userid">
+            <br>
+            -->
+            <input type="submit" value="criar veiculo" name="create_vehicle" class="btnL">
+            </form>
+        </div>
+
+        <!--
+        <div>
+            <h1>Procurar por um utilizador:</h1>
+            <form action="adminManage.php" method="GET">
+            <table>
+                <tr><td>Username:</td><td><input type="text" id="username" name="username"></td></tr>
+                <tr><td><input type="submit" id="submit" name="submit" value="Ver perfil!"></td></tr>
+            </table>
+        </form>
+        </div>
+        -->
+
         <div class="footer-clean">
             <footer>
                 <div class="container">
