@@ -61,7 +61,7 @@ if (mysqli_num_rows($queryu) == 1) {
 	}
 } else {
 	echo "<br>authentication failed";
-    header("location: ../html/login.html");
+    header("refresh:5; url=../html/login.html");
 }
 
 //mysqli_close($conn);
