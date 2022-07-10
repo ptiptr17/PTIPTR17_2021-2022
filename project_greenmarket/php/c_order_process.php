@@ -61,7 +61,7 @@ $insert_order = "insert into order_info(product_id, consumer_id, consumer_name, 
 $res= mysqli_query ($conn, $insert_order);
 if($res){
     echo "Novo encomenda criada com sucesso<br>";
-    header( "refresh:10; url= ../php/c_orders.php");
+    header( "location: ../php/c_orders.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
     header( "refresh:10; url=../php/cart.php" );

@@ -54,18 +54,15 @@ if (mysqli_num_rows($queryu) == 1) {
 	echo "<br>username:".$_SESSION["username"];
 	echo "<br>usertype:".$_SESSION["usertype"];
 	if($usertype === 'admin'){
-<<<<<<< Updated upstream
-		header("refresh:5;*/ url= ../php/admin.php");
-=======
 		header("refresh:5; url= ../php/admin.php");
->>>>>>> Stashed changes
+		header("location= ../php/admin.php");
 	}
 	else{
-    	header("refresh:5; url= ../php/homepage.php");
+    	header("location: ../php/homepage.php");
 	}
 } else {
 	echo "<br>authentication failed";
-    header("refresh:5; url= ../html/login.html");
+    header("refresh:5; url=../html/login.html");
 }
 
 //mysqli_close($conn);

@@ -36,7 +36,7 @@ if($res2){
     echo "Novo utilizador criado com sucesso<br>";
     $_SESSION["username"] = $nome_user;
     $_SESSION["usertype"] = $user_type;
-    header( "refresh:10; url= ../php/completeRegister.php");
+    header( "location: ../php/completeRegister.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
     header( "refresh:10; url=../html/register.html" );

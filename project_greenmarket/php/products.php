@@ -150,10 +150,9 @@ session_start();
 
         echo "<br><h2> Todos os produtos: </h2>";
         echo "<br>";
-        $username = $_SESSION['username'];
-        $userid = $_SESSION['userid'];
         $query = "SELECT * FROM product_info";
         $res = mysqli_query($conn, $query);
+        $usertype = $_SESSION['usertype'];
         if(mysqli_num_rows($res) > 0){
 
             while($row = mysqli_fetch_array($res)) {
@@ -193,7 +192,9 @@ session_start();
                         <input type="submit" value="Ir para o carrinho" name="carrinho">
                     </form>
                     <br>
-                <?php } ?>
+                <?php }else{
+                    echo "";
+                } ?>
     	<?php
             }
         }

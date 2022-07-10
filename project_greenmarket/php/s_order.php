@@ -36,19 +36,16 @@ session_start();
             background:#4CAF50;
             border: 2px solid black;
             border-radius: 5px;
-            margin: auto;
+            text-align: left;
         }
 
 
-<<<<<<< Updated upstream
 
         form {
             margin: auto;
             text-align: center;
         }
 
-=======
->>>>>>> Stashed changes
         img {
             display: block;
             margin-left: auto;
