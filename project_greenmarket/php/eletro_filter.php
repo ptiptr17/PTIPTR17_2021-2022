@@ -128,7 +128,7 @@ session_start();
               echo"<li><h3>".$row['product_name'].":</h3>";
               echo"<li><h4>2ª categorias:</h4><br>";
               echo $row['two_category'];
-              echo"<li><h4>preço:</h4><br>";
+              echo"<li><h4>Preço:</h4><br>";
               echo $row['price'];
               echo"<li><h4>Imagem:</h4><br>";
               echo $row['picture'];

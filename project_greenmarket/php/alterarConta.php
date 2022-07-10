@@ -39,11 +39,8 @@ session_start();
             margin: auto;
         }
 
-
-
-        form {
-            margin: auto;
-            text-align: center;
+        label.labels {
+            display: flex;
         }
 
         img {
@@ -129,14 +126,14 @@ session_start();
         <br>
         <h2 class="text-right">Alterar dados do utilizador</h2>
                     </div>
-                    <form action="edit_user.php" method="post">
+                    <form class="dados" action="edit_user.php" method="post">
                         <div class="row mt-3">
                             <div class="col-md-12">
-                                <label class="labels">username</label>
+                                <label class="labels">Username</label>
                                 <input type="text"  placeholder="UNome" name="uname_novo" value="<?php echo $row['username']?>">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">name</label>
+                                <label class="labels">Nome</label>
                                 <input type="text"  placeholder="Nome" name="nome_novo" value="<?php echo $row['name']?>">
                             </div>
                             <div class="col-md-12">
@@ -144,7 +141,7 @@ session_start();
                                 <input type="text"  placeholder="Email" name="email_novo" value="<?php echo $row['email']?>">
                             </div>
                             <div class="col-md-12">
-                                <label class="labels">Phone number</label>
+                                <label class="labels">Numero de Telefone</label>
                                 <input type="text"  placeholder="Phone" name="phone_novo" value="<?php echo $row['phone']?>">
                             </div>
                             <div class="col-md-12">
@@ -181,7 +178,7 @@ session_start();
                         </div>
                         <div class="mt-3 text-center">
                             <div class="col-md-4">
-                                <input type="submit" value="Save Profile" name="edit_utilizador">
+                                <input type="submit" value="Guardar Perfil" name="edit_utilizador">
                             </div>
                         </div>
                     </form>

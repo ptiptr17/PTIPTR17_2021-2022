@@ -54,7 +54,11 @@ if (mysqli_num_rows($queryu) == 1) {
 	echo "<br>username:".$_SESSION["username"];
 	echo "<br>usertype:".$_SESSION["usertype"];
 	if($usertype === 'admin'){
+<<<<<<< Updated upstream
 		header("refresh:5;*/ url= ../php/admin.php");
+=======
+		header("refresh:5; url= ../php/admin.php");
+>>>>>>> Stashed changes
 	}
 	else{
     	header("refresh:5; url= ../php/homepage.php");

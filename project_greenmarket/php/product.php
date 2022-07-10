@@ -31,6 +31,10 @@ session_start();
             text-align: center;
         }
 
+        li{
+            display: inline;
+        }
+
         input[type=submit] {
             padding:5px 15px;
             background:#4CAF50;
@@ -125,26 +129,26 @@ session_start();
                   echo "<li><img src ='../html/imagens/mobilia.jpg' width ='200' height='120'/>";
               }
               echo "<br>";
-              echo"<li><h4>categories:</h4><br>";
+              echo"<li><h4>Categorias:</h4><br>";
               echo $row['one_category']."<br>";
               echo $row['two_category'];
-              echo"<li><h4>price:</h4><br>";
+              echo"<li><h4>Preco:</h4><br>";
               echo $row['price'];
-              echo "<li><h4>production date:</h4><br>";
+              echo "<li><h4>Data de producao:</h4><br>";
               echo $row['production_date'];
-              echo"<li><h4>expenditure:</h4><br>";
+              echo"<li><h4>Despesa:</h4><br>";
               echo $row['resource_cast'];
-              echo"<li><h4>eletricity:</h4><br>";
+              echo"<li><h4>Electricidade:</h4><br>";
               echo $row['eletricity_cast'];
-              echo"<li><h4>water:</h4><br>";
+              echo"<li><h4>Agua:</h4><br>";
               echo $row['water_cast'];
-              echo"<li><h4>polution caused:</h4><br>";
+              echo"<li><h4>Poluicao causada:</h4><br>";
               echo $row['pollution_caused'];
-              echo"<li><h4>shelf life:</h4><br>";
+              echo"<li><h4>Validade:</h4><br>";
               echo $row['shelf_life'];
-              echo"<li><h4>description:</h4><br>";
+              echo"<li><h4>Descricao:</h4><br>";
               echo $row['descript'];
-              echo"<li><h4>Image:</h4><br>";?>
+              echo"<li><h4>Imagen:</h4><br>";?>
               <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
               <?php echo "</ul>"; ?>
 

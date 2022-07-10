@@ -25,7 +25,7 @@ session_start();
         border: 1px solid #000;
         }
 
-        div{
+        div.body{
             display: grid;
             margin: auto;
             text-align: center;
@@ -36,21 +36,36 @@ session_start();
             background:#4CAF50;
             border: 2px solid black;
             border-radius: 5px;
-            text-align: left;
-            margin: auto;
         }
 
+        li.filtro{
+            display: flex;
+            text-align: center;
+            margin: 0 700px;
+        }
 
-        #filtros{
-            margin: auto;
-            text-align: left;
+        h1{
+            position: relative;
+            left: 16%;
+        }
+
+        h2{
+            position: relative;
+            left: 16%;
+        }
+
+        hr.line{
+            position: relative;
+            left: 16%;
+            right: 16%;
         }
 
         form {
-            margin: auto;
             text-align: center;
-        }
+            display : block;
+            margin: auto;
 
+        }
 
     </style>
     <body>
@@ -114,9 +129,9 @@ session_start();
 
     <h1> Produtos </h1>
     <br>
-    <hr>
+    <hr class="line">
     <h2>Filtro</h2>
-    <ul><li>
+    <ul><li class="filtro">
         <form action="eletro_filter.php" method="post">
             <input type="submit" name="eletro_filer" value="Todos os Eletrodomésticos" />
         </form>
@@ -129,11 +144,11 @@ session_start();
             <input type="submit" name="vestuario_filer" value="Todo o Vestuário" />
         </form>
     </ul></li>
-    <hr>
+    <hr class="line">
 
     <?php
 
-        echo "<br><h2> todos os produtos: </h2>";
+        echo "<br><h2> Todos os produtos: </h2>";
         echo "<br>";
         $username = $_SESSION['username'];
         $userid = $_SESSION['userid'];
@@ -143,7 +158,7 @@ session_start();
 
             while($row = mysqli_fetch_array($res)) {
 
-                echo"<div>";
+                echo"<div class='body'>";
                 echo"<ul>";
                 echo"<li><h3>".$row['product_name'].":</h3>";
 
@@ -155,12 +170,12 @@ session_start();
                     echo "<li><img src ='../html/imagens/mobilia.jpg' width ='150' height='90'/>";
                 }
 
-                echo"<li><h4>categorias:</h4>";
+                echo"<li><h4>Categorias:</h4>";
                 echo $row['one_category']."<br>";
                 echo $row['two_category']."<br>";
-                echo"<li><h4>price:</h4>";
+                echo"<li><h4>Preço:</h4>";
                 echo $row['price'];
-                echo"<li><h4>Image:</h4><br>";?>
+                echo"<li><h4>Imagem:</h4><br>";?>
                 <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['picture']); ?>" />
                 <?php echo"</ul>";?>
                 <?php echo"</div>";?>
