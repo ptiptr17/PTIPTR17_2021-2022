@@ -23,10 +23,10 @@ $addtransporter = "UPDATE order_info SET transporter_id = '$transporter_id',  tr
 $addt = mysqli_query($conn , $addtransporter);
 if($addt){
     echo "transportador inserido com sucesso<br>";
-    header("location: ../php/s_order.php");
+    header("refresh:10; url= ../php/s_order.php");
 } else {
     echo "Erro: insert failed" . $query . "<br>" . mysqli_error($conn);
-    header( "refresh:10; url../php/s_order.php" );
+    header( "refresh:10; url=../php/s_order.php" );
 }
 // Termina a ligacao com a base de dados
 mysqli_close($conn);
