@@ -40,15 +40,6 @@ session_start();
         }
 
 
-<<<<<<< Updated upstream
-
-        form {
-            margin: auto;
-            text-align: center;
-        }
-
-=======
->>>>>>> Stashed changes
         img {
             display: block;
             margin-left: auto;

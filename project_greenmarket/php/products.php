@@ -43,7 +43,6 @@ session_start();
             text-align: center;
             margin: 0 700px;
         }
-<<<<<<< Updated upstream
 
         h1{
             position: relative;
@@ -57,34 +56,10 @@ session_start();
 
         hr.line{
             position: relative;
+            text-align: center;
             left: 16%;
             right: 16%;
-        }
-
-        form {
-            text-align: center;
-            display : block;
-            margin: auto;
-
-=======
-
-        h1{
-            position: relative;
-            left: 16%;
-        }
-
-        h2{
-            position: relative;
-            left: 16%;
-        }
-
-        hr.line{
-            text-align: center;
-            display: grid;
-            position: relative;
             width: 1300px;
-            left: 16%;
-            right: 16%;
         }
 
         form {
@@ -92,7 +67,6 @@ session_start();
             display : block;
             margin: auto;
 
->>>>>>> Stashed changes
         }
 
     </style>

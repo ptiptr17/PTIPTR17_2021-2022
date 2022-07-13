@@ -123,7 +123,6 @@ session_start();
 
           while($row = mysqli_fetch_array($rese)) {
 
-              echo"<div>";
               echo"<ul>";
               echo "<br>";
               echo"<li><h3>".$row['product_name'].":</h3>";
@@ -134,7 +133,6 @@ session_start();
               echo"<li><h4>Imagem:</h4><br>";
               echo $row['picture'];
               echo "</ul>";
-              echo"</div>";
               ?>
 
               <form action="product.php" method="post">
