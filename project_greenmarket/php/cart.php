@@ -25,6 +25,13 @@ session_start();
         border: 1px solid #000;
         }
 
+        input[type=submit] {
+            padding:5px 15px;
+            background:#4CAF50;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+
     </style>
     <body>
     <header class="header">
