@@ -18,6 +18,12 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     </head>
     <style type="text/css">
+
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
         background: #ecf4e9;
         padding: 2px 6px;

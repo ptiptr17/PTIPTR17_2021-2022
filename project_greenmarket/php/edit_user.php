@@ -42,7 +42,7 @@ if( $username_novo === ""  || $nome === "" || $email === "" || $phone ==="" || $
             $_SESSION["username"] = $username_novo;
             $_SESSION["nome"] = $nome;
             $_SESSION["email"] = $email;
-            header("refresh:5; url=profile.php");
+            header("locationg: profile.php");
     } else {
             echo ("session name not found");
             $_SESSION["status"] = "conta com sessao iniciada nao encontrada";

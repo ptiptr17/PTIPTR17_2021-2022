@@ -57,7 +57,7 @@ if (mysqli_num_rows($queryu) == 1) {
 		header("refresh:5; url= ../php/admin.php");
 	}
 	else{
-    	header("refresh:5; url= ../php/homepage.php");
+    	header("location: ../php/homepage.php");
 	}
 } else {
 	echo "<br>authentication failed";
