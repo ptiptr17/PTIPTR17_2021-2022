@@ -9,7 +9,7 @@ $res1 = mysqli_query ($conn, $delete_product);
 
 if($res1){
     echo ("Product removed sucessfully from cart.");
-    header("refresh:5; url=../php/cart.php");
+    header("location:../php/cart.php");
 }else{
     echo "não foi possivel remover o produto do carrino devido a um erro";
     header("refresh:5; url=cart.php");
