@@ -6,12 +6,20 @@
 
 body{
     font-family: "Poppins", sans-serif;
+    background: #ecf4e9;
 }
 
 .navbar{
     display: flex;
     align-items: center;
     padding: 10px;
+}
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#4CAF50;
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
 nav{

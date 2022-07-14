@@ -40,7 +40,6 @@ session_start();
         }
 
 
-
         img {
             display: block;
             margin-left: auto;
